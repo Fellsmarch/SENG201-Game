@@ -1,0 +1,76 @@
+/**
+ * This class creates the team for the game, is stores the team in an ArrayList (and their inventory)
+ * 
+ * @author Harrison Cook
+ * @author Hannah Regan
+ * @version 0.1 04/04/2018
+ */
+
+import java.util.ArrayList;
+
+public class Team
+	{
+		private ArrayList<Hero> heroes = new ArrayList<Hero>();									//The list of heroes in the team
+		private ArrayList<Integer> powerups = new ArrayList<Integer>();							//The list of powerups the team has
+		private ArrayList<Integer> healingItems = new ArrayList<Integer>();						//The list of healing items the team has
+		private ArrayList<ArrayList<Integer>> inventory = new ArrayList<ArrayList<Integer>>();	//The full inventory of the team, could be removed if it is not used
+		//private ArrayList<Map> maps = new ArrayList<Map>();									//The list of maps the team has
+		private int money = 100;																//The amount of money the team has/starts with
+		private String name;																	//The teams name (chosen by the user -- 2-12 chars)
+		private double goodEventChance = 0.5;													//The chance of getting a good event when an event triggers
+		
+		public Team(String newName, ArrayList<Hero> heroes) {									//User chooses their heroes before we make the team
+			name = newName;
+			inventory.add(powerups);
+			inventory.add(healingItems);
+			for (Hero hero : heroes) { 															//Iterate through the list of heroes
+				if (hero instanceof CEO) money = 500; 											//If a hero is a CEO, set the starting money to 500
+			}
+			
+		}
+		
+		//Getters
+		public double getEventChance() {return goodEventChance;}
+		public String getName() {return name;}
+		public int getMoney() {return money;}
+		public ArrayList<Hero> getHeroList(){return heroes;}
+		public ArrayList<Integer> getPowerupList(){return powerups;}
+		public ArrayList<Integer> getHealingList(){return healingItems;}
+		public ArrayList<ArrayList<Integer>> getInventory() {return inventory;}
+		//public ArrayList<Map> getMapList(){return maps;}
+		
+		//Setters
+		public void changeMoney(int value) {money += value;}							//Adds or removes money
+		public void changeEventChance(double newChance) {goodEventChance += newChance;}	//Adds or removes chances of getting a good event
+		
+		public void addPowerup(int powerup) {powerups.add(powerup);}
+		public void removePowerup(int powerup) { //Could be boolean and return true if removal successful
+			int index = powerups.indexOf(powerup);
+			powerups.remove(index);
+		}
+		
+		public void addHealing(int healing) {healingItems.add(healing);}
+		public void removeHealing(int healing) { //Could be boolean and return true if removal successful
+			int index = healingItems.indexOf(healing);
+			healingItems.remove(index);
+		}
+		
+		
+		public void addHero(Hero hero) {heroes.add(hero);}
+		public void removeHero(Hero hero) { //Could be boolean and return true if removal successful
+			int index = heroes.indexOf(hero);
+			heroes.remove(index);
+		}
+		
+//		public static void main(String[] args) { //For testing only
+//			CEO ceo = new CEO();
+//			Tank tank = new Tank();
+//			LuckyHero lucky = new LuckyHero();
+//			ArrayList<Hero> team = new ArrayList<Hero>();
+//			team.add(ceo); team.add(tank); team.add(lucky);
+//			
+//			Team sickTeam = new Team("A-Team", team);
+//			System.out.println(sickTeam.getMoney());
+//			System.out.println(sickTeam.getName());
+//		}
+	}
