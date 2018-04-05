@@ -16,16 +16,19 @@ public class Team
 		private ArrayList<ArrayList<Integer>> inventory = new ArrayList<ArrayList<Integer>>();	//The full inventory of the team, could be removed if it is not used
 		//private ArrayList<Map> maps = new ArrayList<Map>();									//The list of maps the team has
 		private int money = 100;																//The amount of money the team has/starts with
-		private String name;																	//The teams name (chosen by the user -- 2-12 chars)
+		private String name;																	//The teams name (chosen by the user -- 2-10 chars)
 		private double goodEventChance = 0.5;													//The chance of getting a good event when an event triggers
 		
-		public Team(String newName, ArrayList<Hero> heroes) {									//User chooses their heroes before we make the team
+		public Team(String newName, ArrayList<Hero> startingHeroes) {							//User chooses their heroes before we make the team
 			name = newName;
 			inventory.add(powerups);
 			inventory.add(healingItems);
-			for (Hero hero : heroes) { 															//Iterate through the list of heroes
-				if (hero instanceof CEO) money = 500; 											//If a hero is a CEO, set the starting money to 500
+			for (Hero hero : startingHeroes) { 													//Iterate through the list of heroes
+				if (hero instanceof CEOHero) money = 500; 										//If a hero is a CEO, set the starting money to 500
+				heroes.add(hero);																//Since we're iterating through here, should we maybe add this also for event chance?
+																								//And any others that aren't edited by more than one hero type?
 			}
+			
 			
 		}
 		
@@ -40,7 +43,7 @@ public class Team
 		//public ArrayList<Map> getMapList(){return maps;}
 		
 		//Setters
-		public void changeMoney(int value) {money += value;}							//Adds or removes money
+		public void changeMoney(int value) {money += value;}							//Adds or removes money -- Change is not a good word for add or remove
 		public void changeEventChance(double newChance) {goodEventChance += newChance;}	//Adds or removes chances of getting a good event
 		
 		public void addPowerup(int powerup) {powerups.add(powerup);}
@@ -56,10 +59,15 @@ public class Team
 		}
 		
 		
-		public void addHero(Hero hero) {heroes.add(hero);}
+		public void addHero(Hero hero) {heroes.add(hero);} //Do we actually need this if the heroes are selected before the team is made
 		public void removeHero(Hero hero) { //Could be boolean and return true if removal successful
 			int index = heroes.indexOf(hero);
-			heroes.remove(index);
+			if (index == -1) {
+				System.out.println("ERROR: Hero not in team"); //Need to deal with this error properly
+			}else {
+				heroes.remove(index);
+			}
+			
 		}
 		
 //		public static void main(String[] args) { //For testing only
@@ -67,9 +75,15 @@ public class Team
 //			Tank tank = new Tank();
 //			LuckyHero lucky = new LuckyHero();
 //			ArrayList<Hero> team = new ArrayList<Hero>();
-//			team.add(ceo); team.add(tank); team.add(lucky);
+//			team.add(ceo); team.add(tank);// team.add(lucky);
+//			//System.out.println(team.indexOf(tank));
+//			//System.out.println(team.indexOf(lucky));
+//			
+//			
 //			
 //			Team sickTeam = new Team("A-Team", team);
+//			sickTeam.removeHero(tank);
+//			//sickTeam.removeHero(lucky);
 //			System.out.println(sickTeam.getMoney());
 //			System.out.println(sickTeam.getName());
 //		}
