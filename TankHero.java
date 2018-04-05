@@ -6,19 +6,19 @@
  * @version 0.1 04/04/2018
  */
 
-public class Tank extends Hero
+public class TankHero extends Hero
 	{
-		public Tank() {
-			this.name = "Tank";
-			this.health = 200;
-			this.recoveryRate = 1;
-			this.attackMod = 0.65;
-			this.defenseMod = 1.3;
+		public TankHero() {
+			name = "Tank";  //I don't think we need this.name = "Tank".
+			adjustHealth(100); //Which is better practice using setters on private variables or directly setting protected ones
+			recoveryRate = 1;
+			attackMod = 0.65;
+			defenseMod = 1.3;
 		}
 		
 //		public static void main(String[] args) {
-//			Tank tank = new Tank();
-//			tank.name = "Tank";
+//			TankHero tank = new TankHero();
+//			//tank.name = "Tank";
 //			System.out.println(tank.getHealth());
 //			System.out.println(tank.getRecovery());
 //			System.out.println(tank.getName());
