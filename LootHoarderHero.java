@@ -6,10 +6,10 @@
  * @version 0.1 04/04/2018
  */
 
-public class LootHoarder extends Hero
+public class LootHoarderHero extends Hero
 	{
-		public LootHoarder() {
-			this.name = "Loot Hoarder";
-			this.lootMod = 1.5;
+		public LootHoarderHero() {
+			name = "Loot Hoarder";
+			lootMod = 1.5;
 		}
 	}
