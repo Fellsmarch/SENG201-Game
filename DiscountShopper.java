@@ -9,7 +9,7 @@
 public class DiscountShopper extends Hero
 	{
 		public DiscountShopper() {
-			this.name = "Discount Shopper";
-			this.shopPrice = 0.5;
+			name = "Discount Shopper";
+			shopPrice = 0.5;
 		}
 	}

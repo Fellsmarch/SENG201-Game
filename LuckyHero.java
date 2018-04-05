@@ -10,7 +10,7 @@
 public class LuckyHero extends Hero
 	{
 		public LuckyHero() { //Chance of getting good events vs bad ones is increased
-			this.name = "Lucky";
-			this.eventChance = 0.25;
+			name = "Lucky";
+			eventChance = 0.25;
 		}
 	}

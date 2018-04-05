@@ -9,7 +9,7 @@
 public class TeamPowerupHero extends Hero
 	{
 		public TeamPowerupHero() {
-			this.name = "Team Powerup";
-			this.teamPowerupChance = 0.2;
+			name = "Powerup splash";
+			teamPowerupChance = 0.2;
 		}
 	}

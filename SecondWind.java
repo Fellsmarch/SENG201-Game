@@ -13,7 +13,7 @@ public class SecondWind extends Hero
 		private boolean hasDied = false;
 		
 		public SecondWind() {
-			this.name = "Second Wind";
+			name = "Second Wind";
 		}
 		
 		public boolean death() {
@@ -21,7 +21,7 @@ public class SecondWind extends Hero
 				return true;
 			}else {
 				hasDied = true;
-				this.health = 1;
+				health = 1;
 				return false;
 			}
 		}
