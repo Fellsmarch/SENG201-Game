@@ -13,7 +13,6 @@ public class Team
 		private ArrayList<Hero> heroes = new ArrayList<Hero>();									//The list of heroes in the team
 		private ArrayList<Integer> powerups = new ArrayList<Integer>();							//The list of powerups the team has
 		private ArrayList<Integer> healingItems = new ArrayList<Integer>();						//The list of healing items the team has
-		private ArrayList<ArrayList<Integer>> inventory = new ArrayList<ArrayList<Integer>>();	//The full inventory of the team, could be removed if it is not used
 		//private ArrayList<Map> maps = new ArrayList<Map>();									//The list of maps the team has
 		private int money = 100;																//The amount of money the team has/starts with
 		private String name;																	//The teams name (chosen by the user -- 2-10 chars)
@@ -21,8 +20,6 @@ public class Team
 		
 		public Team(String newName, ArrayList<Hero> startingHeroes) {							//User chooses their heroes before we make the team
 			name = newName;
-			inventory.add(powerups);
-			inventory.add(healingItems);
 			for (Hero hero : startingHeroes) { 													//Iterate through the list of heroes
 				if (hero instanceof CEOHero) money = 500; 										//If a hero is a CEO, set the starting money to 500
 				heroes.add(hero);																//Since we're iterating through here, should we maybe add this also for event chance?
@@ -39,7 +36,7 @@ public class Team
 		public ArrayList<Hero> getHeroList(){return heroes;}
 		public ArrayList<Integer> getPowerupList(){return powerups;}
 		public ArrayList<Integer> getHealingList(){return healingItems;}
-		public ArrayList<ArrayList<Integer>> getInventory() {return inventory;}
+
 		//public ArrayList<Map> getMapList(){return maps;}
 		
 		//Setters
