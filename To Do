@@ -11,6 +11,14 @@ Classes to finish:
   -GuessNumberGame
   -DiceRollsGame
   
+Add or finish docstrings/comments on these classes:
+  -Game
+  -Building
+  -Hero (javadoc only)
+  -Team (javadoc only)
+  -Villain
+  -SuperVillain
+  
 Need to create tests for these (finished) classes:
   -Villain
   -
