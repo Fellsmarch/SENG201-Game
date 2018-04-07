@@ -1,3 +1,17 @@
 We need to know:
 - What recovery rate is
 - Can you write 'home' instead of a direction to go back home
+
+
+
+Checking input:
+try: 
+    userInput = scanner.nextInt(); // checks if input is an int
+    if (userInput == 1):
+        doThing
+    elseif (userInput == 2):
+        doThing
+    else:
+        Sysout("Input was out of range, please try again")
+catch exception:
+    Sysout("input was not an int")
