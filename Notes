@@ -1,7 +1,11 @@
 We need to know:
 - What recovery rate is
 - Can you write 'home' instead of a direction to go back home
+- Do we have to conform to what they said about GameEnvironment being a simple loop that displays options, can we have our input in different classes/methods like we're trying to do
 
+GameEnvironment:
+    Should we have a startGame() method which is called in the main and possibly also a choose direction method?
+        However both of these would have similar input code
 
 Villain:
     I added an ArrayList of Game to Villain variables and constructor so that when we choose a game we don't have to give a list of games to choose from everytime, the games will always be the same.
