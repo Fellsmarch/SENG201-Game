@@ -3,6 +3,11 @@ We need to know:
 - Can you write 'home' instead of a direction to go back home
 - Do we have to conform to what they said about GameEnvironment being a simple loop that displays options, can we have our input in different classes/methods like we're trying to do
 
+
+Hero:
+    Could call defense mod armour
+    Could call shopPrice mod barter
+
 GameEnvironment:
     Should we have a startGame() method which is called in the main and possibly also a choose direction method?
         However both of these would have similar input code
