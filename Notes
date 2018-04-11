@@ -19,6 +19,7 @@ Hero:
 GameEnvironment:
     Should we have a startGame() method which is called in the main and possibly also a choose direction method?
         However both of these would have similar input code
+    Should move the input checkers and text related methods to their own class so we can call from any class
 
 Villain:
     I added an ArrayList of Game to Villain variables and constructor so that when we choose a game we don't have to give a list of games to choose from everytime, the games will always be the same.
