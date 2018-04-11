@@ -10,6 +10,7 @@ Powerup/healing items:
         Name
         Description
         Effect(?)
+    otherwise, we will have to hardcode these in 3-4 times (shop menu, inventory in base & hospital/powerup den)
 
 Hero:
     Could call defense mod armour
