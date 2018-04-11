@@ -26,6 +26,7 @@ Villain:
 
 
 Checking input:
+Could make this a public method in game_environment and call it with the accepted input range, (printing the text before calling checkInput)
 try: 
     userInput = scanner.nextInt(); // checks if input is an int
     if (userInput == 1):
@@ -36,6 +37,8 @@ try:
         Sysout("Input was out of range, please try again")
 catch exception:
     Sysout("input was not an int")
+    
+ 
 
 
 test
