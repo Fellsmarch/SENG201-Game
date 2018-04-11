@@ -8,8 +8,8 @@
 
 public class TeamPowerupHero extends Hero
 	{
-		public TeamPowerupHero() {
-			name = "Powerup splash";
+		public TeamPowerupHero(String name) {
+			super(name);
 			teamPowerupChance = 0.2;
 		}
 	}

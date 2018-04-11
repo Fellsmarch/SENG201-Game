@@ -58,12 +58,13 @@ public class Team
 		
 		public void addHero(Hero hero) {heroes.add(hero);} //Do we actually need this if the heroes are selected before the team is made
 		public void removeHero(Hero hero) { //Could be boolean and return true if removal successful
-			int index = heroes.indexOf(hero);
-			if (index == -1) {
-				System.out.println("ERROR: Hero not in team"); //Need to deal with this error properly
-			}else {
-				heroes.remove(index);
-			}
+			heroes.remove(hero);
+//			int index = heroes.indexOf(hero);
+//			if (index == -1) {
+//				System.out.println("ERROR: Hero not in team"); //Need to deal with this error properly
+//			}else {
+//				heroes.remove(index);
+//			}
 			
 		}
 		

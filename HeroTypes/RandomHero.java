@@ -16,8 +16,8 @@ import java.util.Random;
 
 public class RandomHero extends Hero
 	{
-		public RandomHero() {
-			name = "Randomiser";
+		public RandomHero(String name) {
+			super(name);
 			Random randomiser = new Random();
 			health = randomiser.nextInt(200) + 1;
 			recoveryRate = randomiser.nextInt(11);

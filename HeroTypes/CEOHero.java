@@ -12,7 +12,7 @@ public class CEOHero extends Hero
 		//private String name = "CEO";	//I don't know if this or using the constructor is a better method, also should we be 
 										//using this.setName("CEO") instead so	that name can be private in the Hero super class															
 		
-		public CEOHero() {
-			name = "CEO";
+		public CEOHero(String name) {
+			super(name);
 		}
 	}

@@ -8,8 +8,8 @@
 
 public class ADCarryHero extends Hero
 	{
-		public ADCarryHero() {
-			name = "AD Carry";
+		public ADCarryHero(String name) {
+			super(name);
 			attackMod = 1.7;
 			health = 80;
 			defenseMod = 0.7;

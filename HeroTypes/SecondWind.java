@@ -12,8 +12,8 @@ public class SecondWind extends Hero
 	{
 		private boolean hasDied = false;
 		
-		public SecondWind() {
-			name = "Second Wind";
+		public SecondWind(String name) {
+			super(name);
 		}
 		
 		public boolean death() {

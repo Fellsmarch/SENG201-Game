@@ -9,8 +9,8 @@
 
 public class LuckyHero extends Hero
 	{
-		public LuckyHero() { //Chance of getting good events vs bad ones is increased
-			name = "Lucky";
+		public LuckyHero(String name) { //Chance of getting good events vs bad ones is increased
+			super(name);
 			eventChance = 0.25;
 		}
 	}

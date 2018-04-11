@@ -8,8 +8,8 @@
 
 public class LootHoarderHero extends Hero
 	{
-		public LootHoarderHero() {
-			name = "Loot Hoarder";
+		public LootHoarderHero(String name) {
+			super(name);
 			lootMod = 1.5;
 		}
 	}
