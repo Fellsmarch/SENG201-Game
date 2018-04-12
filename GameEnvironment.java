@@ -1,13 +1,17 @@
+import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
 
 public class GameEnvironment
 	{
 		private Team team;
-		private ArrayList<Villain> villains;
+		private ArrayList<Villain> villains = new ArrayList<Villain>();
+		private SuperVillain superVillain; //Needs to be added to UML
 		private ArrayList<City> cities = new ArrayList<City>();
-		private City currentCity;
-		private int currentCityIndex = 0; //Could just make current city type int and always call using index
+		//private City currentCity;
+		private int currentCityIndex = 0; //Could just make current city type int and always call using index --> NEED A WAY TO CHECK THAT THIS DOESN'T GO OVER THE MAX NUMBER OF CITIES
 		private Building currentLocation; //Bit dubious about this, should it be type building and not deal with home? Maybe home == null
 		private ArrayList<Map> mapList;
 		private ArrayList<Building> buildings = new ArrayList<Building>();
@@ -23,12 +27,38 @@ public class GameEnvironment
 			buildings.add(villainsLair);
 			
 			generateCities(numOfCities);
-			currentCity = cities.get(currentCityIndex);
+			//currentCity = cities.get(currentCityIndex);
 			
 			team = new Team(teamName, heroes);
 			
 			generateMaps(numOfCities);
 			generateVillains(numOfCities);
+		}
+		
+		public boolean runGame(){ //Returns true if the game is won
+			boolean gameWon = false;
+			boolean gameLost = false;
+			String[] options = {"Go north", "Go east", "Go south", "Go west", "Show team stats"};
+			while(true) {
+				int userChoice = printOptions(options);
+				switch (userChoice) {
+					case 1: cities.get(currentCityIndex).goNorth(team); //could have each building return a boolean and goNorth return one that says if the teams moved into the next city, if it is true when we are on the final city, the team loses
+//							if(cities.get(currentCityIndex).getDiections()[0] instanceof VillainsLair) {
+//								int status = 
+//								if(VillainsLair.getStatus) //if the heros have won the fight
+//							}
+							break;
+					case 2: cities.get(currentCityIndex).goEast(team);
+							break;
+					case 3: cities.get(currentCityIndex).goSouth(team);
+							break;
+					case 4: cities.get(currentCityIndex).goWest(team);
+							break;
+					case 5: //Show team hero stats
+							break;
+					//case 6: view maps
+				}
+			}
 		}
 		
 		public void generateCities(int numOfCities) {
@@ -44,11 +74,35 @@ public class GameEnvironment
 		
 		private void displayHeroStats() {
 			//				String[] options = {;"Tank:\n     Health: 500\n     Attack:20\nect", "Healer", "Vinnie"}; //Could make this into a format for hero : herotypes herostring = Health: {0} (hero.gethealth()
-			//5 Spaces   ^^^^^
+											//5 Spaces   ^^^^^
 		}
 		
 		public void generateVillains(int numOfVillains) {
+			//private Game[] games = {PaperScissorsRockGame, GuessNumberGame, DiceRollsGame};
+			PaperScissorsRockGame psr = new PaperScissorsRockGame(); GuessNumberGame guessNumGame = new GuessNumberGame();
+			DiceRollsGame diceRollsGame = new DiceRollsGame();
+			ArrayList<Game> gameList = new ArrayList<Game>();
+			gameList.add(psr); gameList.add(guessNumGame); gameList.add(diceRollsGame);
+			//List<Game> gameList = new ArrayList<Game>(Arrays.asList(PaperScissorsRockGame, GuessNumberGame, DiceRollsGame)); //This doesn't work for some reason
 			
+			List<String> namesList = new ArrayList<String>(Arrays.asList("Name1", "Name2", "Name3", "Name4", "Name5", "Name6"));
+			List<String> tauntsList = new ArrayList<String>(Arrays.asList("Taunt1", "Taunt2", "Taunt3", "Taunt4", "Taunt5", "Taunt6"));
+			Random rand = new Random();
+			
+			for(int i = 0; i < numOfVillains; i++) {
+				int nameIndex = rand.nextInt(namesList.size());
+				int tauntIndex = rand.nextInt(tauntsList.size());
+				String name = namesList.get(nameIndex); String taunt = tauntsList.get(tauntIndex);
+				Villain newVillain = new Villain(name, taunt, gameList);
+				villains.add(newVillain);
+				namesList.remove(nameIndex); tauntsList.remove(tauntIndex);
+			} System.out.println(villains.size());
+			
+			int nameIndex = rand.nextInt(namesList.size());
+			int tauntIndex = rand.nextInt(tauntsList.size());
+			String name = namesList.get(nameIndex); String taunt = tauntsList.get(tauntIndex);
+			SuperVillain superVill = new SuperVillain(name, taunt, gameList);
+			superVillain = superVill;
 		}
 		
 		public int getValidInputNum(int acceptedRange) {
@@ -56,20 +110,7 @@ public class GameEnvironment
 			Scanner scanner = new Scanner(System.in);
 			int toReturn = 0; //Have to instantiate to something since method has to return an int
 			boolean inputGood = false;
-			//while (!inputGood) {
-//				if(scanner.hasNextInt()) {
-//					int userChoice = scanner.nextInt();
-//					if (userChoice > 0 && userChoice <= acceptedRange) {
-//						toReturn = userChoice;
-//						inputGood = true;
-//					}else {
-//						System.out.println("Input was not one of the options, please try again.");
-//					}
-//				}else {
-//					System.out.println("Input was not an integer, please try again.");
-//					scanner.reset();
-//				}
-				if(scanner.hasNext()) {
+			while (!inputGood) {
 					String userInput = scanner.next();
 					try {
 						int userChoice = Integer.parseInt(userInput); //Checks if input is an int
@@ -81,11 +122,10 @@ public class GameEnvironment
 						}
 					} catch (NumberFormatException e) {
 						System.out.println("Input was not an integer, please try again.");
-						scanner.next();
-					}
 				}
-			//}
-			scanner.close();
+			}
+			System.out.println(".\n.\n.");
+			//scanner.close(); --> This closes the scanner for the whole program, not just for the method
 			return toReturn; //This is only done this way since the method needs to return an int
 		}
 		
@@ -98,7 +138,7 @@ public class GameEnvironment
 				optionNum++;
 			}
 			System.out.println("Please enter your choice:");
-			return getValidInputNum(optionNum);
+			return getValidInputNum(optionNum-1);
 		}
 		
 		public String getValidInputStr(int minSize, int maxSize) {
@@ -114,7 +154,8 @@ public class GameEnvironment
 					System.out.println("Name must be between " + minSize + " and " + maxSize + " characters!");
 				}
 			}
-			scanner.close();
+			System.out.println(".\n.\n.");
+			//scanner.close();--> This closes the scanner for the whole program, not just for the method
 			return toReturn;
 		}
 		
@@ -198,12 +239,12 @@ public class GameEnvironment
 				//Create get the hero names
 				ArrayList<String> heroNames = new ArrayList<String>(); //For checking that hero names are not duplicates
 				for(int i = 0; i < numOfHeroes; i++) {
-					boolean heroNameUnique = true;
+					boolean heroNameUnique = false;
 					System.out.println("What is the name of this hero?:");
-					while(heroNameUnique) {
+					while(!heroNameUnique) {
 						String heroName = game.getValidInputStr(1, 1000000);
 						if(heroNames.contains(heroName)) {
-							heroNameUnique = false;
+							//heroNameUnique = false;
 							System.out.println("Sorry, that name is already taken, please try again.");
 						}else {
 							heroNames.add(heroName);
@@ -214,8 +255,11 @@ public class GameEnvironment
 				ArrayList <Hero> heroes = game.createTeam(heroNames);
 				game.createGame(numOfCities, teamName, heroes);
 				
-				
-
+				long startTime = System.nanoTime();
+				if(game.runGame()) {
+					long endTime = System.nanoTime();
+					long finalTime = endTime - startTime; finalTime /= 1000000000;
+					System.out.println("Congratulations on defeating " + game.superVillain.getName() + "! You took " + finalTime + " seconds to finish.");
+				}
 			}
-
 	}

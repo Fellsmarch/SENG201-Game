@@ -6,7 +6,7 @@ import java.util.Random;
 public class Villain
 	{
 		private String name;
-		private ArrayList<Game> gameList;
+		private ArrayList<Game> gameList;					//Could change this to array, it would make it easier to create it in the game environment
 															//private ArrayList<String> gameList; used for testing without a list of games
 		private Game favouriteGame;
 															//private String favouriteGame;
