@@ -4,6 +4,10 @@ We need to know:
 - Do we have to conform to what they said about GameEnvironment being a simple loop that displays options, can we have our input in different classes/methods like we're trying to do
 
 
+Map:
+    I think the game wants us to display the map in the options (Go North - Shop ect), to do this we could just put the options
+    array inside the for loop and if they use a map for that city, change the options array.
+
 Powerup/healing items:
     We should change the consumables to objects so that we can store their:
         Price
