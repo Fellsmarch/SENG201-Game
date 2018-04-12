@@ -28,6 +28,12 @@ City:
     If we don't put the villains lair building into the building list put into the constructor, we can parse the villain to add the lair
         in the constructor then in createGame generate the villains first then iterate through and create cities, doing the superVillain
         at the end
+        
+        
+Have runGame do a for for each city, do while !cityComplete then after while loop check if its the final city (with if or a try catch block)
+if it's not, set current city to the next city. To deal wtih game loss, just check when a hero dies if it was the last hero
+print You lost the game, then System.exit();
+Could also return false from villainlair if we want gameEnvironment to deal with game loss
 
 
 
