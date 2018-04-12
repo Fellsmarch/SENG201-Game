@@ -7,13 +7,16 @@
  */
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Team
 	{
 		private ArrayList<Hero> heroes = new ArrayList<Hero>();									//The list of heroes in the team
 		private ArrayList<Integer> powerups = new ArrayList<Integer>();							//The list of powerups the team has
 		private ArrayList<Integer> healingItems = new ArrayList<Integer>();						//The list of healing items the team has
-		//private ArrayList<Map> maps = new ArrayList<Map>();									//The list of maps the team has
+		private List<Boolean> maps = new ArrayList<Boolean>(Arrays.asList(false, false, false, false, false, false));
+		//private ArrayList<Boolean> maps = new ArrayList<Boolean>();								//The list of maps the team has
 		private int money = 100;																//The amount of money the team has/starts with
 		private String name;																	//The teams name (chosen by the user -- 2-10 chars)
 		private double goodEventChance = 0.5;													//The chance of getting a good event when an event triggers
@@ -37,7 +40,7 @@ public class Team
 		public ArrayList<Integer> getPowerupList(){return powerups;}
 		public ArrayList<Integer> getHealingList(){return healingItems;}
 
-		//public ArrayList<Map> getMapList(){return maps;}
+		public List<Boolean> getMapList(){return maps;}
 		
 		//Setters
 		public void changeMoney(int value) {money += value;}							//Adds or removes money -- Change is not a good word for add or remove
@@ -48,6 +51,8 @@ public class Team
 			int index = powerups.indexOf(powerup);
 			powerups.remove(index);
 		}
+		
+		public void addMap(int map) {maps.set(map, true);}
 		
 		public void addHealing(int healing) {healingItems.add(healing);}
 		public void removeHealing(int healing) { //Could be boolean and return true if removal successful

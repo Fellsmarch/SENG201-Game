@@ -3,10 +3,11 @@ public class VillainsLair implements Building
 	{
 
 		@Override
-		public void goTo(Team team)
+		public boolean goTo(Team team)
 			{
-				// TODO Auto-generated method stub
-
+				boolean battleWon = false;
+				// TODO Auto-generated method stub	
+				return battleWon;
 			}
 
 	}

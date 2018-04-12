@@ -15,7 +15,7 @@ public class Hero
 		 * The Hero's name
 		 */
 		//Change any protected to private if the sub class does not need them to be protected
-		protected String name; 			//The Hero's name
+		protected String name; 						//The Hero's name
 		protected int health = 100; 				//The Hero's health
 		protected double recoveryRate = 5; 			//The Hero's health recovery rate (in seconds) -- Not what we thought it was, each healing item has a set time it takes to apply
 		protected double attackMod = 1; 			//The Hero's attack modifier (multiplies base damage by this)

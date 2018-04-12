@@ -3,10 +3,10 @@ public class Hospital implements Building
 	{
 
 		@Override
-		public void goTo(Team team)
+		public boolean goTo(Team team)
 			{
 				// TODO Auto-generated method stub
-
+				return false;
 			}
 
 	}

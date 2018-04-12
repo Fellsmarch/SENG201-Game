@@ -11,9 +11,9 @@ public class GameEnvironment
 		private SuperVillain superVillain; //Needs to be added to UML
 		private ArrayList<City> cities = new ArrayList<City>();
 		//private City currentCity;
-		private int currentCityIndex = 0; //Could just make current city type int and always call using index --> NEED A WAY TO CHECK THAT THIS DOESN'T GO OVER THE MAX NUMBER OF CITIES
+		//private int currentCityIndex = 0; //Could just make current city type int and always call using index --> NEED A WAY TO CHECK THAT THIS DOESN'T GO OVER THE MAX NUMBER OF CITIES
 		private Building currentLocation; //Bit dubious about this, should it be type building and not deal with home? Maybe home == null
-		private ArrayList<Map> mapList;
+		private ArrayList<Map> mapList = new ArrayList<Map>();;
 		private ArrayList<Building> buildings = new ArrayList<Building>();
 		
 		public void createGame(int numOfCities, String teamName, ArrayList<Hero> heroes) {
@@ -31,34 +31,71 @@ public class GameEnvironment
 			
 			team = new Team(teamName, heroes);
 			
-			generateMaps(numOfCities);
+			generateMaps();
 			generateVillains(numOfCities);
 		}
 		
 		public boolean runGame(){ //Returns true if the game is won
-			boolean gameWon = false;
-			boolean gameLost = false;
-			String[] options = {"Go north", "Go east", "Go south", "Go west", "Show team stats"};
-			while(true) {
-				int userChoice = printOptions(options);
-				switch (userChoice) {
-					case 1: cities.get(currentCityIndex).goNorth(team); //could have each building return a boolean and goNorth return one that says if the teams moved into the next city, if it is true when we are on the final city, the team loses
-//							if(cities.get(currentCityIndex).getDiections()[0] instanceof VillainsLair) {
-//								int status = 
-//								if(VillainsLair.getStatus) //if the heros have won the fight
-//							}
-							break;
-					case 2: cities.get(currentCityIndex).goEast(team);
-							break;
-					case 3: cities.get(currentCityIndex).goSouth(team);
-							break;
-					case 4: cities.get(currentCityIndex).goWest(team);
-							break;
-					case 5: //Show team hero stats
-							break;
-					//case 6: view maps
+			//boolean gameLost = false;
+			String[] options = {"Go north", "Go east", "Go south", "Go west", "Show team stats", "Use map"};
+			for(City currentCity : cities) {
+				boolean cityCompleted = false;
+				while(!cityCompleted) {
+					int userChoice = printOptions(options);
+					switch (userChoice) {
+						case 1: cityCompleted = currentCity.goNorth(team);
+								break;
+						case 2: cityCompleted = currentCity.goEast(team); //if(currentCity.getDirectons()[1] instanceof VillainsLair]
+								break;
+						case 3: cityCompleted = currentCity.goSouth(team);
+								break;
+						case 4: cityCompleted = currentCity.goWest(team);
+								break;
+						case 5: //Show team hero stats
+								break;
+						case 6: int numMaps = 0; //Maybe put everything below into a method?
+								List<Boolean> maps = team.getMapList();
+								for(boolean ownedMap : maps) {
+									if(ownedMap) {
+										numMaps++;
+									}
+								}
+								if(numMaps > 0) {
+									String[] mapOptions = new String[numMaps];
+									Map[] mapsToDisplay = new Map[numMaps];
+									int index = 0;
+									for(int i = 0; i < 6; i++) {
+										System.out.println(i);
+										if(maps.get(i)) {
+											mapOptions[index] = "Map of city " + (i + 1);
+											mapsToDisplay[index] = mapList.get(i);
+											index++;
+										}
+									}
+									userChoice = printOptions(mapOptions);
+									switch (userChoice) {
+										case 1: mapsToDisplay[0].displayMap();
+												break;
+										case 2: mapsToDisplay[1].displayMap();
+												break;
+										case 3: mapsToDisplay[2].displayMap();
+												break;
+										case 4: mapsToDisplay[3].displayMap();
+												break;
+										case 5: mapsToDisplay[4].displayMap();
+												break;
+										case 6: mapsToDisplay[5].displayMap();
+												break;
+									}
+								}else {
+									System.out.println("You own no maps!");
+									//break;
+								}
+								break;
+					}
 				}
 			}
+			return true;
 		}
 		
 		public void generateCities(int numOfCities) {
@@ -68,8 +105,11 @@ public class GameEnvironment
 			}
 		}
 		
-		public void generateMaps(int numOfMaps) {
-
+		public void generateMaps() {
+			for(City city : cities) {
+				Map newMap = new Map(city);
+				mapList.add(newMap);
+			}
 		}
 		
 		private void displayHeroStats() {
@@ -238,13 +278,13 @@ public class GameEnvironment
 				
 				//Create get the hero names
 				ArrayList<String> heroNames = new ArrayList<String>(); //For checking that hero names are not duplicates
+				String[] englishHeroNum = {" first ", " second ", " third "};
 				for(int i = 0; i < numOfHeroes; i++) {
 					boolean heroNameUnique = false;
-					System.out.println("What is the name of this hero?:");
+					System.out.println("What is the name of the" + englishHeroNum[i] + "hero?:");
 					while(!heroNameUnique) {
 						String heroName = game.getValidInputStr(1, 1000000);
 						if(heroNames.contains(heroName)) {
-							//heroNameUnique = false;
 							System.out.println("Sorry, that name is already taken, please try again.");
 						}else {
 							heroNames.add(heroName);
@@ -254,6 +294,8 @@ public class GameEnvironment
 				}	
 				ArrayList <Hero> heroes = game.createTeam(heroNames);
 				game.createGame(numOfCities, teamName, heroes);
+				game.team.addMap(3); game.team.addMap(1); game.team.addMap(5);
+				System.out.println(game.team.getMapList());
 				
 				long startTime = System.nanoTime();
 				if(game.runGame()) {

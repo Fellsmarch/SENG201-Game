@@ -1,4 +1,5 @@
 public interface Building
 	{
-		public void goTo(Team team);
+		public boolean goTo(Team team);
+		//public boolean goTo(Team team, boolean villainsLair); //
 	}
