@@ -24,6 +24,11 @@ GameEnvironment:
 Villain:
     I added an ArrayList of Game to Villain variables and constructor so that when we choose a game we don't have to give a list of games to choose from everytime, the games will always be the same.
 
+City:
+    If we don't put the villains lair building into the building list put into the constructor, we can parse the villain to add the lair
+        in the constructor then in createGame generate the villains first then iterate through and create cities, doing the superVillain
+        at the end
+
 
 
 Checking input:
