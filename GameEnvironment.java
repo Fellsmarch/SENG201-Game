@@ -37,11 +37,12 @@ public class GameEnvironment
 		
 		public boolean runGame(){ //Returns true if the game is won
 			//boolean gameLost = false;
+			Output output = new Output();
 			String[] options = {"Go north", "Go east", "Go south", "Go west", "Show team stats", "Use map"};
 			for(City currentCity : cities) {
 				boolean cityCompleted = false;
 				while(!cityCompleted) {
-					int userChoice = printOptions(options);
+					int userChoice = output.printOptions(options);
 					switch (userChoice) {
 						case 1: cityCompleted = currentCity.goNorth(team);
 								break;
@@ -72,7 +73,7 @@ public class GameEnvironment
 											index++;
 										}
 									}
-									userChoice = printOptions(mapOptions);
+									userChoice = output.printOptions(mapOptions);
 									switch (userChoice) {
 										case 1: mapsToDisplay[0].displayMap();
 												break;
@@ -123,7 +124,7 @@ public class GameEnvironment
 			DiceRollsGame diceRollsGame = new DiceRollsGame();
 			ArrayList<Game> gameList = new ArrayList<Game>();
 			gameList.add(psr); gameList.add(guessNumGame); gameList.add(diceRollsGame);
-			//List<Game> gameList = new ArrayList<Game>(Arrays.asList(PaperScissorsRockGame, GuessNumberGame, DiceRollsGame)); //This doesn't work for some reason
+			//List<Game> gameList = new ArrayList<Game>(Arrays.asList(new PaperScissorsRockGame, new GuessNumberGame, DiceRollsGame)); //This doesn't work for some reason
 			
 			List<String> namesList = new ArrayList<String>(Arrays.asList("Name1", "Name2", "Name3", "Name4", "Name5", "Name6"));
 			List<String> tauntsList = new ArrayList<String>(Arrays.asList("Taunt1", "Taunt2", "Taunt3", "Taunt4", "Taunt5", "Taunt6"));
@@ -138,6 +139,7 @@ public class GameEnvironment
 				namesList.remove(nameIndex); tauntsList.remove(tauntIndex);
 			} System.out.println(villains.size());
 			
+			//Creates the super villain
 			int nameIndex = rand.nextInt(namesList.size());
 			int tauntIndex = rand.nextInt(tauntsList.size());
 			String name = namesList.get(nameIndex); String taunt = tauntsList.get(tauntIndex);
@@ -145,59 +147,6 @@ public class GameEnvironment
 			superVillain = superVill;
 		}
 		
-		public int getValidInputNum(int acceptedRange) {
-			//Prior to this, options have been printed and prompt to user is printed
-			Scanner scanner = new Scanner(System.in);
-			int toReturn = 0; //Have to instantiate to something since method has to return an int
-			boolean inputGood = false;
-			while (!inputGood) {
-					String userInput = scanner.next();
-					try {
-						int userChoice = Integer.parseInt(userInput); //Checks if input is an int
-						if (userChoice > 0 && userChoice <= acceptedRange) {
-							inputGood = true;
-							toReturn = userChoice;
-						}else {
-							System.out.println("Input was not one of the options, please try again.");
-						}
-					} catch (NumberFormatException e) {
-						System.out.println("Input was not an integer, please try again.");
-				}
-			}
-			System.out.println(".\n.\n.");
-			//scanner.close(); --> This closes the scanner for the whole program, not just for the method
-			return toReturn; //This is only done this way since the method needs to return an int
-		}
-		
-		
-		
-		public int printOptions(String[] options) {
-			int optionNum = 1;
-			for (String option : options) {
-				System.out.println("(" + optionNum + "): " + option);
-				optionNum++;
-			}
-			System.out.println("Please enter your choice:");
-			return getValidInputNum(optionNum-1);
-		}
-		
-		public String getValidInputStr(int minSize, int maxSize) {
-			Scanner scanner = new Scanner(System.in);
-			boolean inputGood = false;
-			String toReturn = "";
-			while(!inputGood) {
-				String userInput = scanner.next();
-				if(userInput.length() >= minSize && userInput.length() <= maxSize) {
-					toReturn = userInput;
-					inputGood = true;
-				}else {
-					System.out.println("Name must be between " + minSize + " and " + maxSize + " characters!");
-				}
-			}
-			System.out.println(".\n.\n.");
-			//scanner.close();--> This closes the scanner for the whole program, not just for the method
-			return toReturn;
-		}
 		
 		private ArrayList<Hero> createTeam(ArrayList<String> heroNames) {
 			//Get the hero types and add them to the team --> Could make this into a method to clean it up	
@@ -207,7 +156,8 @@ public class GameEnvironment
 				boolean heroTypeChosen = false;
 				while(!heroTypeChosen) {
 					System.out.println("What type of hero would you like " + heroName + " to be?");
-					int heroType = printOptions(heroTypes);
+					Output output = new Output();
+					int heroType = output.printOptions(heroTypes);
 					if(heroType == 11) {displayHeroStats();}
 					else {
 						switch (heroType) {
@@ -262,18 +212,19 @@ public class GameEnvironment
 
 		public static void main(String[] args)
 			{
+				Output output = new Output();
 				GameEnvironment game = new GameEnvironment();
 				
 				System.out.println("What should the super hero team name be?");
-				String teamName = game.getValidInputStr(2, 10);
+				String teamName = output.getValidInputStr(2, 10);
 				
 				System.out.println("How many cities do you want to explore?");
 				String[] cityOptions = {"Three cities", "Four cities", "Five cities", "Six cities"};
-				int numOfCities = game.printOptions(cityOptions);
+				int numOfCities = output.printOptions(cityOptions);
 				
 				System.out.println("How many heroes will be on the team?:");
 				String[] numHeroOptions = {"One hero", "Two heroes", "Three heroes"};
-				int numOfHeroes = game.printOptions(numHeroOptions);
+				int numOfHeroes = output.printOptions(numHeroOptions);
 				
 				
 				//Create get the hero names
@@ -283,7 +234,7 @@ public class GameEnvironment
 					boolean heroNameUnique = false;
 					System.out.println("What is the name of the" + englishHeroNum[i] + "hero?:");
 					while(!heroNameUnique) {
-						String heroName = game.getValidInputStr(1, 1000000);
+						String heroName = output.getValidInputStr(1, 1000000);
 						if(heroNames.contains(heroName)) {
 							System.out.println("Sorry, that name is already taken, please try again.");
 						}else {
@@ -294,6 +245,7 @@ public class GameEnvironment
 				}	
 				ArrayList <Hero> heroes = game.createTeam(heroNames);
 				game.createGame(numOfCities, teamName, heroes);
+				
 				game.team.addMap(3); game.team.addMap(1); game.team.addMap(5);
 				System.out.println(game.team.getMapList());
 				
