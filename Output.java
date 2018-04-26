@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Output
@@ -28,7 +29,6 @@ public class Output
 		}
 		
 		
-		
 		public int printOptions(String[] options) {
 			int optionNum = 1;
 			for (String option : options) {
@@ -56,4 +56,80 @@ public class Output
 			//scanner.close();--> This closes the scanner for the whole program, not just for the method
 			return toReturn;
 		}
+		
+		
+		//Inventory stuff
+		public void printPowerupInventory(ArrayList<Integer> powerups) {
+			int kagesCount = 0; int infinityEdgeCount = 0; int ninjaTabiCount = 0;
+			for (int powerup : powerups) {
+				if (powerup == 1) {kagesCount++;}
+				else if (powerup == 2) {infinityEdgeCount++;}
+				else if (powerup == 3) {ninjaTabiCount++;}
+			}
+			if (kagesCount > 0) {System.out.println(kagesCount + " x Kage's Lucky Pick");}
+			if (infinityEdgeCount > 0) {System.out.println(infinityEdgeCount + " x Infinity Edge");}
+			if (ninjaTabiCount > 0) {System.out.println(ninjaTabiCount + " x Ninja Tabi");}
+		}
+	
+		
+		public void printPowerupDescriptions() {
+			System.out.println("Kage's Lucky Pick: Makes the Hero more likely to win a game");
+			System.out.println("Infinity Edge: Doubles your damage when attacking a Villain");
+			System.out.println("Ninja Tabi: Gives the Hero a chance of dodging an attack");
+		}
+		
+		public void printPowerupDescription(int powerup) {
+			if (powerup == 1) {System.out.println("Kage's Lucky Pick: Makes the Hero more likely to win a game");}
+			else if (powerup == 2) {System.out.println("Infinity Edge: Doubles your damage when attacking a Villain");}
+			else if (powerup == 3) {System.out.println("Ninja Tabi: Gives the Hero a chance of dodging an attack");}
+		}
+		
+		public void printHealingInventory(ArrayList<Integer> healingItems) {
+			int minorCount = 0; int middleCount = 0; int majorCount = 0;
+			for (int healingItem : healingItems) {
+				if (healingItem == 1) {minorCount++;}
+				else if (healingItem == 2) {middleCount++;}
+				else if (healingItem == 3) {majorCount++;}
+			}
+			if (minorCount > 0) {System.out.println(minorCount + " x Potion of Minor Healing");}
+			if (middleCount > 0) {System.out.println(middleCount + " x Potion of Healing");}
+			if (majorCount > 0) {System.out.println(majorCount + " x Potion of Major Healing");}
+		}
+		
+		public void printHealingDescriptions() {
+			System.out.println("Potion of Minor healing: Heals 25% of health over 5 seconds");
+			System.out.println("Potion of Healing: Heals 50% of health over 7 seconds");
+			System.out.println("Potion of Major Healing: Heals 100% of health over 10 seconds");
+		}
+		
+		public void printHealingDescription(int healingItem) {
+			if (healingItem == 1) {System.out.println("Potion of Minor healing: Heals 25% of health over 5 seconds");}
+			else if (healingItem == 2) {System.out.println("Potion of Healing: Heals 50% of health over 7 seconds");}
+			else if (healingItem == 3) {System.out.println("Potion of Major Healing: Heals 100% of health over 10 seconds");}
+		}
+		
+		
+		public void printInventory(Team team) {
+			System.out.println("Your team's (" + team.getName() + ") inventory contains:");
+			System.out.println("Powerups:");
+			printPowerupInventory(team.getPowerupList());
+			System.out.println("--------\nHealing Potions:");
+			printHealingInventory(team.getHealingList());
+			System.out.println("--------\nMoney: $" + team.getMoney());
+			
+		}
+		
+//		public static void main(String[] args) {
+//			Output output = new Output();
+//			Hero hero = new Hero("Jim");
+//			ArrayList<Hero> heroes = new ArrayList<Hero>();
+//			heroes.add(hero);
+//			Team team = new Team("Hannah's Bros", heroes);
+//			team.addHealing(2); team.addHealing(1); team.addHealing(1); team.addHealing(3);
+//			team.addPowerup(1); team.addPowerup(3); team.addPowerup(3);
+//			output.printInventory(team);
+//			team.changeMoney(300);
+//			output.printInventory(team);
+//		}
+	
 	}
