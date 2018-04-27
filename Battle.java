@@ -18,7 +18,7 @@ public class Battle
 			boolean battleOver = false;
 			boolean challengerAlive;
 			boolean villainDefeated = false;
-			System.out.println(villain.getTaunt()); //Taunts the player/Hero
+			System.out.println(villain.getName() + ": " + villain.getTaunt()); //Taunts the player/Hero
 			while (!battleOver) {
 				//Select the challenger
 				selectChallenger();
@@ -46,6 +46,7 @@ public class Battle
 							}
 						}
 					}
+					System.out.println(".\n.\n.");
 				}
 				if (team.getHeroList().size() < 1) {
 					System.out.println(team.getName() + " has been defeated by " + villain.getName() + ", you Lose :(.");
@@ -67,33 +68,23 @@ public class Battle
 			String[] heroOptions = new String[numHeroes + 1];
 			for (int i = 0; i < numHeroes; i++) {heroOptions[i] = heroes.get(i).getName();}
 			heroOptions[numHeroes] = "Show Hero stats";
-			System.out.println("Please Choose your challenger!");
+			System.out.println("Choose your challenger!");
 			boolean challengerSelected = false;
 			while (!challengerSelected) {
 				int userChoice = output.printOptions(heroOptions);
-				switch (userChoice) {
-					case 1: challenger = heroes.get(0);
-							challengerSelected = true;
-							break;
-					case 2: challenger = heroes.get(1);
-							challengerSelected = true;
-							break;
-					case 3: challenger = heroes.get(2);
-							challengerSelected = true;
-							break;
-					case 4: System.out.println(team);
-							break;
-				}
+				if (userChoice == numHeroes + 1) {System.out.println(team);}
+				else {challenger = heroes.get(userChoice - 1); challengerSelected = true;}
 			}
 			
 		}
 		
 		private void damageHero(boolean chanceToDodge) {
 			Random rand = new Random();
-			if (chanceToDodge && rand.nextInt(5) != 0) { //20% chance of dodging
 			Double damage = villain.getDamage() * challenger.getDefenseMod();
-			challenger.adjustHealth(damage.intValue());
-			} else {System.out.println(challenger.getName() + " managed to dodge " + villain.getName() + "'s attack!");}
+			if (chanceToDodge) {
+				if (rand.nextInt(5) == 0) {System.out.println(challenger.getName() + " managed to dodge " + villain.getName() + "'s attack!");} //20% chance of dodging
+				else {challenger.adjustHealth(damage.intValue());}
+			} else {challenger.adjustHealth(damage.intValue());}
 		}
 		
 		private void damageVillain(boolean extraDamage) {
