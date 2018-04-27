@@ -8,8 +8,10 @@ public class City
 		private Building directionSouth;
 		private Building directionWest;
 		private Building[] directionList = {directionNorth, directionEast, directionSouth, directionWest};
+		private Villain villain;
 		
-		public City(ArrayList<Building> buildings) {
+		public City(ArrayList<Building> buildings, Villain villain) {
+			this.villain = villain;
 			Random rand = new Random();
 			ArrayList<Integer> elementsAdded = new ArrayList<Integer>();
 			int directionIndex = 0;
@@ -33,6 +35,7 @@ public class City
 		
 		public boolean goNorth(Team team) {
 			if(directionNorth instanceof VillainsLair) {
+				((VillainsLair) directionNorth).setVillain(villain);
 				return directionNorth.goTo(team);
 			} else {
 				directionNorth.goTo(team);
@@ -42,6 +45,7 @@ public class City
 		
 		public boolean goEast(Team team) {
 			if(directionEast instanceof VillainsLair) {
+				((VillainsLair) directionNorth).setVillain(villain);
 				return directionEast.goTo(team);
 			} else {
 				directionEast.goTo(team);
@@ -51,6 +55,7 @@ public class City
 		
 		public boolean goSouth(Team team) {
 			if(directionSouth instanceof VillainsLair) {
+				((VillainsLair) directionNorth).setVillain(villain);
 				return directionSouth.goTo(team);
 			} else {
 				directionSouth.goTo(team);
@@ -60,6 +65,7 @@ public class City
 		
 		public boolean goWest(Team team) {
 			if(directionWest instanceof VillainsLair) {
+				((VillainsLair) directionNorth).setVillain(villain);
 				return directionWest.goTo(team);
 			} else {
 				directionWest.goTo(team);
@@ -77,7 +83,7 @@ public class City
 //		public boolean goSouth(Team team, boolean villainsLair) {directionSouth.goTo(team);}
 //		public boolean goWest(Team team, boolean villainsLair) {directionWest.goTo(team);}
 		
-		public Building[] getDiections() {return directionList;}
+		public Building[] getDirections() {return directionList;}
 		
 
 	}

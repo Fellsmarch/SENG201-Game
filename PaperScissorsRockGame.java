@@ -6,7 +6,7 @@ import java.util.Random;
 public class PaperScissorsRockGame implements Game {
 
 	@Override
-	public boolean playGame(String villainName, boolean moreLucky) {
+	public boolean playGame(String villainName, boolean moreLucky) { //Returns true if the play won
 
 		Random rand = new Random();
 		Output output = new Output();

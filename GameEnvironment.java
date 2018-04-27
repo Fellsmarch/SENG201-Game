@@ -2,7 +2,6 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
-import java.util.Scanner;
 
 public class GameEnvironment
 	{
@@ -12,9 +11,10 @@ public class GameEnvironment
 		private ArrayList<City> cities = new ArrayList<City>();
 		//private City currentCity;
 		//private int currentCityIndex = 0; //Could just make current city type int and always call using index --> NEED A WAY TO CHECK THAT THIS DOESN'T GO OVER THE MAX NUMBER OF CITIES
-		private Building currentLocation; //Bit dubious about this, should it be type building and not deal with home? Maybe home == null
+		//private Building currentLocation; //Bit dubious about this, should it be type building and not deal with home? Maybe home == null
 		private ArrayList<Map> mapList = new ArrayList<Map>();;
 		private ArrayList<Building> buildings = new ArrayList<Building>();
+		private Output output = new Output();
 		
 		public void createGame(int numOfCities, String teamName, ArrayList<Hero> heroes) {
 			Shop shop = new Shop();
@@ -26,20 +26,23 @@ public class GameEnvironment
 			VillainsLair villainsLair = new VillainsLair();
 			buildings.add(villainsLair);
 			
+			generateVillains(numOfCities);
 			generateCities(numOfCities);
 			//currentCity = cities.get(currentCityIndex);
 			
 			team = new Team(teamName, heroes);
 			
 			generateMaps();
-			generateVillains(numOfCities);
+			
 		}
 		
 		public boolean runGame(){ //Returns true if the game is won
 			//boolean gameLost = false;
-			Output output = new Output();
-			String[] options = {"Go north", "Go east", "Go south", "Go west", "Show team stats", "Use map"};
-			for(City currentCity : cities) {
+			//Output output = new Output();
+			int cityNum = -1;
+			for(City currentCity : cities) { //Could iterate through using i = 0 method so that on the last city we can print something
+				cityNum++;
+				String[] options = {"Go north", "Go east", "Go south", "Go west", "Show team stats", "Use map"};
 				boolean cityCompleted = false;
 				while(!cityCompleted) {
 					int userChoice = output.printOptions(options);
@@ -52,46 +55,15 @@ public class GameEnvironment
 								break;
 						case 4: cityCompleted = currentCity.goWest(team);
 								break;
-						case 5: //Show team hero stats
+						case 5: System.out.println(team);
 								break;
-						case 6: int numMaps = 0; //Maybe put everything below into a method?
-								List<Boolean> maps = team.getMapList();
-								for(boolean ownedMap : maps) {
-									if(ownedMap) {
-										numMaps++;
-									}
-								}
-								if(numMaps > 0) {
-									String[] mapOptions = new String[numMaps];
-									Map[] mapsToDisplay = new Map[numMaps];
-									int index = 0;
-									for(int i = 0; i < 6; i++) {
-										System.out.println(i);
-										if(maps.get(i)) {
-											mapOptions[index] = "Map of city " + (i + 1);
-											mapsToDisplay[index] = mapList.get(i);
-											index++;
-										}
-									}
-									userChoice = output.printOptions(mapOptions);
-									switch (userChoice) {
-										case 1: mapsToDisplay[0].displayMap();
-												break;
-										case 2: mapsToDisplay[1].displayMap();
-												break;
-										case 3: mapsToDisplay[2].displayMap();
-												break;
-										case 4: mapsToDisplay[3].displayMap();
-												break;
-										case 5: mapsToDisplay[4].displayMap();
-												break;
-										case 6: mapsToDisplay[5].displayMap();
-												break;
-									}
-								}else {
-									System.out.println("You own no maps!");
-									//break;
-								}
+						case 6: if (team.hasMap(cityNum)) {
+									String[] directions = mapList.get(cityNum).UseMap();
+									options[0] = options[0] + " " + directions[0];
+									options[1] = options[1] + " " + directions[1];
+									options[2] = options[2] + " " + directions[2];
+									options[3] = options[3] + " " + directions[3];
+								}else {System.out.println("You don't have a map for this city!");}
 								break;
 					}
 				}
@@ -100,10 +72,10 @@ public class GameEnvironment
 		}
 		
 		public void generateCities(int numOfCities) {
-			for (int i = 1; i <= numOfCities; i++) {
-				City newCity = new City(buildings);
-				cities.add(newCity);
+			for (int i = 1; i < numOfCities; i++) {
+				cities.add(new City(buildings, villains.get(i)));
 			}
+			cities.add(new City(buildings, superVillain));
 		}
 		
 		public void generateMaps() {
@@ -111,11 +83,6 @@ public class GameEnvironment
 				Map newMap = new Map(city);
 				mapList.add(newMap);
 			}
-		}
-		
-		private void displayHeroStats() {
-			//				String[] options = {;"Tank:\n     Health: 500\n     Attack:20\nect", "Healer", "Vinnie"}; //Could make this into a format for hero : herotypes herostring = Health: {0} (hero.gethealth()
-											//5 Spaces   ^^^^^
 		}
 		
 		public void generateVillains(int numOfVillains) {
@@ -156,10 +123,10 @@ public class GameEnvironment
 				boolean heroTypeChosen = false;
 				while(!heroTypeChosen) {
 					System.out.println("What type of hero would you like " + heroName + " to be?");
-					Output output = new Output();
+					//Output output = new Output();
 					int heroType = output.printOptions(heroTypes);
-					if(heroType == 11) {displayHeroStats();}
-					else {
+					//if(heroType == 11) {displayHeroStats();}
+					//else {
 						switch (heroType) {
 							case 1: ADCarryHero newADCarry = new ADCarryHero(heroName);
 									heroes.add(newADCarry);
@@ -201,8 +168,10 @@ public class GameEnvironment
 									 heroes.add(newVanillaHero);
 									 heroTypeChosen = true;
 									 break;
+							case 11: output.printHeroTypes();
+									 break;
 						}
-					}
+					//}
 				}
 			}
 			return heroes;
@@ -245,9 +214,9 @@ public class GameEnvironment
 				}	
 				ArrayList <Hero> heroes = game.createTeam(heroNames);
 				game.createGame(numOfCities, teamName, heroes);
-				
-				game.team.addMap(3); game.team.addMap(1); game.team.addMap(5);
-				System.out.println(game.team.getMapList());
+						
+				//game.team.addMap(3); game.team.addMap(1); game.team.addMap(5);
+				//System.out.println(game.team.getMapList());
 				
 				long startTime = System.nanoTime();
 				if(game.runGame()) {

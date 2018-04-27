@@ -4,7 +4,7 @@ public class Map
 		private String[] directionList = new String[4];
 		
 		public Map(City city) {
-			Building[] directions = city.getDiections();
+			Building[] directions = city.getDirections();
 			int index = 0;
 			for(Building building : directions) {
 				if(building instanceof Shop) {
@@ -23,10 +23,5 @@ public class Map
 			}
 		}
 		
-		public void displayMap() {
-			String[] directions = {"North: ", "East:  ", "South: ", "West:  "};
-			for(int i = 0; i < 4; i++) {
-				System.out.println(directions[i] + directionList[i]);
-			}
-		}
+		public String[] UseMap() {return directionList;}
 	}

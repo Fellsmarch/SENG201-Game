@@ -15,6 +15,7 @@ public class Hero
 		 * The Hero's name
 		 */
 		//Change any protected to private if the sub class does not need them to be protected
+		//Should we change protected to private and call super.thing instead in the subclasses
 		protected String name; 						//The Hero's name
 		protected int health = 100; 				//The Hero's health
 		protected double recoveryRate = 5; 			//The Hero's health recovery rate (in seconds) -- Not what we thought it was, each healing item has a set time it takes to apply
@@ -51,20 +52,11 @@ public class Hero
 		
 		//Setters for classes that don't extend Hero
 		public void setName(String newName) {name = newName;}
-		public void adjustHealth(int toAdjust) {health += toAdjust;}//This works for positive or negative health adjust
-		public boolean setPowerup(int powerup) { 					//Returns true if the powerup was applied successfully, and false if the hero already had the powerup applied
-			if (powerup == 0 && powerupLuck == false) {				//Checking to see which powerup it is (Luck = 0, Damage = 1, Dodge = 2)
-				powerupLuck = true;
-				return true;
-			} else if (powerup == 1 && powerupDamage == false) {
-				powerupDamage = true;
-				return true;
-			} else if (powerup == 2 && powerupDodge == false) {
-				powerupDodge = true;
-				return true;
-			}else {
-				return false;
-			}
+		public void adjustHealth(int toAdjust) {health += toAdjust;}	//This works for positive or negative health adjust
+		public void setPowerup(int powerup, boolean powerupActive) { 			//Returns true if the powerup was applied successfully, and false if the hero already had the powerup applied
+			if (powerup == 0) {powerupLuck = powerupActive;} 					//Checking to see which powerup it is (Luck = 0, Damage = 1, Dodge = 2)
+			if (powerup == 1) {powerupDamage = powerupActive;}
+			if (powerup == 2) {powerupDodge = powerupActive;}
 			
 		}
 		
@@ -85,8 +77,13 @@ public class Hero
 			System.out.println("Powerup Luck = " + powerupLuck);
 			System.out.println("Powerup Damage = " + powerupDamage);
 			System.out.println("Powerup Dodge = " + powerupDodge);
-			
-			
+		}
+		
+		public String toString() {
+			String toReturn = name + ":\nHealth:           " + health + "\nRecovery Rate:    " + recoveryRate
+					+ "\nAttack Strength:  " + attackMod * 100 + "%\nDefense Modifier: " + defenseMod * 100
+					+ "%\nShop Price:       " + shopPrice * 100 + "%\nLoot Modifier:    " + lootMod * 100 + "%\n";
+			return toReturn;
 		}
 		
 		
@@ -94,11 +91,8 @@ public class Hero
 //		public static void main(String[] args)
 //			{
 //				// For testing
-//				Hero test = new Hero();
-//				boolean[] array = test.getPowerups();
-//				for (boolean power : array) {
-//					System.out.println(power);
-//				}
+//				Hero test = new Hero("Jim");
+//				System.out.println(test);
 //				//System.out.println(test.getPowerups());
 //
 //			}

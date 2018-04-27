@@ -40,7 +40,8 @@ public class Team
 		public ArrayList<Integer> getPowerupList(){return powerups;}
 		public ArrayList<Integer> getHealingList(){return healingItems;}
 
-		public List<Boolean> getMapList(){return maps;}
+		//public List<Boolean> getMapList(){return maps;}
+		public boolean hasMap(int mapNum) {return maps.get(mapNum);}
 		
 		//Setters
 		public void changeMoney(int value) {money += value;}							//Adds or removes money -- Change is not a good word for add or remove
@@ -64,13 +65,15 @@ public class Team
 		public void addHero(Hero hero) {heroes.add(hero);} //Do we actually need this if the heroes are selected before the team is made
 		public void removeHero(Hero hero) { //Could be boolean and return true if removal successful
 			heroes.remove(hero);
-//			int index = heroes.indexOf(hero);
-//			if (index == -1) {
-//				System.out.println("ERROR: Hero not in team"); //Need to deal with this error properly
-//			}else {
-//				heroes.remove(index);
-//			}
-			
+		}
+		
+		public String toString() {
+			String toReturn = "";
+			for (Hero heroToPrint : heroes) {
+				toReturn += heroToPrint.toString();
+				toReturn += "\n-------------------\n\n";
+			}
+			return toReturn;
 		}
 		
 //		public static void main(String[] args) { //For testing only

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Output
@@ -119,8 +120,19 @@ public class Output
 			
 		}
 		
-//		public static void main(String[] args) {
-//			Output output = new Output();
+		
+		public void printHeroTypes() {
+				Hero[] heroes = {new ADCarryHero("AD Carry"), new CEOHero("CEO"), new DiscountShopper("Discount Shopper"), new LootHoarderHero("Loot Hoarder"),
+						new LuckyHero("Lucky Charm"), new RandomHero("Random Hero", false), new SecondWind("Second Wind Hero"), new TankHero("Tank"),
+						new TeamPowerupHero("Team Powerup Hero"), new Hero("Vanilla Hero")};
+				ArrayList<Hero> heroList = new ArrayList<Hero>(Arrays.asList(heroes));
+				Team team = new Team("Attributes Print", heroList);
+				System.out.println(team);
+				}
+		
+		public static void main(String[] args) {
+			Output output = new Output();
+			output.printHeroTypes();
 //			Hero hero = new Hero("Jim");
 //			ArrayList<Hero> heroes = new ArrayList<Hero>();
 //			heroes.add(hero);
@@ -130,6 +142,6 @@ public class Output
 //			output.printInventory(team);
 //			team.changeMoney(300);
 //			output.printInventory(team);
-//		}
+		}
 	
 	}
