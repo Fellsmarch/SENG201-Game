@@ -25,4 +25,9 @@ public class SecondWind extends Hero
 				return false;
 			}
 		}
+		
+		public String toString() {
+			String old = super.toString();
+			return old + "When " + name + " dies, they come back to life with 1 hp. This can only happen once\n";
+		}
 	}

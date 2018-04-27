@@ -15,4 +15,9 @@ public class CEOHero extends Hero
 		public CEOHero(String name) {
 			super(name);
 		}
+		
+		public String toString() {
+			String old = super.toString();
+			return old + name + " increases the team's starting money by " + 400 + "\n"; //Temporary number
+		}
 	}
