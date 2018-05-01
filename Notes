@@ -9,6 +9,7 @@ Map:
     array inside the for loop and if they use a map for that city, change the options array.
 
 Powerup/healing items:
+    ---*---Use enums for readability?---*---
     We should change the consumables to objects so that we can store their:
         Price
         Name
