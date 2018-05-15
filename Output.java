@@ -3,11 +3,11 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Output
-	{
+	{	
+		private Scanner scanner = new Scanner(System.in);
 
 		public int getValidInputNum(int acceptedRange) {
 			//Prior to this, options have been printed and prompt to user is printed
-			Scanner scanner = new Scanner(System.in);
 			int toReturn = 0; //Have to instantiate to something since method has to return an int
 			boolean inputGood = false;
 			while (!inputGood) {
@@ -41,7 +41,6 @@ public class Output
 		}
 		
 		public String getValidInputStr(int minSize, int maxSize) {
-			Scanner scanner = new Scanner(System.in);
 			boolean inputGood = false;
 			String toReturn = "";
 			while(!inputGood) {
