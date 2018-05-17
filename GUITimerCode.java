@@ -31,7 +31,9 @@ public class GUITimerCode extends JPanel
 						}
 					}
 				};
+				
 				timer = new Timer(1000, countDown);
+				
 				JButton btnNewButton = new JButton("New button");
 				btnNewButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {

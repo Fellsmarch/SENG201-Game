@@ -55,6 +55,7 @@ public class CreateHeroPanel extends JPanel
 									hero = ((HeroType) comboHeroType.getSelectedItem()).createHero(name);
 									heroCreated = true;
 									fieldHeroName.setEnabled(false);
+									comboHeroType.setEnabled(false);
 									tglbtnEnter.setText("Edit");
 									fieldHeroName.select(0, 0);
 								} else {
@@ -72,7 +73,9 @@ public class CreateHeroPanel extends JPanel
 							}
 							
 							tglbtnEnter.setText("Enter");
+							heroCreated = false;
 							fieldHeroName.setEnabled(true);
+							comboHeroType.setEnabled(true);
 							fieldHeroName.requestFocus(); fieldHeroName.selectAll();
 						}
 					}

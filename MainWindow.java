@@ -32,6 +32,7 @@ public class MainWindow
 		private JToggleButton tglBtnNumHeroes1, tglBtnNumHeroes2, tglBtnNumHeroes3;
 		
 		private ArrayList<Hero> heroes = new ArrayList<Hero>();
+		private Team team;
 		private String teamName;
 		private int numCities = 3; 
 		private int numHeroes = 1;
@@ -44,6 +45,7 @@ public class MainWindow
 		private JLabel labelTeamName;
 		private JButton btnContinue;
 		private TeamCreationPanel createHeroTeam;
+		boolean teamPanel = false;
 		
 
 		/**
@@ -81,7 +83,7 @@ public class MainWindow
 		private void initialize()
 			{
 				frame = new JFrame();
-				frame.setBounds(100, 100, 500, 300);
+				frame.setBounds(100, 100, 500, 375);
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame.setTitle("Heroes & Villains");
 				frame.getContentPane().add(container);
@@ -107,10 +109,6 @@ public class MainWindow
 				
 				fieldTeamName = new JTextField();
 				fieldTeamName.addKeyListener(new KeyAdapter() {
-//					@Override
-//					public void keyTyped(KeyEvent e) {
-//						labelTeamName.setText(textField.getText());
-//					}
 					@Override
 					public void keyReleased(KeyEvent e) {
 						String text = fieldTeamName.getText();
@@ -138,9 +136,6 @@ public class MainWindow
 				tglBtnNumCities3 = new JToggleButton("3");
 				tglBtnNumCities3.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-//						tglBtnNumCities4.setSelected(false);
-//						tglBtnNumCities5.setSelected(false);
-//						tglBtnNumCities6.setSelected(false);
 						numCities = 3;
 					}
 				});
@@ -150,9 +145,6 @@ public class MainWindow
 				tglBtnNumCities4 = new JToggleButton("4");
 				tglBtnNumCities4.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-//						tglBtnNumCities3.setSelected(false);
-//						tglBtnNumCities5.setSelected(false);
-//						tglBtnNumCities6.setSelected(false);
 						numCities = 4;
 					}
 				});
@@ -161,9 +153,6 @@ public class MainWindow
 				tglBtnNumCities5 = new JToggleButton("5");
 				tglBtnNumCities5.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-//						tglBtnNumCities4.setSelected(false);
-//						tglBtnNumCities3.setSelected(false);
-//						tglBtnNumCities6.setSelected(false);
 						numCities = 5;
 					}
 				});
@@ -172,9 +161,6 @@ public class MainWindow
 				tglBtnNumCities6 = new JToggleButton("6");
 				tglBtnNumCities6.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-//						tglBtnNumCities4.setSelected(false);
-//						tglBtnNumCities5.setSelected(false);
-//						tglBtnNumCities3.setSelected(false);
 						numCities = 6;
 					}
 				});
@@ -188,8 +174,6 @@ public class MainWindow
 				tglBtnNumHeroes1.setSelected(true);
 				tglBtnNumHeroes1.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-//						tglBtnNumHeroes2.setSelected(false);
-//						tglBtnNumHeroes3.setSelected(false);
 						numHeroes = 1;
 					}
 				});
@@ -197,8 +181,6 @@ public class MainWindow
 				tglBtnNumHeroes2 = new JToggleButton("2");
 				tglBtnNumHeroes2.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-//						tglBtnNumHeroes1.setSelected(false);
-//						tglBtnNumHeroes3.setSelected(false);
 						numHeroes = 2;
 					}
 				});
@@ -206,8 +188,6 @@ public class MainWindow
 				tglBtnNumHeroes3 = new JToggleButton("3");
 				tglBtnNumHeroes3.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-//						tglBtnNumHeroes2.setSelected(false);
-//						tglBtnNumHeroes1.setSelected(false);
 						numHeroes = 3;
 					}
 				});
@@ -228,24 +208,32 @@ public class MainWindow
 				btnContinue = new JButton("");
 				btnContinue.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						GUITimerCode timer = new GUITimerCode(4);
-						container.add(timer, "Timer");
-						cardLayout.show(container, "Timer");
-//						if (fieldTeamName.getText().length() < 2) {
-//							JOptionPane.showMessageDialog(frame, "Team name must be more than 2 characters!", "Team name too long!", JOptionPane.ERROR_MESSAGE);
-//							fieldTeamName.requestFocus();
-//						} else {
-//							createHeroTeam = new TeamCreationPanel(numHeroes);
-//							container.add(createHeroTeam, "Create Hero Team");
-//							cardLayout.show(container, "Create Hero Team");
-//							CreateHeroPanel hero = new CreateHeroPanel(2);
-//							container.add(hero, "Hero");
-//							cardLayout.show(container, "Hero");
-							
-							
-							
-//							}
-						
+//						GUITimerCode timer = new GUITimerCode(4);
+//						container.add(timer, "Timer");
+//						cardLayout.show(container, "Timer");
+						if(!teamPanel) {
+							if (fieldTeamName.getText().length() < 2) {
+								JOptionPane.showMessageDialog(frame, "Team name must be more than 2 characters!", "Team name too long!", JOptionPane.ERROR_MESSAGE);
+								fieldTeamName.requestFocus();
+							} else {
+								createHeroTeam = new TeamCreationPanel(numHeroes);
+								container.add(createHeroTeam, "Create Hero Team");
+								createHeroTeam.add(btnContinue, "cell 0 " + (3 + ((numHeroes - 1) * 2)) + ",alignx right,growy");
+								teamPanel = true;
+								cardLayout.show(container, "Create Hero Team");
+//								CreateHeroPanel hero = new CreateHeroPanel();
+//								container.add(hero, "Hero");
+//								cardLayout.show(container, "Hero");
+							}
+						}
+						else {
+							if (createHeroTeam.readyToContinue()) {
+								heroes = createHeroTeam.getHeroes();
+								team = new Team(teamName, heroes);
+								String s = "Start game";
+							}
+						}
+					
 						
 					}
 				});
