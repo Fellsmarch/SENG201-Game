@@ -21,7 +21,7 @@ public class SecondWind extends Hero
 				return true;
 			}else {
 				hasDied = true;
-				health = 1;
+				this.currentHealth = 1;
 				return false;
 			}
 		}

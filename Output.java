@@ -122,7 +122,7 @@ public class Output
 		
 		public void printHeroTypes() {
 				Hero[] heroes = {new ADCarryHero("AD Carry"), new CEOHero("CEO"), new DiscountShopper("Discount Shopper"), new LootHoarderHero("Loot Hoarder"),
-						new LuckyHero("Lucky Charm"), new RandomHero("Random Hero", false), new SecondWind("Second Wind Hero"), new TankHero("Tank"),
+						new LuckyHero("Lucky Charm"), new RandomHero("Random Hero"), new SecondWind("Second Wind Hero"), new TankHero("Tank"),
 						new TeamPowerupHero("Team Powerup Hero"), new Hero("Vanilla Hero")};
 				ArrayList<Hero> heroList = new ArrayList<Hero>(Arrays.asList(heroes));
 				Team team = new Team("Attributes Print", heroList);

@@ -9,9 +9,9 @@
 public class ADCarryHero extends Hero
 	{
 		public ADCarryHero(String name) {
-			super(name);
+			super(name, 80);
 			attackMod = 1.7;
-			health = 80;
+			//health = 80;
 			defenseMod = 0.7;
 		}
 	}

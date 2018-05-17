@@ -145,17 +145,24 @@ public class GameEnvironment
 		
 		public void generateVillains(int numOfVillains) {
 			ArrayList<Game> gameList = new ArrayList<Game>(Arrays.asList(new PaperScissorsRockGame(), new GuessNumberGame(), new DiceRollsGame()));
-			List<String> namesList = new ArrayList<String>(Arrays.asList("Name1", "Name2", "Name3", "Name4", "Name5", "Name6"));
-			List<String> tauntsList = new ArrayList<String>(Arrays.asList("Taunt1", "Taunt2", "Taunt3", "Taunt4", "Taunt5", "Taunt6"));
+			ArrayList<String> namesList = new ArrayList<String>(Arrays.asList("Cho'Gath - The Terror of the Void", "Kassadin - The Void Walker", "Baron Nashor", 
+					"Kog'Maw - The Mouth of the Abyss", "Kha'Zix - The Voidreaver", "Malzahar - The Prophet of the Void", "Rek'Sai - The Void Burrower", 
+					"Vel'Koz - The Eye of the Void"));
+			ArrayList<String> tauntsList = new ArrayList<String>(Arrays.asList("Your souls will feed the Void!", "The balance of power must be preserved.", 
+					"Time to feast! ", "Kill. Consume. Adapt.", "We are timeless. We demand Sacrifice.", "Creature appears to seek its maternal unit.",
+					"Only by deconstruction is truth revealed."));
 			Random rand = new Random();
 			
 			for(int i = 0; i < numOfVillains; i++) {
 				int nameIndex = rand.nextInt(namesList.size());
 				int tauntIndex = rand.nextInt(tauntsList.size());
-				String name = namesList.get(nameIndex); String taunt = tauntsList.get(tauntIndex);
+				String name = namesList.get(nameIndex);
+				String taunt = tauntsList.get(tauntIndex);
+				if (name == "Baron Nashor") {taunt = "...";}
 				Villain newVillain = new Villain(name, taunt, gameList);
 				villains.add(newVillain);
-				namesList.remove(nameIndex); tauntsList.remove(tauntIndex);
+				namesList.remove(nameIndex); 
+				if (name != "Baron Nashor") {tauntsList.remove(tauntIndex);}
 			} System.out.println(villains.size());
 			
 			//Creates the super villain

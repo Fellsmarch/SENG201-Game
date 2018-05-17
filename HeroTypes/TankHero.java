@@ -9,8 +9,8 @@
 public class TankHero extends Hero
 	{
 		public TankHero(String name) {
-			super(name); 
-			adjustHealth(100); //Which is better practice using setters on private variables or directly setting protected ones
+			super(name, 200); 
+			//adjustHealth(100); //Which is better practice using setters on private variables or directly setting protected ones
 			recoveryRate = 1;
 			attackMod = 0.65;
 			defenseMod = 1.3;
