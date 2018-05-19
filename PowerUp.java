@@ -6,14 +6,12 @@ public abstract class PowerUp extends Item {
 	}
 	
 	public boolean apply(Hero hero) {
-
-		hero.setPowerUp(this);
+//		hero.setPowerUp(this);
 		return true;
 	}
-
 	
 	public String toString() {
 		return "Powerup";
 	}
-
+	
 }

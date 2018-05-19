@@ -3,11 +3,12 @@ import java.util.Random;
 
 public class City
 	{
-		private Building directionNorth;
-		private Building directionEast;
-		private Building directionSouth;
-		private Building directionWest;
-		private Building[] directionList = {directionNorth, directionEast, directionSouth, directionWest};
+//		private Building directionNorth;
+//		private Building directionEast;
+//		private Building directionSouth;
+//		private Building directionWest;
+//		private Building[] directionList = {directionNorth, directionEast, directionSouth, directionWest};
+		private Building[] directionList = new Building[4];
 		private Villain villain;
 		
 		public City(ArrayList<Building> buildings, Villain villain) {
@@ -27,11 +28,10 @@ public class City
 					}
 				}
 			}
-			
-			directionNorth = directionList[0];
-			directionEast = directionList[1];
-			directionSouth = directionList[2];
-			directionWest = directionList[3];
+//			System.out.println("North: " + (directionNorth instanceof VillainsLair));
+//			System.out.println("East: " + (directionEast instanceof VillainsLair));
+//			System.out.println("South: " + (directionSouth instanceof VillainsLair));
+//			System.out.println("West: " + (directionWest instanceof VillainsLair));
 		}
 		
 		public String getLayout() { //String may be changed when we transition to GUI
@@ -39,44 +39,84 @@ public class City
 		}
 		
 		public boolean goNorth(Team team) {
-			if(directionNorth instanceof VillainsLair) {
-				((VillainsLair) directionNorth).setVillain(villain);
-				return directionNorth.goTo(team);
+			if(directionList[0] instanceof VillainsLair) {
+				((VillainsLair) directionList[0]).setVillain(villain);
+				return directionList[0].goTo(team);
 			} else {
-				directionNorth.goTo(team);
+				directionList[0].goTo(team);
 				return false;
 			}
 		}
 		
 		public boolean goEast(Team team) {
-			if(directionEast instanceof VillainsLair) {
-				((VillainsLair) directionNorth).setVillain(villain);
-				return directionEast.goTo(team);
+			if(directionList[1] instanceof VillainsLair) {
+				((VillainsLair) directionList[1]).setVillain(villain);
+				return directionList[1].goTo(team);
 			} else {
-				directionEast.goTo(team);
+				directionList[1].goTo(team);
 				return false;
 			}
 		}
 		
 		public boolean goSouth(Team team) {
-			if(directionSouth instanceof VillainsLair) {
-				((VillainsLair) directionNorth).setVillain(villain);
-				return directionSouth.goTo(team);
+			if(directionList[2] instanceof VillainsLair) {
+				((VillainsLair) directionList[2]).setVillain(villain);
+				return directionList[2].goTo(team);
 			} else {
-				directionSouth.goTo(team);
+				directionList[2].goTo(team);
 				return false;
 			}
 		}
 		
 		public boolean goWest(Team team) {
-			if(directionWest instanceof VillainsLair) {
-				((VillainsLair) directionNorth).setVillain(villain);
-				return directionWest.goTo(team);
+			if(directionList[3] instanceof VillainsLair) {
+				((VillainsLair) directionList[3]).setVillain(villain);
+				return directionList[3].goTo(team);
 			} else {
-				directionWest.goTo(team);
+				directionList[3].goTo(team);
 				return false;
 			}
 		}
+		
+//		public boolean goNorth(Team team) {
+//			if(directionNorth instanceof VillainsLair) {
+//				((VillainsLair) directionNorth).setVillain(villain);
+//				return directionNorth.goTo(team);
+//			} else {
+//				directionNorth.goTo(team);
+//				return false;
+//			}
+//		}
+//		
+//		public boolean goEast(Team team) {
+//			if(directionEast instanceof VillainsLair) {
+//				((VillainsLair) directionNorth).setVillain(villain);
+//				return directionEast.goTo(team);
+//			} else {
+//				directionEast.goTo(team);
+//				return false;
+//			}
+//		}
+//		
+//		public boolean goSouth(Team team) {
+//			if(directionSouth instanceof VillainsLair) {
+//				((VillainsLair) directionNorth).setVillain(villain);
+//				return directionSouth.goTo(team);
+//			} else {
+//				directionSouth.goTo(team);
+//				return false;
+//			}
+//		}
+//		
+//		public boolean goWest(Team team) {
+//			if(directionWest instanceof VillainsLair) {
+//				((VillainsLair) directionNorth).setVillain(villain);
+//				return directionWest.goTo(team);
+//			} else {
+//				directionWest.goTo(team);
+//				return false;
+//			}
+//		}
 		
 //		public void goNorth(Team team) {directionNorth.goTo(team);}
 //		public void goEast(Team team) {directionEast.goTo(team);}
@@ -91,4 +131,4 @@ public class City
 		public Building[] getDirections() {return directionList;}
 		
 
-}
+	}
