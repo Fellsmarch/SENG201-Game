@@ -16,8 +16,10 @@ public class CEOHero extends Hero
 			super(name);
 		}
 		
-		public String toString() {
-			String old = super.toString();
-			return old + name + " increases the team's starting money by " + 400 + "\n"; //Temporary number
+		@Override
+		public String toString(boolean userHero) {
+//			String old = super.toString();
+//			return old + name + " increases the team's starting money by " + 400 + "\n"; //Temporary number
+			return super.toString() + "This hero increases the team's starting gold by 400";
 		}
 	}

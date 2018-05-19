@@ -12,4 +12,9 @@ public class DiscountShopper extends Hero
 			super(name);
 			shopPrice = 0.5;
 		}
+		
+		@Override
+		public String toString(boolean userHero) {
+			return super.toString() + "This hero halves the cost of items in the shop whilst they are in your team";
+		}
 	}

@@ -14,8 +14,12 @@ public class LuckyHero extends Hero
 			eventChance = 0.25;
 		}
 		
-		public String toString() {
-			String old = super.toString();
-			return old + name + " increases the chance of the team getting a free item instead of being robbed\n";
+//		public String toString() {
+//			String old = super.toString();
+//			return old + name + " increases the chance of the team getting a free item instead of being robbed\n";
+//		}
+		@Override
+		public String toString(boolean userHero) {
+			return super.toString() + "This hero increases the chance of getting free items randomly whilst they are in your team";
 		}
 	}

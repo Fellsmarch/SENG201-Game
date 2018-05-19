@@ -68,6 +68,8 @@ public class Hero
 			
 		}
 		
+//		public void set
+		
 		public boolean death() { 		//Returns true if death operations are complete and hero is dead. This is  
 			return true;				//mainly used for subclasses who may need to do certain things on death
 		}
@@ -99,7 +101,15 @@ public class Hero
 		public String toString() {
 			String toReturn = "<html><b>" + name + "</b>" + ":<br />Health:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;" + currentHealth + "/" + maxHealth + "<br />Recovery Rate:&emsp;&emsp;" + recoveryRate
 					+ "<br />Attack Strength:&emsp;&nbsp;" + attackMod * 100 + "%<br />Defense Modifier: &ensp;" + defenseMod * 100
-					+ "%<br />Shop Price:&emsp;&emsp;&emsp;&ensp;&nbsp;" + shopPrice * 100 + "%<br />Loot Modifier:&emsp;&emsp;&ensp;" + lootMod * 100 + "%<br /></html>";
+					+ "%<br />Shop Price:&emsp;&emsp;&emsp;&ensp;&nbsp;" + shopPrice * 100 + "%<br />Loot Modifier:&emsp;&emsp;&ensp;" + lootMod * 100 + "%<br />";
+			return toReturn;
+		}
+		
+		public String toString(boolean userHero) {
+//			String toReturn = "<html><b>" + name + "</b>" + ":<br />Health:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;" + currentHealth + "/" + maxHealth + "<br />Recovery Rate:&emsp;&emsp;" + recoveryRate
+//					+ "<br />Attack Strength:&emsp;&nbsp;" + attackMod * 100 + "%<br />Defense Modifier: &ensp;" + defenseMod * 100
+//					+ "%<br />Shop Price:&emsp;&emsp;&emsp;&ensp;&nbsp;" + shopPrice * 100 + "%<br />Loot Modifier:&emsp;&emsp;&ensp;" + lootMod * 100 + "%<br />The default vanilla hero";
+			String toReturn = toString() + "The default vanilla hero";
 			return toReturn;
 		}
 //		<font face=\"dialog\" size=\"12\"></font>

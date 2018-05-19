@@ -163,7 +163,7 @@ public class GameEnvironment
 				villains.add(newVillain);
 				namesList.remove(nameIndex); 
 				if (name != "Baron Nashor") {tauntsList.remove(tauntIndex);}
-			} System.out.println(villains.size());
+			} //System.out.println(villains.size());
 			
 			//Creates the super villain
 			int nameIndex = rand.nextInt(namesList.size());

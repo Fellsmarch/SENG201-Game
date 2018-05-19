@@ -21,7 +21,7 @@ import javax.swing.JButton;
 public class TeamCreationPanel extends JPanel
 	{
 	private ArrayList<Hero> heroes = new ArrayList<Hero>();
-	private JTextPane textPane;
+	private JTextPane paneDisplayHeroStats;
 	private JLabel lblSecondHero;
 	private JLabel lblThirdHero;
 	private JLabel lblFirstHero = new JLabel("Your Hero:");
@@ -66,9 +66,10 @@ public class TeamCreationPanel extends JPanel
 				comboBox.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						Hero hero = ((HeroType) comboBox.getSelectedItem()).createHero(comboBox.getSelectedItem().toString());
-						if (hero instanceof RandomHero) 
-							 {textPane.setText(((RandomHero) hero).toString(false));}
-						else {textPane.setText(hero.toString());}
+						paneDisplayHeroStats.setText(hero.toString(false));
+//						if (hero instanceof RandomHero) 
+//							 {textPane.setText(((RandomHero) hero).toString(false));}
+//						else {textPane.setText(hero.toString());}
 					}
 				});
 				
@@ -82,12 +83,12 @@ public class TeamCreationPanel extends JPanel
 				comboBox.setModel(new DefaultComboBoxModel<HeroType>(HeroType.values()));
 				add(comboBox, "cell 0 " + (3 + position) + ",aligny top");
 				
-				textPane = new JTextPane();
-				textPane.setBackground(UIManager.getColor("this.background"));
-				textPane.setContentType("text/html");
-				textPane.setText(((HeroType) comboBox.getSelectedItem()).createHero(comboBox.getSelectedItem().toString()).toString());
-				textPane.setEditable(false);
-				add(textPane, "cell 2 " + (3 + position) + ",aligny top");
+				paneDisplayHeroStats = new JTextPane();
+				paneDisplayHeroStats.setBackground(UIManager.getColor("this.background"));
+				paneDisplayHeroStats.setContentType("text/html");
+				paneDisplayHeroStats.setText(((HeroType) comboBox.getSelectedItem()).createHero(comboBox.getSelectedItem().toString()).toString(false));
+				paneDisplayHeroStats.setEditable(false);
+				add(paneDisplayHeroStats, "cell 2 " + (3 + position) + ",aligny top");
 				
 				JSeparator separator = new JSeparator();
 				separator.setOrientation(SwingConstants.VERTICAL);
