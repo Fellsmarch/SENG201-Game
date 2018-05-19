@@ -3,11 +3,11 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Output
-	{
+	{	
+		private Scanner scanner = new Scanner(System.in);
 
 		public int getValidInputNum(int acceptedRange) {
 			//Prior to this, options have been printed and prompt to user is printed
-			Scanner scanner = new Scanner(System.in);
 			int toReturn = 0; //Have to instantiate to something since method has to return an int
 			boolean inputGood = false;
 			while (!inputGood) {
@@ -41,7 +41,6 @@ public class Output
 		}
 		
 		public String getValidInputStr(int minSize, int maxSize) {
-			Scanner scanner = new Scanner(System.in);
 			boolean inputGood = false;
 			String toReturn = "";
 			while(!inputGood) {
@@ -99,14 +98,14 @@ public class Output
 		
 		public void printHealingDescriptions() {
 			System.out.println("Potion of Minor healing: Heals 25% of health over 5 seconds");
-			System.out.println("Potion of Medium Healing: Heals 50% of health over 7 seconds");
+			System.out.println("Potion of Healing: Heals 50% of health over 7 seconds");
 			System.out.println("Potion of Major Healing: Heals 100% of health over 10 seconds");
 		}
 		
 		public void printHealingDescription(int healingItem) {
-			if (healingItem == 1) {System.out.println("Potion of Minor healing: Heals 25% of health");}
-			else if (healingItem == 2) {System.out.println("Potion of Medium Healing: Heals 50% of health");}
-			else if (healingItem == 3) {System.out.println("Potion of Major Healing: Heals 100% of health");}
+			if (healingItem == 1) {System.out.println("Potion of Minor healing: Heals 25% of health over 5 seconds");}
+			else if (healingItem == 2) {System.out.println("Potion of Healing: Heals 50% of health over 7 seconds");}
+			else if (healingItem == 3) {System.out.println("Potion of Major Healing: Heals 100% of health over 10 seconds");}
 		}
 		
 		
@@ -123,16 +122,16 @@ public class Output
 		
 		public void printHeroTypes() {
 				Hero[] heroes = {new ADCarryHero("AD Carry"), new CEOHero("CEO"), new DiscountShopper("Discount Shopper"), new LootHoarderHero("Loot Hoarder"),
-						new LuckyHero("Lucky Charm"), new RandomHero("Random Hero", false), new SecondWind("Second Wind Hero"), new TankHero("Tank"),
+						new LuckyHero("Lucky Charm"), new RandomHero("Random Hero"), new SecondWind("Second Wind Hero"), new TankHero("Tank"),
 						new TeamPowerupHero("Team Powerup Hero"), new Hero("Vanilla Hero")};
 				ArrayList<Hero> heroList = new ArrayList<Hero>(Arrays.asList(heroes));
 				Team team = new Team("Attributes Print", heroList);
 				System.out.println(team);
-				} 
+				}
 		
-		/* public static void main(String[] args) {
+		public static void main(String[] args) {
 			Output output = new Output();
-			output.printHeroTypes(); */
+			output.printHeroTypes();
 //			Hero hero = new Hero("Jim");
 //			ArrayList<Hero> heroes = new ArrayList<Hero>();
 //			heroes.add(hero);
@@ -144,4 +143,4 @@ public class Output
 //			output.printInventory(team);
 		}
 	
-
+	}
