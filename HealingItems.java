@@ -26,17 +26,12 @@ public abstract class HealingItems extends Item {
 
 	
 	public boolean apply(Hero hero) {
-//		if (!hero.death() && !hero.isHealing()) {
-//			hero.beginHeal(this);
-//			return true;
-//		} else {
+		if (!hero.death() && !hero.isHealing()) {
+			hero.beginHeal(this);
+			return true;
+		} else {
 			return false;
-//		}
-			
-	}
-	
-	public String toString() {
-		return this.name;
+		}
 	}
 
 }

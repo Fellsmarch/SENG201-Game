@@ -18,7 +18,6 @@ public class Battle
 			boolean battleOver = false;
 			boolean challengerAlive;
 			boolean villainDefeated = false;
-			int timesVillainDefeated = 0;
 			System.out.println(villain.getName() + ": " + villain.getTaunt()); //Taunts the player/Hero
 			while (!battleOver) {
 				//Select the challenger
