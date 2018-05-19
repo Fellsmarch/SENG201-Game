@@ -1,3 +1,4 @@
+package guiElements;
 import javax.swing.JPanel;
 
 public class HospitalPanel extends JPanel
@@ -10,5 +11,7 @@ public class HospitalPanel extends JPanel
 			{
 
 			}
+		
+		public String toString() {return "Hospital";}
 
 	}

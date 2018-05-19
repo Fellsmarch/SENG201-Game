@@ -1,7 +1,10 @@
-//Need to add documentation and more in depth comments
+package characters;
+
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import commandLineElements.Game;
 
 public class Villain
 	{

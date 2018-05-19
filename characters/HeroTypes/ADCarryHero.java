@@ -1,3 +1,6 @@
+package characters.HeroTypes;
+import characters.Hero;
+
 /**
  * This hero type deals more damage to villains, but trades that for slightly less health and lower defense
  * 

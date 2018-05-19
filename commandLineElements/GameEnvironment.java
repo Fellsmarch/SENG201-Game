@@ -1,7 +1,12 @@
+package commandLineElements;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
+
+import characters.*;
+import characters.HeroTypes.*;
+import items.Map;
 
 public class GameEnvironment
 	{
@@ -54,7 +59,8 @@ public class GameEnvironment
 								int map = rand.nextInt(possibleMaps.size());
 								if (map == cityNum) {System.out.println("You recieved a map for this city!");}
 								else {System.out.println("You recieved a map for city #" + map + "!");}
-								team.addMap(map);
+								//Broken after GUI changes to team
+//								team.addMap(map);
 							} 
 							else {
 								int item = rand.nextInt(6);
@@ -87,7 +93,8 @@ public class GameEnvironment
 								int item = rand.nextInt(removalCandidates.get(itemType).size());
 								removalCandidates.get(itemType).remove(item);
 								if (!team.hasMap(cityNum) && teamHadCityMap) {
-									team.removeMap(cityNum);
+									//Broken after GUI changes to team
+//									team.removeMap(cityNum);
 									System.out.println("Urf stole the map to this city!");
 									options[0] = "Go north"; options[1] = "Go east"; options[2] = "Go south"; options[3] = "Go west";
 								}
@@ -227,8 +234,9 @@ public class GameEnvironment
 									 heroes.add(newVanillaHero);
 									 heroTypeChosen = true;
 									 break;
-							case 11: output.printHeroTypes();
-									 break;
+									//Broken after GUI changes to team
+//							case 11: output.printHeroTypes();
+//									 break;
 						}
 					//}
 				}

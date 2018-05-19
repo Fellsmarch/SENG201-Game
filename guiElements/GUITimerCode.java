@@ -1,3 +1,4 @@
+package guiElements;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import net.miginfocom.swing.MigLayout;

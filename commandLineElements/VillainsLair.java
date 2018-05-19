@@ -1,5 +1,9 @@
+package commandLineElements;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import characters.Team;
+import characters.Villain;
 
 public class VillainsLair implements Building
 	{

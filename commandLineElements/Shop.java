@@ -1,5 +1,8 @@
+package commandLineElements;
 
 import java.util.ArrayList;
+
+import characters.Team;
 
 // TODO: Implement discountshopper
 
@@ -58,7 +61,8 @@ public class Shop implements Building {
 			System.out.println("Powerups to help yah in those sticky situations!");
 			System.out.println("Team: " + currentTeam.getName());
 			System.out.println("Powerups Owned...");
-			output.printPowerupInventory(currentTeam.getPowerupList());
+			//Broken after GUI changes to team
+//			output.printPowerupInventory(currentTeam.getPowerupList());
 			System.out.println("Gold: $" + currentTeam.getMoney());
 			String[] powerupOptions = {"Kage's Lucky Pick - $70", "Infinity Edge - $50", "Ninja Tabi - $60", "View Item Descriptions", "Back"};
 			powerChoice = output.printOptions(powerupOptions);
@@ -71,12 +75,13 @@ public class Shop implements Building {
 			if (powerChoice == 2) { cost = -50; }
 			if (powerChoice == 3) { cost = -60; }
 			
-			currentTeam.changeMoney(cost);
+			currentTeam.adjustGold(cost);
 			if (currentTeam.getMoney() < 0) {
 				System.out.println("Yikes, you do not have enough gold to purchase this item.");
-				currentTeam.changeMoney(Math.abs(cost));
+				currentTeam.adjustGold(Math.abs(cost));
 			} else {
-				currentTeam.addPowerup(powerChoice);;
+				//Broken after GUI changes to team
+//				currentTeam.addPowerup(powerChoice);;
 				System.out.println("Your team has purchased " + powerupOptions[powerChoice-1] + ".");
 				System.out.println("Your current gold is now $" + currentTeam.getMoney()); }
 		}
@@ -88,7 +93,8 @@ public class Shop implements Building {
 			System.out.println("If you're feeling sick, don't despair! We've got some health potions near!");
 			System.out.println("Team: " + currentTeam.getName());
 			System.out.println("Health items owned...");
-			output.printHealingInventory(currentTeam.getHealingList());
+			//Broken after GUI changes to team
+//			output.printHealingInventory(currentTeam.getHealingList());
 			System.out.println("Gold: $" + currentTeam.getMoney());
 			String[] healthOptions = {"Potion of Minor Healing (5s) - $25", "Potion of Medium Healing (7s) - $50", "Potion of Major Healing (10s) - $100", "View Item Descriptions", "Back"};
 			healthChoice = output.printOptions(healthOptions);
@@ -101,12 +107,13 @@ public class Shop implements Building {
 			if (healthChoice == 2) { cost = -50; }
 			if (healthChoice == 3) { cost = -100; }
 			
-			currentTeam.changeMoney(cost);
+			currentTeam.adjustGold(cost);
 			if (currentTeam.getMoney() < 0) {
 				System.out.println("Yikes, you do not have enough gold to purchase this item. Times are tough, eh?");
-				currentTeam.changeMoney(Math.abs(cost));
+				currentTeam.adjustGold(Math.abs(cost));
 			} else {
-				currentTeam.addHealing(healthChoice);;
+				//Broken after GUI changes to team				
+//				currentTeam.addHealing(healthChoice);
 				System.out.println("Your team has purchased " + healthOptions[healthChoice-1] + ".");
 				System.out.println("Your current gold is now $" + currentTeam.getMoney()); }
 		}
@@ -123,12 +130,13 @@ public class Shop implements Building {
 			mapChoice = output.printOptions(mapOptions);
 			
 			if (mapChoice == 1) {
-				currentTeam.changeMoney(cost);
+				currentTeam.adjustGold(cost);
 				if (currentTeam.getMoney() < 0) {
 					System.out.println("Yikes, you do not have enough gold to purchase this item. Times are tough, eh?");
-					currentTeam.changeMoney(Math.abs(cost));
+					currentTeam.adjustGold(Math.abs(cost));
 				} else {
-					currentTeam.addMap(1);
+					//Broken after GUI changes to team
+//					currentTeam.addMap(1);
 					System.out.println("Your team has purchased a map. Congratulations!"); }
 				}	
 			
@@ -136,9 +144,9 @@ public class Shop implements Building {
 		
 		private void viewInventory() {
 			System.out.println("Empty yer bag and let's see whether yer worth me time... *chuckles*");
-			output.printPowerupInventory(currentTeam.getPowerupList());
-			output.printHealingInventory(currentTeam.getHealingList());
-			//System.out.println("Map: " + currentTeam.hasMap();
+			//Broken after GUI changes to team
+//			output.printPowerupInventory(currentTeam.getPowerupList());
+//			output.printHealingInventory(currentTeam.getHealingList());
 			System.out.println("Gold: $" + currentTeam.getMoney());
 		}
 		

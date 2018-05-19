@@ -1,3 +1,4 @@
+package commandLineElements;
 
 public interface Game
 	{

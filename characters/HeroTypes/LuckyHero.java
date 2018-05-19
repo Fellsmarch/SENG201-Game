@@ -1,3 +1,6 @@
+package characters.HeroTypes;
+import characters.Hero;
+
 /**
  * This hero type increases, when an event is triggered, that the event is good/positive event
  * instead of a bad/negative one

@@ -1,3 +1,6 @@
+package characters.HeroTypes;
+import characters.Hero;
+
 /**
  * When a powerup is used on this hero type, there is a chance (20%) that it will be applied to each member of the team
  * 

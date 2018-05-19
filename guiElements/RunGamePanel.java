@@ -1,9 +1,21 @@
+package guiElements;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
 import javax.swing.JPanel;
+
+import characters.SuperVillain;
+import characters.Team;
+import characters.Villain;
+import commandLineElements.Building;
+import commandLineElements.DiceRollsGame;
+import commandLineElements.Game;
+import commandLineElements.GuessNumberGame;
+import commandLineElements.PaperScissorsRockGame;
+import commandLineElements.Shop;
+import items.Map;
 
 @SuppressWarnings("serial")
 public class RunGamePanel extends JPanel
@@ -13,17 +25,28 @@ public class RunGamePanel extends JPanel
 		private ArrayList<Villain> villains = new ArrayList<Villain>();
 		private SuperVillain superVillain; //Needs to be added to UML
 		private ArrayList<CityPanel> cities = new ArrayList<CityPanel>();
-		private ArrayList<Building> buildings = new ArrayList<Building>(Arrays.asList(new Shop()));
+		private ArrayList<JPanel> buildings;
+		private Team team;
+		private int currentCity = 1;
+		private int numCities;
 
 		/**
 		 * Create the panel.
 		 */
 		public RunGamePanel(Team team, int numCities)
 			{
+				this.team = team;
+				this.numCities = numCities;
 				generateVillains(numCities);
 				generateCities(numCities);
 				
-			}
+				for (int i = 1; i <= cities.size(); i++) {
+					container.add(cities.get(i-1), "City " + i);
+				}
+				add(container);
+				
+				cardLayout.show(container, "City " + currentCity);
+			} 
 		
 		private void generateVillains(int numOfVillains) {
 			ArrayList<Game> gameList = new ArrayList<Game>(Arrays.asList(new PaperScissorsRockGame(), new GuessNumberGame(), new DiceRollsGame()));
@@ -56,9 +79,20 @@ public class RunGamePanel extends JPanel
 		}
 		
 		private void generateCities(int numCities) {
+			Map[] maps = new Map[numCities];
+			for (int i = 1; i <= numCities; i++) {maps[i-1] = new Map(i);}
 			for (int i = 1; i < numCities; i++) { //I think this should be i = 0, (numCities - 1)
-				cities.add(new CityPanel(buildings, villains.get(i)));
+				buildings = new ArrayList<JPanel>(Arrays.asList(new ShopPanel(maps, team), new VillainsLairPanel(), new PowerupDenPanel(team), new HospitalPanel()));
+				cities.add(new CityPanel(buildings, villains.get(i-1), this));
 			}
-			cities.add(new CityPanel(buildings, superVillain));
+			buildings = new ArrayList<JPanel>(Arrays.asList(new ShopPanel(maps, team), new VillainsLairPanel(), new PowerupDenPanel(team), new HospitalPanel()));
+			cities.add(new CityPanel(buildings, superVillain, this));
+		}
+		
+		public void nextCity() {
+			currentCity++;
+			System.out.println(currentCity);
+			if (currentCity <= numCities) {cardLayout.show(container, "City " + currentCity);}
+			else {String s = "Won the game"; System.out.println(s);}
 		}
 	}

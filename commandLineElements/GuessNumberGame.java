@@ -1,3 +1,4 @@
+package commandLineElements;
 import java.util.Random;
 
 public class GuessNumberGame implements Game {

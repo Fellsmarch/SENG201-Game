@@ -1,3 +1,6 @@
+package characters.HeroTypes;
+import characters.Hero;
+
 /**
  * This hero type makes buying items from shops 50% cheaper for the team
  * 

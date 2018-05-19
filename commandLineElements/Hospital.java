@@ -1,3 +1,5 @@
+package commandLineElements;
+import characters.Team;
 
 public class Hospital implements Building
 	{

@@ -1,3 +1,4 @@
+package characters.HeroTypes;
 /**
  * This hero type randomises many of a Hero's stats, it randomises:
  * Health 					(between 1-200)
@@ -13,6 +14,8 @@
  */
 
 import java.util.Random;
+
+import characters.Hero;
 
 public class RandomHero extends Hero
 	{

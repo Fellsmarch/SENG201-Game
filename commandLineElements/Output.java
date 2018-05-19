@@ -1,6 +1,8 @@
+package commandLineElements;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+
 
 public class Output
 	{	
@@ -108,30 +110,30 @@ public class Output
 			else if (healingItem == 3) {System.out.println("Potion of Major Healing: Heals 100% of health over 10 seconds");}
 		}
 		
+		//Broken after GUI changes to team
+//		public void printInventory(Team team) {
+//			System.out.println("Your team's (" + team.getName() + ") inventory contains:");
+//			System.out.println("Powerups:");
+//			printPowerupInventory(team.getPowerupList());
+//			System.out.println("--------\nHealing Potions:");
+//			printHealingInventory(team.getHealingList());
+//			System.out.println("--------\nMoney: $" + team.getMoney());
+//			
+//		}
 		
-		public void printInventory(Team team) {
-			System.out.println("Your team's (" + team.getName() + ") inventory contains:");
-			System.out.println("Powerups:");
-			printPowerupInventory(team.getPowerupList());
-			System.out.println("--------\nHealing Potions:");
-			printHealingInventory(team.getHealingList());
-			System.out.println("--------\nMoney: $" + team.getMoney());
-			
-		}
+		//Broken after GUI changes to team
+//		public void printHeroTypes() {
+//				Hero[] heroes = {new ADCarryHero("AD Carry"), new CEOHero("CEO"), new DiscountShopper("Discount Shopper"), new LootHoarderHero("Loot Hoarder"),
+//						new LuckyHero("Lucky Charm"), new RandomHero("Random Hero"), new SecondWind("Second Wind Hero"), new TankHero("Tank"),
+//						new TeamPowerupHero("Team Powerup Hero"), new Hero("Vanilla Hero")};
+//				ArrayList<Hero> heroList = new ArrayList<Hero>(Arrays.asList(heroes));
+//				Team team = new Team("Attributes Print", heroList);
+//				System.out.println(team);
+//				}
 		
-		
-		public void printHeroTypes() {
-				Hero[] heroes = {new ADCarryHero("AD Carry"), new CEOHero("CEO"), new DiscountShopper("Discount Shopper"), new LootHoarderHero("Loot Hoarder"),
-						new LuckyHero("Lucky Charm"), new RandomHero("Random Hero"), new SecondWind("Second Wind Hero"), new TankHero("Tank"),
-						new TeamPowerupHero("Team Powerup Hero"), new Hero("Vanilla Hero")};
-				ArrayList<Hero> heroList = new ArrayList<Hero>(Arrays.asList(heroes));
-				Team team = new Team("Attributes Print", heroList);
-				System.out.println(team);
-				}
-		
-		public static void main(String[] args) {
-			Output output = new Output();
-			output.printHeroTypes();
+//		public static void main(String[] args) {
+//			Output output = new Output();
+//			output.printHeroTypes();
 //			Hero hero = new Hero("Jim");
 //			ArrayList<Hero> heroes = new ArrayList<Hero>();
 //			heroes.add(hero);
@@ -141,6 +143,6 @@ public class Output
 //			output.printInventory(team);
 //			team.changeMoney(300);
 //			output.printInventory(team);
-		}
+//		}
 	
 	}

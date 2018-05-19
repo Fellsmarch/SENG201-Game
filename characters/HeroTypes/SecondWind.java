@@ -1,3 +1,6 @@
+package characters.HeroTypes;
+import characters.Hero;
+
 /**
  * This hero type allows the hero to die once (and only once), and resets the hero's health to 1
  * NOTE: Should we reset the health to 100 instead? Since the hero will be in the middle of a fight 
