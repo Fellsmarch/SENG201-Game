@@ -1,5 +1,10 @@
+package commandLineElements;
 import java.util.ArrayList;
 import java.util.Random;
+
+import characters.Hero;
+import characters.Team;
+import characters.Villain;
 
 public class Battle
 	{
@@ -34,12 +39,12 @@ public class Battle
 							villainDefeated = true;
 							battleOver = true;
 							System.out.println(team.getName() + " recieves " + villain.getReward() + " gold for defeating " + villain.getName());
-							team.changeMoney(villain.getReward());
+							team.adjustGold(villain.getReward());
 						}
 					} 
 					else {
 						damageHero(powerups[2]);
-						if (challenger.getHealth() < 1) { 									//If Hero dies
+						if (challenger.getCurrentHealth() < 1) { 									//If Hero dies
 							if(challenger.death()) {
 								challengerAlive = false;
 								team.removeHero(challenger);
@@ -57,7 +62,8 @@ public class Battle
 			//Resets all active powerups
 			for (Hero hero : team.getHeroList()) {
 				for(int powerup = 0; powerup < 3; powerup++) {
-					hero.setPowerup(powerup, false);;
+					//Broken after GUI changes to team
+//					hero.setPowerup(powerup, false);
 				}
 			}
 			return villainDefeated;

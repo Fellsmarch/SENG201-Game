@@ -1,3 +1,4 @@
+package guiElements;
 import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
@@ -12,6 +13,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
 import javax.swing.UIManager;
+
+import characters.Hero;
+import characters.HeroType;
+
 import javax.swing.JSeparator;
 import java.awt.Color;
 import javax.swing.SwingConstants;

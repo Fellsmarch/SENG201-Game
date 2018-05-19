@@ -1,4 +1,5 @@
-
+package characters;
+import characters.HeroTypes.*;
 public enum HeroType
 	{
 		VANILLA("Wuju Bladesman"),

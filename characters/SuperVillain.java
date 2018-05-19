@@ -1,5 +1,8 @@
+package characters;
 import java.util.ArrayList;
 import java.util.Random;
+
+import commandLineElements.Game;
 
 public class SuperVillain extends Villain
 	{

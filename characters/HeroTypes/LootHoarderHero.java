@@ -1,3 +1,6 @@
+package characters.HeroTypes;
+import characters.Hero;
+
 /**
  * This hero type increases the amount of money the team receives from defeating villains by 50%
  * 

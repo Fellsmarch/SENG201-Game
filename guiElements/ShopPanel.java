@@ -1,3 +1,4 @@
+package guiElements;
 import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JButton;
@@ -13,6 +14,13 @@ import java.util.Set;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
 import javax.swing.UIManager;
+
+import characters.Hero;
+import characters.Team;
+import characters.HeroTypes.DiscountShopper;
+import characters.HeroTypes.RandomHero;
+import items.*;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -25,20 +33,23 @@ import java.awt.Color;
 public class ShopPanel extends JPanel
 	{
 		
-		private HealingItems[] healingPotions = {new minorHealingItem(), new mediumHealingItem(), new majorHealingItem()};
-		private PowerUp[] powerups = {new InfinityEdgePowerup(), new KagesLuckyPickPowerup(), new NinjaTabiPowerup()};
-		private Item[] maps; //need to change Map to implement item
+		private HealingItem[] healingPotions = {new HealingItem("Potion of Minor Healing", "Heals 25% of a Hero's total health", 25, 25, 25),
+				new HealingItem("Potion of Medium Healing", "Heals 50% of a Hero's total health", 50, 50, 50),
+				new HealingItem("Potion of Major Healing", "Restores the Hero's health to Full", 100, 1, 100)};
+		private Powerup[] powerups = {new PowerupLuck(), new PowerupDamage(), new PowerupDodge()};
+		private Map[] maps; //need to change Map to implement item
 		private Item[][] items = {powerups, healingPotions, maps};
 		private DefaultComboBoxModel<Item> itemsModel;
 		private JComboBox<Item> comboItems;
 		private Team team;
 		private double shopMod = 1;
+		private JTextPane paneInventory;
 		
 
 		/**
 		 * Create the panel.
 		 */
-		public ShopPanel(Item[] maps, Team team)
+		public ShopPanel(Map[] maps, Team team)
 			{
 				this.maps = maps; //Need to change Map to implement Item
 				items[2] = maps;
@@ -91,15 +102,11 @@ public class ShopPanel extends JPanel
 				comboItems.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						Item selectedItem = (Item) comboItems.getSelectedItem();
-	//					if (shopMod == 1) {String price = Integer.toString(selectedItem.getPrice());}
-	//					else {
-	//						String price 
-	//					}
 						textPane.setText(selectedItem.getDescription() + "\nPrice: " + Integer.toString(selectedItem.getPrice()));
 					}
 				});
 				
-				JTextPane paneInventory = new JTextPane();
+				paneInventory = new JTextPane();
 				paneInventory.setContentType("text/html");
 				add(paneInventory, "cell 1 5,aligny top");
 				paneInventory.setText(getTeamInventory());
@@ -118,9 +125,9 @@ public class ShopPanel extends JPanel
 						if (itemPrice > team.getMoney()) {
 							JOptionPane.showMessageDialog(null, "You do not have enough gold to buy this item!");
 						} else {
-							team.changeMoney(-itemPrice);
+							team.adjustGold(-itemPrice);
 							lblMoney.setText( "Gold: " + team.getMoney());
-							//Add item to team
+							team.addItem(selectedItem);
 							paneInventory.setText(getTeamInventory());
 							
 						}
@@ -134,20 +141,17 @@ public class ShopPanel extends JPanel
 		
 		public String getTeamInventory() {
 			String toReturn = "<html>Inventory: <br />";
-			ArrayList<Item> pwrups = new ArrayList<Item>(); //These would be pulled from the team
-			ArrayList<Item> healing = new ArrayList<Item>(); //These would be pulled from the team
-			ArrayList<Item> mps = new ArrayList<Item>();	//These would be pulled from the team
-			ArrayList<Item> inventory = new ArrayList<Item>(pwrups);
-			inventory.addAll(healing); inventory.addAll(mps);
-			
-			Set<Item> inventorySet = new HashSet<Item>(inventory);
-			if (inventorySet.size() <= 1) {return toReturn + "&ensp - &ensp Empty";}
+			ArrayList<Item> inventory = team.getItemInventory();
+			if (inventory.size() < 1) {return toReturn + "&ensp - &ensp Empty";}			
 			else {
+				Set<Item> inventorySet = new HashSet<Item>(inventory);
 				for (Item item : inventorySet) {
 					int freq = Collections.frequency(inventory, item);
 					toReturn += "&ensp - &ensp " + item + " (x" + freq + ")<br />";
 				}
+//				p1221aneInventory.setText(toReturn);
 				return toReturn;
 			}
 		}
+		public String toString() {return "Shop";}
 	}

@@ -1,3 +1,4 @@
+package guiElements;
 import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
@@ -6,6 +7,9 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JToggleButton;
+
+import characters.Hero;
+import characters.HeroType;
 
 import java.awt.event.ActionListener;
 import java.util.ArrayList;

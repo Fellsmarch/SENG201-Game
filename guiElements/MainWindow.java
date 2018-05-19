@@ -1,3 +1,4 @@
+package guiElements;
 import java.awt.CardLayout;
 import java.awt.EventQueue;
 
@@ -8,6 +9,17 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
+
+import characters.Hero;
+import characters.Team;
+import characters.Villain;
+import commandLineElements.DiceRollsGame;
+import commandLineElements.Game;
+import commandLineElements.GuessNumberGame;
+import commandLineElements.PaperScissorsRockGame;
+import items.Item;
+import items.Map;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
@@ -230,18 +242,25 @@ public class MainWindow
 						else {
 							if (createHeroTeam.readyToContinue()) {
 								heroes = createHeroTeam.getHeroes();
-								team = new Team(teamName, heroes);
+								team = new Team(teamName, heroes, numCities);
 								String s = "Start game";
-//								ArrayList<Building> buildings = new ArrayList<Building>(Arrays.asList(new VillainsLair(), new Shop(), new PowerupDen(), new Hospital()));
+								
+//								Map[] maps = new Map[numCities];
+//								for (int i = 1; i <= numCities; i++) {maps[i-1] = new Map(i);}
+//								ArrayList<JPanel> buildings = new ArrayList<JPanel>(Arrays.asList(new ShopPanel(maps, team), new VillainsLairPanel(), new PowerupDenPanel(), new HospitalPanel()));							
+//								ArrayList<JPanel> buildings = new ArrayList<JPanel>(Arrays.asList(new ShopPanel(maps, team), new ShopPanel(maps, team),new ShopPanel(maps, team),new ShopPanel(maps, team)));							
 //								Villain villain = new Villain("Jim", "The vill", new ArrayList<Game>(Arrays.asList(new PaperScissorsRockGame(), new GuessNumberGame(), new DiceRollsGame())));
 //								CityPanel city = new CityPanel(buildings, villain);
 //								container.add(city, "City");
 //								cardLayout.show(container, "City");
 								
-								Item[] item = {new majorHealingItem()};
-								ShopPanel shop = new ShopPanel(item, team);
-								container.add(shop, "Shop");
-								cardLayout.show(container, "Shop");
+								RunGamePanel game = new RunGamePanel(team, numCities);
+								container.add(game, "Game");
+								cardLayout.show(container, "Game");
+								
+//								ShopPanel shop = new ShopPanel(maps, team);
+//								container.add(shop, "Shop");
+//								cardLayout.show(container, "Shop");
 							}
 						}
 					

@@ -1,3 +1,6 @@
+package characters.HeroTypes;
+import characters.Hero;
+
 /**
  * This hero type acts as a tank for the team, it has increased health and defense
  * and lower recovery rate but suffers reduced attack damage as a result

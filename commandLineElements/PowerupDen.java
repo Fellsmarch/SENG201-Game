@@ -1,3 +1,5 @@
+package commandLineElements;
+import characters.Team;
 
 public class PowerupDen implements Building
 	{
