@@ -29,7 +29,10 @@ public class Hero
 		private boolean powerupLuck = false; 		//Whether or not the Luck powerup is active on this hero
 		private boolean powerupDamage = false; 		//Whether or not the Double Damage powerup is active on this hero
 		private boolean powerupDodge = false; 		//Whether or not the Change to Dodge powerup is active on this hero
-
+		private HealingItems healingItem;
+		private PowerUp powerup;
+		private long healFinishes;
+		
 		
 		public Hero(String name) {
 			this.name = name;
@@ -46,6 +49,7 @@ public class Hero
 		//Getters for classes that don't extend Hero
 		public String getName() {return name;}
 		public int getHealth() {return currentHealth;}
+		public int getMaxHealth() {return maxHealth;}
 		public double getRecovery() {return recoveryRate;}
 		public double getAttackMod() {return attackMod;}
 		public double getDefenseMod() {return defenseMod;}
@@ -60,6 +64,7 @@ public class Hero
 		
 		//Setters for classes that don't extend Hero
 		public void setName(String newName) {name = newName;}
+		public void setMaxHealth(int maxHealth) {this.maxHealth = maxHealth;}
 		public void adjustHealth(int toAdjust) {currentHealth += toAdjust; if (currentHealth > maxHealth) {currentHealth = maxHealth;}}	//This works for positive or negative health adjust
 		public void setPowerup(int powerup, boolean powerupActive) { 			//Returns true if the powerup was applied successfully, and false if the hero already had the powerup applied
 			if (powerup == 0) {powerupLuck = powerupActive;} 					//Checking to see which powerup it is (Luck = 0, Damage = 1, Dodge = 2)
@@ -68,33 +73,29 @@ public class Hero
 			
 		}
 		
+		public void setPowerUp(PowerUp powerup) {
+	        this.powerup = powerup;
+	    }
+		//Methods regarding hero's health
+		
+		public void beginHeal(HealingItems healingItem) {
+	        if (!death() && !isHealing()) {
+	            healFinishes = System.currentTimeMillis()
+	                    + healingItem.getHealingTime() * 1000;
+
+	            this.healingItem = healingItem;
+	        }
+	    }
+		
+		public boolean isHealing() {
+	        return healingItem != null;
+	    }
+		
 		public boolean death() { 		//Returns true if death operations are complete and hero is dead. This is  
-			return true;				//mainly used for subclasses who may need to do certain things on death
+			return currentHealth == 0;				//mainly used for subclasses who may need to do certain things on death
 		}
 		
-//		public void printAttributes() { 	//For debugging, will later be adapted into a console then GUI output, to be shown at each city and at the beginning of the game
-//			System.out.println("Name = " + name);
-//			System.out.println("Health = " + currentHealth + "/" + maxHealth);
-//			System.out.println("Recovery = " + recoveryRate);
-//			System.out.println("Attack = " + attackMod);
-//			System.out.println("Defense = " + defenseMod);
-//			System.out.println("Shop price = " + shopPrice);
-//			System.out.println("Team powerup chance = " + teamPowerupChance);
-//			System.out.println("Event chance = " + eventChance);
-//			System.out.println("Loot modifier = " + lootMod);
-//			System.out.println("Powerup Luck = " + powerupLuck);
-//			System.out.println("Powerup Damage = " + powerupDamage);
-//			System.out.println("Powerup Dodge = " + powerupDodge);
-//		}
-		
-		//Non GUI Version
-//		public String toString() {
-//			String toReturn = name + ":\nHealth:           " + health + "\nRecovery Rate:    " + recoveryRate
-//					+ "\nAttack Strength:  " + attackMod * 100 + "%\nDefense Modifier: " + defenseMod * 100
-//					+ "%\nShop Price:       " + shopPrice * 100 + "%\nLoot Modifier:    " + lootMod * 100 + "%\n";
-//			return toReturn;
-//		}
-		
+
 		//GUI Version
 		public String toString() {
 			String toReturn = "<html><b>" + name + "</b>" + ":<br />Health:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;" + currentHealth + "/" + maxHealth + "<br />Recovery Rate:&emsp;&emsp;" + recoveryRate
@@ -115,4 +116,4 @@ public class Hero
 //
 //			}
 
-	}
+}
