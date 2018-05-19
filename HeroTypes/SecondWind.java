@@ -16,6 +16,7 @@ public class SecondWind extends Hero
 			super(name);
 		}
 		
+		@Override
 		public boolean death() {
 			if (hasDied) {
 				return true;
@@ -26,8 +27,13 @@ public class SecondWind extends Hero
 			}
 		}
 		
-		public String toString() {
-			String old = super.toString();
-			return old + "When " + name + " dies, they come back to life with 1 hp. This can only happen once\n";
+//		public String toString() {
+//			String old = super.toString();
+//			return old + "When " + name + " dies, they come back to life with 1 hp. This can only happen once\n";
+//		}
+		
+		@Override
+		public String toString(boolean userHero) {
+			return super.toString() + "If this hero were to die, they stay alive with 1 health. This can only happen once";
 		}
 	}

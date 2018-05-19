@@ -1,17 +1,6 @@
 
 public enum HeroType
 	{
-//		VANILLA("Garen"),
-//		ADCARRY("Vayne"),
-//		CEO("Mundo"),
-//		DISCOUNTSHOPPER("Storedle"),
-//		LOOTHOARDER("Gangplank"),
-//		LUCKY("Twisted Fate"),
-//		RANDOM("ARAM"),
-//		SECONDWIND("Aatrox"),
-//		TANK("Rammus"),
-//		TEAMPOWERUP("Jarvan IV");
-		
 		VANILLA("Wuju Bladesman"),
 		ADCARRY("Night Hunter") {
 			@Override

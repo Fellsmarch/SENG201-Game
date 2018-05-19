@@ -16,6 +16,11 @@ public class TankHero extends Hero
 			defenseMod = 1.3;
 		}
 		
+		@Override
+		public String toString(boolean userHero) {
+			return super.toString() + "A high defence, low offence hero";
+		}
+		
 //		public static void main(String[] args) {
 //			TankHero tank = new TankHero();
 //			//tank.name = "Tank";

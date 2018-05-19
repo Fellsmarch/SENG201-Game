@@ -12,9 +12,15 @@ public class TeamPowerupHero extends Hero
 			super(name);
 			teamPowerupChance = 0.2;
 		}
+//		
+//		public String toString() {
+//			String old = super.toString();
+//			return old + "When you use a powerup on " + name + " it has a chance to apply the powerup to the whole team\n";
+//		}
 		
-		public String toString() {
-			String old = super.toString();
-			return old + "When you use a powerup on " + name + " it has a chance to apply the powerup to the whole team\n";
+		@Override
+		public String toString(boolean userHero) {
+			return super.toString() + "When you use a powerup on this hero it has a chance to apply the powerup to everyone in the team";
 		}
+		
 	}

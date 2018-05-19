@@ -42,16 +42,17 @@ public class RandomHero extends Hero
 //			double newLoot = randomiser.nextInt(11) + 5; lootMod = newLoot / 10;
 //		}
 		
-		@Override
-		public String toString() {
-			return super.toString();
-		}
+//		public String toString() {
+//			return super.toString();
+//		}
 		
+		@Override
 		public String toString(boolean userHero) {
-			if (userHero) {return super.toString();} 
-			else {
-				return "<html><font face=\"Dialog\" size=\"4\"><b>" + name + "</b>:<br />Health:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;???/???<br />Recovery Rate:&emsp;&emsp;???<br />Attack Strength:&emsp;&nbsp;???<br />Defense Modifier:&ensp;???<br />Shop Price:&emsp;&emsp;&emsp;&ensp;&nbsp;???<br />Loot Modifier:&emsp;&emsp;&ensp;???<br /></font></html>";
-				}
+//			if (userHero) {return super.toString();} 
+//			else {
+				return "<html><font face=\"Dialog\" size=\"4\"><b>" + name + 
+						"</b>:<br />Health:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;???/???<br />Recovery Rate:&emsp;&emsp;???<br />Attack Strength:&emsp;&nbsp;???<br />Defense Modifier:&ensp;???<br />Shop Price:&emsp;&emsp;&emsp;&ensp;&nbsp;???<br />Loot Modifier:&emsp;&emsp;&ensp;???<br /></font>??????????????????????</html>";
+//				}
 		}
 		
 //		public static void main(String[] args) {

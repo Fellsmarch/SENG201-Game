@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.awt.Font;
 import javax.swing.JSeparator;
 import javax.swing.ButtonGroup;
@@ -231,6 +232,16 @@ public class MainWindow
 								heroes = createHeroTeam.getHeroes();
 								team = new Team(teamName, heroes);
 								String s = "Start game";
+//								ArrayList<Building> buildings = new ArrayList<Building>(Arrays.asList(new VillainsLair(), new Shop(), new PowerupDen(), new Hospital()));
+//								Villain villain = new Villain("Jim", "The vill", new ArrayList<Game>(Arrays.asList(new PaperScissorsRockGame(), new GuessNumberGame(), new DiceRollsGame())));
+//								CityPanel city = new CityPanel(buildings, villain);
+//								container.add(city, "City");
+//								cardLayout.show(container, "City");
+								
+								Item[] item = {new majorHealingItem()};
+								ShopPanel shop = new ShopPanel(item, team);
+								container.add(shop, "Shop");
+								cardLayout.show(container, "Shop");
 							}
 						}
 					

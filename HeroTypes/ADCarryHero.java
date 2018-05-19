@@ -14,4 +14,9 @@ public class ADCarryHero extends Hero
 			//health = 80;
 			defenseMod = 0.7;
 		}
+		
+		public String toString(boolean userHero) {
+			String toReturn = super.toString() + "A high damage, low defence hero";
+			return toReturn;
+		}
 	}

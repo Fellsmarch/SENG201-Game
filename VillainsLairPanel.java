@@ -8,7 +8,7 @@ public class VillainsLairPanel extends JPanel
 		 */
 		public VillainsLairPanel()
 			{
-
+				
 			}
 
 	}

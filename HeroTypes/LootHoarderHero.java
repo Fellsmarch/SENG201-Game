@@ -12,4 +12,9 @@ public class LootHoarderHero extends Hero
 			super(name);
 			lootMod = 1.5;
 		}
+		
+		@Override
+		public String toString(boolean userHero) {
+			return super.toString() + "This hero increases the amount of loot gained by defeating villains by 50% whilst they are in your team";
+		}
 	}
