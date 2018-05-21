@@ -9,6 +9,7 @@ import commandLineElements.Game;
 public class Villain
 	{
 		private String name;
+		private String title;
 		private ArrayList<Game> gameList;					//Could change this to array, it would make it easier to create it in the game environment
 															//private ArrayList<String> gameList; used for testing without a list of games
 		private Game favouriteGame;
@@ -19,8 +20,9 @@ public class Villain
 		protected int health;
 		protected int killReward;
 		
-		public Villain(String newName, String taunt, ArrayList<Game> games) { 
-			name = newName;
+		public Villain(String[] nameTitle, String taunt, ArrayList<Game> games) { 
+			name = nameTitle[0];
+			title = nameTitle[1];
 			tauntPhrase = taunt;
 			gameList = games;
 			
@@ -57,6 +59,7 @@ public class Villain
 		}
 		
 		public String getName() {return name;}
+		public String getTitle() {return title;}
 		public String getTaunt() {return tauntPhrase;}
 		public int getDamage() {return damage;}
 		public int getHealth() {return health;}

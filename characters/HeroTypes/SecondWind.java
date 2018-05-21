@@ -17,6 +17,7 @@ public class SecondWind extends Hero
 		
 		public SecondWind(String name) {
 			super(name);
+			heroType = "Darkin";
 		}
 		
 		@Override
@@ -37,6 +38,6 @@ public class SecondWind extends Hero
 		
 		@Override
 		public String toString(boolean userHero) {
-			return super.toString() + "If this hero were to die, they stay alive with 1 health. This can only happen once";
+			return super.toString() + " - If this hero were to die, they stay alive with 1 health. This can only happen once";
 		}
 	}

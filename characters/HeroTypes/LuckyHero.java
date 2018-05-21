@@ -15,6 +15,7 @@ public class LuckyHero extends Hero
 		public LuckyHero(String name) { //Chance of getting good events vs bad ones is increased
 			super(name);
 			eventChance = 0.25;
+			heroType = "Card Master";
 		}
 		
 //		public String toString() {
@@ -23,6 +24,6 @@ public class LuckyHero extends Hero
 //		}
 		@Override
 		public String toString(boolean userHero) {
-			return super.toString() + "This hero increases the chance of getting free items randomly whilst they are in your team";
+			return super.toString() + " - This hero increases the chance of getting free items randomly whilst they are in your team";
 		}
 	}

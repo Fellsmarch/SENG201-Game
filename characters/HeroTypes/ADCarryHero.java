@@ -16,10 +16,11 @@ public class ADCarryHero extends Hero
 			attackMod = 1.7;
 			//health = 80;
 			defenseMod = 0.7;
+			heroType = "Night Hunter";
 		}
 		
 		public String toString(boolean userHero) {
-			String toReturn = super.toString() + "A high damage, low defence hero";
+			String toReturn = super.toString() + " - A high damage, low defence hero";
 			return toReturn;
 		}
 	}

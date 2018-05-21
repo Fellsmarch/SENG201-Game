@@ -14,10 +14,11 @@ public class DiscountShopper extends Hero
 		public DiscountShopper(String name) {
 			super(name);
 			shopPrice = 0.5;
+			heroType = "Storedle";
 		}
 		
 		@Override
 		public String toString(boolean userHero) {
-			return super.toString() + "This hero halves the cost of items in the shop whilst they are in your team";
+			return super.toString() + " - This hero halves the cost of items in the shop whilst they are in your team";
 		}
 	}

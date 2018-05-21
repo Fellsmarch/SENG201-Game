@@ -19,6 +19,8 @@ import commandLineElements.GuessNumberGame;
 import commandLineElements.PaperScissorsRockGame;
 import items.Item;
 import items.Map;
+import items.PowerupDodge;
+import items.PowerupLuck;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -234,6 +236,7 @@ public class MainWindow
 								createHeroTeam.add(btnContinue, "cell 0 " + (3 + ((numHeroes - 1) * 2)) + ",alignx right,growy");
 								teamPanel = true;
 								cardLayout.show(container, "Create Hero Team");
+								teamName = fieldTeamName.getText();
 //								CreateHeroPanel hero = new CreateHeroPanel();
 //								container.add(hero, "Hero");
 //								cardLayout.show(container, "Hero");
@@ -254,6 +257,7 @@ public class MainWindow
 //								container.add(city, "City");
 //								cardLayout.show(container, "City");
 								
+								team.addItem(new PowerupDodge()); team.addItem(new PowerupLuck());
 								RunGamePanel game = new RunGamePanel(team, numCities);
 								container.add(game, "Game");
 								cardLayout.show(container, "Game");

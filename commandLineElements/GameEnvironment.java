@@ -34,7 +34,7 @@ public class GameEnvironment
 			generateVillains(numOfCities);
 			generateCities(numOfCities);
 
-			team = new Team(teamName, heroes);
+			team = new Team(teamName, heroes, numOfCities);
 			
 			generateMaps();
 			
@@ -54,7 +54,8 @@ public class GameEnvironment
 							System.out.println("A mysterious stranger comes out of the darkness and gives you a gift!");								
 							int itemType = rand.nextInt(3);
 							ArrayList<Integer> possibleMaps = new ArrayList<Integer>();
-							for (int map = cityNum; map < cities.size(); map++) {if (!team.hasMap(map)) {possibleMaps.add(map);}}
+							//Broken by GUI
+							//for (int map = cityNum; map < cities.size(); map++) {if (!team.hasMap(map)) {possibleMaps.add(map);}}
 							if (possibleMaps.size() > 0 && itemType == 2) {
 								int map = rand.nextInt(possibleMaps.size());
 								if (map == cityNum) {System.out.println("You recieved a map for this city!");}
@@ -81,18 +82,19 @@ public class GameEnvironment
 							}
 						}
 						else {
-							boolean teamHadCityMap = team.hasMap(cityNum);
+							boolean teamHadCityMap = false;//team.hasMap(cityNum); Broken by GUI changes to Team
 							ArrayList<ArrayList<?>> removalCandidates = new ArrayList<ArrayList<?>>();
 							if (team.getPowerupList().size() > 0) {removalCandidates.add(team.getPowerupList());}
 							if (team.getHealingList().size() > 0) {removalCandidates.add(team.getPowerupList());}
 							ArrayList<Integer> mapsToAdd = new ArrayList<Integer>();
-							for (int map = cityNum; map < cities.size(); map++) {if (team.hasMap(map)) {mapsToAdd.add(map);}}
+							for (int map = cityNum; map < cities.size(); map++) {}//if (team.hasMap(map)) {mapsToAdd.add(map);}} Broken by GUI changes to Team
 							if (removalCandidates.size() > 0) {
 								System.out.println("Urf comes out of the darkness and slaps you with his spatula!");
 								int itemType = rand.nextInt(removalCandidates.size());
 								int item = rand.nextInt(removalCandidates.get(itemType).size());
 								removalCandidates.get(itemType).remove(item);
-								if (!team.hasMap(cityNum) && teamHadCityMap) {
+								
+								if (false && teamHadCityMap) { //false should be !team.hasMap(cityNum) but was broken by GUI
 									//Broken after GUI changes to team
 //									team.removeMap(cityNum);
 									System.out.println("Urf stole the map to this city!");
@@ -122,7 +124,7 @@ public class GameEnvironment
 								locChanged = false;
 								break;
 						case 6: if (true) {//team.hasMap(cityNum)) {
-									String[] directions = mapList.get(cityNum).UseMap();
+									String[] directions = {};//mapList.get(cityNum).UseMap(); Broken by GUI changes to team
 									options[0] = options[0] + " (" + directions[0] + ")";
 									options[1] = options[1] + " (" + directions[1] + ")";
 									options[2] = options[2] + " (" + directions[2] + ")";
@@ -145,7 +147,7 @@ public class GameEnvironment
 		
 		public void generateMaps() {
 			for(City city : cities) {
-				Map newMap = new Map(city);
+				Map newMap = new Map(2);//new Map(city); Broken by GUI changes to Team
 				mapList.add(newMap);
 			}
 		}
