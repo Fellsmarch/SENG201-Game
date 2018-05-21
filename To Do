@@ -1,24 +1,7 @@
-Classes to finish:
-  -Game Environment
-  -City
-  -Map
-  -Battle
-  -Shop
-  -Hospital
-  -PowerupDen
-  -VillainsLair
-  -PaperScissorsRockGame
-  -GuessNumberGame
-  -DiceRollsGame
-  
-Add or finish docstrings/comments on these classes:
-  -Game
-  -Building
-  -Hero (javadoc only)
-  -Team (javadoc only)
-  -Villain
-  -SuperVillain
-  
-Need to create tests for these (finished) classes:
-  -Villain
-  -
+Need to change the three building classes updates to one method that triggers them all. Need to trigger them whenever they enter the shop since teams can update
+Need to implement properly Team inventory, hero stats and map use on base (also need to trigger updates on reentry)
+Need to change team so that it holds variables like shopPrice and handles death
+Need to finish implementing villainsLairPanel -> implement damage to hero/villains, death to hero/villains/team, rewards and continuing to next city
+Need to add winning the game
+
+Need to make it look not trash
