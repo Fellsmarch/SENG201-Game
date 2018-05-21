@@ -2,19 +2,16 @@ package items;
 
 public class HealingItem extends Item {
 	
-	private int healingAmount;
-	private int healingTime;
+	private int healingAmount; //Number of 25% heals to do
 	
 	// Constructor
-	public HealingItem(String name, String description, int price, int healingAmount, int healingTime) {
+	public HealingItem(String name, String description, int price, int healingAmount) {
 		super(name, description, price);
 		this.healingAmount = healingAmount;
-		this.healingTime = healingTime;
 	}
 	
-	public HealingItem copy() {return new HealingItem(this.getName(), this.getDescription(), this.getPrice(), healingAmount, healingTime);}
+	public HealingItem copy() {return new HealingItem(this.getName(), this.getDescription(), this.getPrice(), healingAmount);}
 	public int getHealingAmount() {return this.healingAmount;}
-	public int getHealingTime() {return this.healingTime;}
 	
 }
 

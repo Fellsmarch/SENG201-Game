@@ -17,12 +17,13 @@ public class CEOHero extends Hero
 		
 		public CEOHero(String name) {
 			super(name);
+			heroType = "Madman of Zaun";
 		}
 		
 		@Override
 		public String toString(boolean userHero) {
 //			String old = super.toString();
 //			return old + name + " increases the team's starting money by " + 400 + "\n"; //Temporary number
-			return super.toString() + "This hero increases the team's starting gold by 400";
+			return super.toString() + " - This hero increases the team's starting gold by 400";
 		}
 	}

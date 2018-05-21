@@ -14,6 +14,7 @@ public class TeamPowerupHero extends Hero
 		public TeamPowerupHero(String name) {
 			super(name);
 			teamPowerupChance = 0.2;
+			heroType = "Exemplar of Demacia";
 		}
 //		
 //		public String toString() {
@@ -23,7 +24,7 @@ public class TeamPowerupHero extends Hero
 		
 		@Override
 		public String toString(boolean userHero) {
-			return super.toString() + "When you use a powerup on this hero it has a chance to apply the powerup to everyone in the team";
+			return super.toString() + " - When you use a powerup on this hero it has a chance to apply the powerup to everyone in the team";
 		}
 		
 	}

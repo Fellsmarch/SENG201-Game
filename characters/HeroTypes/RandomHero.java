@@ -31,6 +31,7 @@ public class RandomHero extends Hero
 			double newAttack = randomiser.nextInt(20) + 1; attackMod = newAttack / 10;
 			double newDefense = randomiser.nextInt(20) + 1; defenseMod = newDefense / 10;
 			double newLoot = randomiser.nextInt(11) + 5; lootMod = newLoot / 10;
+			heroType = "ARAM";
 		}
 		
 //		public RandomHero(String name, boolean userHero) {
@@ -53,9 +54,9 @@ public class RandomHero extends Hero
 		public String toString(boolean userHero) {
 //			if (userHero) {return super.toString();} 
 //			else {
-				return "<html><font face=\"Dialog\" size=\"4\"><b>" + name + 
-						"</b>:<br />Health:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;???/???<br />Recovery Rate:&emsp;&emsp;???<br />Attack Strength:&emsp;&nbsp;???<br />Defense Modifier:&ensp;???<br />Shop Price:&emsp;&emsp;&emsp;&ensp;&nbsp;???<br />Loot Modifier:&emsp;&emsp;&ensp;???<br /></font>??????????????????????</html>";
-//				}
+				return  "<b>" + name + 
+						"</b>:<br />Health:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;???/???<br />Recovery Rate:&emsp;&emsp;???<br />Attack Strength:&emsp;&nbsp;???<br />Defense Modifier:&ensp;???<br />Shop Price:&emsp;&emsp;&emsp;&ensp;&nbsp;???<br />Loot Modifier:&emsp;&emsp;&ensp;???<br />??????????????????????</html>";
+//				} "<html><font face=\"Dialog\" size=\"4\"><b>"
 		}
 		
 //		public static void main(String[] args) {

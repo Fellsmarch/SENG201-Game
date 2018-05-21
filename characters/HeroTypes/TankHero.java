@@ -17,11 +17,12 @@ public class TankHero extends Hero
 			recoveryRate = 1;
 			attackMod = 0.65;
 			defenseMod = 1.3;
+			heroType = "Armourdillo";
 		}
 		
 		@Override
 		public String toString(boolean userHero) {
-			return super.toString() + "A high defence, low offence hero";
+			return super.toString() + " - A high defence, low offence hero";
 		}
 		
 //		public static void main(String[] args) {

@@ -29,7 +29,7 @@ public class Team
 			this.name = name;
 			
 			for (Hero hero : startingHeroes) { 													//Iterate through the list of heroes
-				if (hero instanceof CEOHero) money = 500; 										//If a hero is a CEO, set the starting money to 500
+				if (hero instanceof CEOHero) {money += 500;} 									//If a hero is a CEO, set the starting money to 500
 				heroes.add(hero);																//Since we're iterating through here, should we maybe add this also for event chance?
 			}
 		}
@@ -65,6 +65,12 @@ public class Team
 			if (item instanceof Powerup) {powerupsInventory.remove(item);}
 			else if (item instanceof HealingItem) {healingInventory.remove(item);}
 			else {maps.remove(item);}
+		}
+		
+		public String[] getHeroNames() {
+			String[] toReturn = new String[heroes.size()];
+			for (int i = 0; i < heroes.size(); i++) {toReturn[i] = heroes.get(i).getName();}
+			return toReturn;
 		}
 		
 		public String toString() {

@@ -32,7 +32,7 @@ public abstract class Item {
 	
 //	public boolean useItem();
 //	public boolean useItem(Hero hero);
-    public abstract Item copy();
+    public abstract Item copy(); //I don't think we actually need this
     public String getName() {return name;}
     public String getDescription() {return description;}
     public int getPrice() {return price;}
