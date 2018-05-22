@@ -27,7 +27,7 @@ public class RandomHero extends Hero
 			int health = randomiser.nextInt(200) + 1;
 			maxHealth = health; currentHealth = health;
 			recoveryRate = randomiser.nextInt(10) + 1;
-			double newPrice = randomiser.nextInt(11) + 5; shopPrice = newPrice / 10; //randomiser.nextDouble() generates a random number between 0.0-1.0, should change these to this
+			double newPrice = randomiser.nextInt(11) + 5; shopMod = newPrice / 10; //randomiser.nextDouble() generates a random number between 0.0-1.0, should change these to this
 			double newAttack = randomiser.nextInt(20) + 1; attackMod = newAttack / 10;
 			double newDefense = randomiser.nextInt(20) + 1; defenseMod = newDefense / 10;
 			double newLoot = randomiser.nextInt(11) + 5; lootMod = newLoot / 10;

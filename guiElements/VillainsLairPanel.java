@@ -1,5 +1,4 @@
 package guiElements;
-import javax.swing.JPanel;
 
 import characters.Hero;
 import characters.Team;
@@ -23,7 +22,7 @@ import javax.swing.JComboBox;
 import javax.swing.JProgressBar;
 
 @SuppressWarnings("serial")
-public class VillainsLairPanel extends JPanel
+public class VillainsLairPanel extends BuildingPanel
 	{
 //		private RunGamePanel parent;
 		private Team team;
@@ -60,6 +59,7 @@ public class VillainsLairPanel extends JPanel
 			JProgressBar damageDisplay = new JProgressBar();
 			damageDisplay.setStringPainted(true);
 			damageDisplay.setValue(100);
+			damageDisplay.setString("");
 			add(damageDisplay, "cell 0 3,grow");
 			damageDisplay.setForeground(Color.LIGHT_GRAY);
 			
@@ -90,28 +90,30 @@ public class VillainsLairPanel extends JPanel
 						else if (result == Result.LOSS) {
 							Double modifiedDamage = villain.getDamage() * selectedHero.getDefenseMod();
 							int finalDamage = modifiedDamage.intValue();
-							if (selectedHero.getPowerups()[1] && rand.nextInt(5) == 0) {
+							if (selectedHero.getPowerups()[1] && rand.nextInt(3) == 1) {
 								damageDisplay.setString(selectedHero.getName() + " dodged " + villain.getName() + "'s attack!");
 								damageDisplay.setForeground(Color.GREEN);
-							}
-							selectedHero.adjustHealth(-finalDamage);
-							if (selectedHero.getCurrentHealth() < 1) {
-								boolean gameContinue = team.killHero(selectedHero);
-								if (!gameContinue) {
-									JOptionPane.showMessageDialog(parent, selectedHero.getName() + " was dealt " + finalDamage +
-											" damage by " + villain.getName() + " and died!\n" + team.getName() + 
-											" has no heroes left! You failed to save the cities! You Lose!", "You lose!", JOptionPane.WARNING_MESSAGE);
-									parent.playAgain();
-								} else {
-									damageDisplay.setString(selectedHero.getName() + " was dealt " + finalDamage + " damage by " + villain.getName() + " and died!");
-									damageDisplay.setForeground(Color.RED);
-									update();
-								}
 							} else {
-								updateHeroDisplay();
-								damageDisplay.setString(selectedHero.getName() + " was dealt " + finalDamage + " damage by " + villain.getName());
-								damageDisplay.setForeground(Color.LIGHT_GRAY);
+								selectedHero.adjustHealth(-finalDamage);
+								if (selectedHero.getCurrentHealth() < 1) {
+									boolean gameContinue = team.killHero(selectedHero);
+									if (!gameContinue) {
+										JOptionPane.showMessageDialog(parent, selectedHero.getName() + " was dealt " + finalDamage +
+												" damage by " + villain.getName() + " and died!\n" + team.getName() + 
+												" has no heroes left! You failed to save the cities! You Lose!", "You lose!", JOptionPane.WARNING_MESSAGE);
+										parent.playAgain();
+									} else {
+										damageDisplay.setString(selectedHero.getName() + " was dealt " + finalDamage + " damage by " + villain.getName() + " and died!");
+										damageDisplay.setForeground(Color.RED);
+										updateDisplays();
+									}
+								} else {
+									updateHeroDisplay();
+									damageDisplay.setString(selectedHero.getName() + " was dealt " + finalDamage + " damage by " + villain.getName());
+									damageDisplay.setForeground(Color.LIGHT_GRAY);
+								}
 							}
+							
 							
 							
 							btnBeginNextGame.setEnabled(true);
@@ -199,7 +201,7 @@ public class VillainsLairPanel extends JPanel
 			add(labelDisplayHP, "cell 0 2");
 			add(btnBeginNextGame, "cell 0 2");
 			
-			update();
+			updateDisplays();
 //			selectedHero = (Hero) team.getHeroList().get(comboHeroSelector.getSelectedIndex());
 //			labelDisplayHP.setText(selectedHero.getCurrentHealth() + "/" + selectedHero.getMaxHealth());
 			GameType nextGame = villain.chooseGame();
@@ -226,10 +228,10 @@ public class VillainsLairPanel extends JPanel
 			labelDisplayHP.setText(selectedHero.getCurrentHealth() + "/" + selectedHero.getMaxHealth());
 		}
 		
-		public void update() {
+		public void updateDisplays() {
 			String[] heroList = team.getHeroNames();
 			DefaultComboBoxModel<String> heroListModel = new DefaultComboBoxModel<String>(heroList);
-			comboHeroSelector = new JComboBox<String>(heroListModel);
+			comboHeroSelector.setModel(heroListModel);
 			updateHeroDisplay();
 			
 		}

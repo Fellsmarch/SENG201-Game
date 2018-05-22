@@ -1,11 +1,9 @@
 package guiElements;
 
-import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
 
 import java.awt.Color;
 
-import javax.swing.JButton;
 import javax.swing.JProgressBar;
 import javax.swing.UIManager;
 
@@ -16,6 +14,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.util.Random;
 
+@SuppressWarnings("serial")
 public class DiceRollsPanel extends GamePanel {
 
 	private JProgressBar resultDisplayHero, resultDisplayVillain;
@@ -80,7 +79,6 @@ public class DiceRollsPanel extends GamePanel {
 	public void displayResult(Result result) {
 		if (result == Result.WIN) {
 			resultDisplayHero.setForeground(Color.GREEN);
-//			resultDisplayHero.setString(resultDisplayHero.getString() + "\nYou won!");
 			resultDisplayVillain.setForeground(Color.RED);
 		} else if (result == Result.LOSS) {
 			resultDisplayHero.setForeground(Color.RED);

@@ -12,6 +12,7 @@ import characters.Hero;
 import characters.Team;
 import characters.Villain;
 import items.Item;
+import items.Map;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -32,22 +33,20 @@ public class CityPanel extends JPanel
 	{
 		private CardLayout cardLayout = new CardLayout();
 		private JPanel container = new JPanel(cardLayout);
-		private JPanel[] directionList = new JPanel[4];
+		private BuildingPanel[] directionList = new BuildingPanel[4];
 		private Villain villain;
-		private JPanel north, east, south, west;
-		private JButton btnNorth, btnEast, btnSouth, btnWest;
-		private JButton btnUseMap;
-		private JTextPane paneHeroStats;
+		private BuildingPanel north, east, south, west;
+		private JButton btnNorth, btnEast, btnSouth, btnWest, btnUseMap;
 		private Team team;
 		private JComboBox<String> comboHeroSelector;
-		private JTextPane paneTeamInventory;
+		private JTextPane paneTeamInventory, paneHeroStats;
 		private JLabel labelCity;
 		private JSeparator separator;
 		
 		/**
 		 * Create the panel.
 		 */
-		public CityPanel(ArrayList<JPanel> buildings, Villain villain, Team team, String cityTitle) //ArrayList so I cna remove objects when randomizing directions
+		public CityPanel(ArrayList<BuildingPanel> buildings, Villain villain, Team team, String cityTitle, Map map) //ArrayList so I cna remove objects when randomizing directions
 			{
 				this.team = team;
 				add(container);
@@ -55,7 +54,7 @@ public class CityPanel extends JPanel
 				container.add(homeBase, "Home Base");
 				
 				cardLayout.show(container, "Home Base");
-				homeBase.setLayout(new MigLayout("", "[grow][grow][grow]", "[][][][][][][][grow]"));
+				homeBase.setLayout(new MigLayout("", "[150px:n][150px:n][150px:n]", "[][][grow][grow][grow][][][grow]"));
 				
 				
 				CardLayout buildingCards = new CardLayout();
@@ -89,6 +88,7 @@ public class CityPanel extends JPanel
 								}
 							}
 						}
+						updateHeroDisplays();
 					}
 				});
 				goBackScreen.add(btnReturnToHome, BorderLayout.SOUTH);
@@ -98,15 +98,17 @@ public class CityPanel extends JPanel
 					public void actionPerformed(ActionEvent e) {
 						if (north instanceof VillainsLairPanel) {
 							if (beginFight()) {
+								north.updateDisplays();
 								buildingCards.show(buildingContainer, "North");
 								cardLayout.show(container, "Go Back Screen");
 								goBackScreen.remove(btnReturnToHome);
 //								btnReturnToHome.setEnabled(false);
 							}
 						} else {
-							if (north instanceof PowerupDenPanel) {((PowerupDenPanel) north).updatePowerupList();}
-							else if (north instanceof ShopPanel) {((ShopPanel) north).updateTeamInventory();}
-							else if (north instanceof HospitalPanel) {((HospitalPanel) north).update();}
+							north.updateDisplays();
+//							if (north instanceof PowerupDenPanel) {((PowerupDenPanel) north).updatePowerupList();}
+//							else if (north instanceof ShopPanel) {((ShopPanel) north).updateTeamInventory();}
+//							else if (north instanceof HospitalPanel) {((HospitalPanel) north).update();}
 							buildingCards.show(buildingContainer, "North");
 							cardLayout.show(container, "Go Back Screen");
 						}
@@ -121,76 +123,74 @@ public class CityPanel extends JPanel
 				separator.setForeground(Color.BLACK);
 				separator.setBackground(Color.BLACK);
 				homeBase.add(separator, "cell 0 1 3 1,growx");
-				homeBase.add(btnNorth, "cell 1 2,growx");
+				homeBase.add(btnNorth, "cell 1 2,grow");
 				
 				btnEast = new JButton("East");
 				btnEast.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if (east instanceof VillainsLairPanel) {
 							if (beginFight()) {
+								east.updateDisplays();
 								buildingCards.show(buildingContainer, "East");
 								cardLayout.show(container, "Go Back Screen");
 								goBackScreen.remove(btnReturnToHome);
 //								btnReturnToHome.setEnabled(false);
 							}
 						} else {
-							if (east instanceof PowerupDenPanel) {((PowerupDenPanel) east).updatePowerupList();}
-							else if (east instanceof ShopPanel) {((ShopPanel) east).updateTeamInventory();}
-							else if (east instanceof HospitalPanel) {((HospitalPanel) east).update();}
+							east.updateDisplays();
 							buildingCards.show(buildingContainer, "East");
 							cardLayout.show(container, "Go Back Screen");
 						}
 					}
 				});
-				homeBase.add(btnEast, "cell 2 3,growx");
+				homeBase.add(btnEast, "cell 2 3,grow");
 				
 				btnSouth = new JButton("South");
 				btnSouth.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if (south instanceof VillainsLairPanel) {
 							if (beginFight()) {
+								south.updateDisplays();
 								buildingCards.show(buildingContainer, "South");
 								cardLayout.show(container, "Go Back Screen");
 								goBackScreen.remove(btnReturnToHome);
 //								btnReturnToHome.setEnabled(false);
 							}
 						} else {
-							if (south instanceof PowerupDenPanel) {((PowerupDenPanel) south).updatePowerupList();}
-							else if (south instanceof ShopPanel) {((ShopPanel) south).updateTeamInventory();}
-							else if (south instanceof HospitalPanel) {((HospitalPanel) south).update();}
+							south.updateDisplays();
 							buildingCards.show(buildingContainer, "South");
 							cardLayout.show(container, "Go Back Screen");
 						}				
 					}
 				});
-				homeBase.add(btnSouth, "cell 1 4,growx");
+				homeBase.add(btnSouth, "cell 1 4,grow");
 				
 				btnWest = new JButton("West");
 				btnWest.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if (west instanceof VillainsLairPanel) {
 							if (beginFight()) {
+								west.updateDisplays();
 								buildingCards.show(buildingContainer, "West");
 								cardLayout.show(container, "Go Back Screen");
 								goBackScreen.remove(btnReturnToHome);
 //								btnReturnToHome.setEnabled(false);
 							}
 						} else {
-							if (west instanceof PowerupDenPanel) {((PowerupDenPanel) west).updatePowerupList();}
-							else if (west instanceof ShopPanel) {((ShopPanel) west).updateTeamInventory();}
-							else if (west instanceof HospitalPanel) {((HospitalPanel) west).update();}
+							west.updateDisplays();
 							buildingCards.show(buildingContainer, "West");
 							cardLayout.show(container, "Go Back Screen");
 						}
 					}
 				});
-				homeBase.add(btnWest, "cell 0 3,alignx right");
+				homeBase.add(btnWest, "cell 0 3,grow");
 				
 				DefaultComboBoxModel<String> heroListModel = new DefaultComboBoxModel<String>(team.getHeroNames());
 				comboHeroSelector = new JComboBox<String>(heroListModel);
 				comboHeroSelector.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						updateHeroDisplays();
+						Hero selectedHero = (Hero) team.getHeroList().get(comboHeroSelector.getSelectedIndex());
+					    paneHeroStats.setText(selectedHero.toString());
 					}
 				});
 				homeBase.add(comboHeroSelector, "cell 0 6 2 1,growx");
@@ -198,16 +198,27 @@ public class CityPanel extends JPanel
 				btnUseMap = new JButton("Use map");
 				btnUseMap.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						useMap();
+						if (team.hasMap(map)) {
+							team.removeItem(map);
+							btnNorth.setText(north.toString());
+							btnEast.setText(east.toString());
+							btnSouth.setText(south.toString());
+							btnWest.setText(west.toString());
+						} else {
+							JOptionPane.showMessageDialog(null, "You do not have the map for this city! Buy it from the shop", "No city map", JOptionPane.WARNING_MESSAGE);
+						}
 					}
 				});
-				homeBase.add(btnUseMap, "cell 2 6");
+				homeBase.add(btnUseMap, "cell 2 6,growx");
 				
 				paneHeroStats = new JTextPane();
+				paneHeroStats.setEditable(false);
 				paneHeroStats.setContentType("text/html");
 				homeBase.add(paneHeroStats, "cell 0 7 2 1,grow");
 				
 				paneTeamInventory = new JTextPane();
+				paneTeamInventory.setEditable(false);
+				paneTeamInventory.setContentType("text/html");
 				homeBase.add(paneTeamInventory, "cell 2 7,grow");
 				
 				this.villain = villain;
@@ -233,23 +244,21 @@ public class CityPanel extends JPanel
 				buildingContainer.add(south, "South"); buildingContainer.add(west, "West");
 				
 				updateHeroDisplays();
+				Hero selectedHero = (Hero) team.getHeroList().get(comboHeroSelector.getSelectedIndex());
+			    paneHeroStats.setText(selectedHero.toString());
+				
 			}
 		
 		
-		public void useMap() {
-			btnNorth.setText(north.toString());
-			btnEast.setText(east.toString());
-			btnSouth.setText(south.toString());
-			btnWest.setText(west.toString());
+		public void updateHeroDisplays() {
+			String[] heroList = team.getHeroNames();
+			DefaultComboBoxModel<String> heroListModel = new DefaultComboBoxModel<String>(heroList);
+			comboHeroSelector.setModel(heroListModel);
+		    paneTeamInventory.setText(team.getInventory());
+		    repaint();
 		}
 		
-		
-		public void updateHeroDisplays() { 
-			Hero selectedHero = (Hero) team.getHeroList().get(comboHeroSelector.getSelectedIndex());
-		    paneHeroStats.setText(selectedHero.toString());
-		}
-		
-		private boolean beginFight(){
+		private boolean beginFight() {
 			String[] options = {"Yes", "Go back"};
 			int userChoice = JOptionPane.showOptionDialog(this, "Do you want to begin the fight with " + villain.getName() + villain.getTitle() + "?", "Fight Villain?", 0, JOptionPane.QUESTION_MESSAGE, null, options, null);
 			if (userChoice == 0) {

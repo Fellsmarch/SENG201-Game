@@ -26,8 +26,7 @@ public class Hero
 		protected int recoveryRate = 5; 			//The Hero's health recovery rate (in seconds) -- Not what we thought it was, each healing item has a set time it takes to apply
 		protected double attackMod = 1; 			//The Hero's attack modifier (multiplies base damage by this)
 		protected double defenseMod = 1; 			//The Hero's defense modifier (multiplies incoming damage by this) lower is better
-		protected double shopPrice = 1; 			//The Hero's shop price modifier (multiplies shop prices by this) 
-//		protected double teamPowerupChance = 0; 	//Adds this number to the chance of affecting the whole team instead of just this hero when using a powerup
+		protected double shopMod = 1; 				//The Hero's shop price modifier (multiplies shop prices by this) 
 		protected double eventChance = 0; 			//Adds this number to the chance of getting a good event (vs a bad event) when an event is triggered
 		protected double lootMod = 1; 				//Multiplies all loot for the team by this number
 		private boolean powerupDamage = false; 		//Whether or not the Double Damage powerup is active on this hero
@@ -55,8 +54,7 @@ public class Hero
 		public int getRecovery() {return recoveryRate;}
 		public double getAttackMod() {return attackMod;}
 		public double getDefenseMod() {return defenseMod;}
-		public double getShopPrice() {return shopPrice;}
-//		public double getPowerupChance() {return teamPowerupChance;}
+		public double getShopMod() {return shopMod;}
 		public double getEventChance() {return eventChance;}
 		public double getLootMod() {return lootMod;}
 		public boolean[] getPowerups() { //Returns an array of whether the 3 powerups are active (true) or not (false)
@@ -67,7 +65,6 @@ public class Hero
 			if (powerup instanceof PowerupLuck) {return powerupLuck;} 					
 			else if (powerup instanceof PowerupDamage) {return powerupDamage;}
 			else {return powerupDodge;}
-//			if (powerup instanceof PowerupDodge) {powerupDodge = true;}
 		}
 		
 		//Setters for classes that don't extend Hero
@@ -79,9 +76,7 @@ public class Hero
 			if (powerup instanceof PowerupDodge) {powerupDodge = active;}
 		}
 		
-		public boolean death() { 		//Returns true if death operations are complete and hero is dead. This is  
-			return true;				//mainly used for subclasses who may need to do certain things on death
-		}
+		public boolean death() {return true;}		//Returns true if death operations are complete and hero is dead. This is  
 		
 		//Non GUI Version
 //		public String toString() {
@@ -95,7 +90,7 @@ public class Hero
 		public String toString() {
 			String toReturn = "<html><b>" + name + "</b>" + ":<br />Health:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;" + currentHealth + "/" + maxHealth + "<br />Recovery Rate:&emsp;&emsp;" + recoveryRate
 					+ " sec<br />Attack Strength:&emsp;&nbsp;" + attackMod * 100 + "%<br />Defense Modifier: &ensp;" + defenseMod * 100
-					+ "%<br />Shop Price:&emsp;&emsp;&emsp;&ensp;&nbsp;" + shopPrice * 100 + "%<br />Loot Modifier:&emsp;&emsp;&ensp;" + lootMod * 100 + "%<br />" + heroType;
+					+ "%<br />Shop Price:&emsp;&emsp;&emsp;&ensp;&nbsp;" + shopMod * 100 + "%<br />Loot Modifier:&emsp;&emsp;&ensp;" + lootMod * 100 + "%<br />" + heroType;
 			return toReturn;
 		}
 		

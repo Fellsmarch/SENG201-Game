@@ -1,10 +1,13 @@
-Need to change the three building classes updates to one method that triggers them all. Need to trigger them whenever they enter the shop since teams can update
-Need to implement properly Team inventory, hero stats and map use on base (also need to trigger updates on reentry)
-Need to change team so that it holds variables like shopPrice and handles death
-Need to finish implementing villainsLairPanel -> implement damage to hero/villains, death to hero/villains/team, rewards and continuing to next city
+//Need to change the three building classes updates to one method that triggers them all. Need to trigger them whenever they enter the shop since teams can update
+//Need to implement properly Team inventory, hero stats and map use on base (also need to trigger updates on reentry)
+//Need to change team so that it holds variables like shopPrice and handles death
+//Need to finish implementing villainsLairPanel -> implement damage to hero/villains, death to hero/villains/team, rewards and continuing to next city
 //Need to add winning the game
 
+Make it so the inventory is sorted (treeMap)
+
 Need to make it look not trash
+	-Normalise fonts
 
 
 Known bugs:

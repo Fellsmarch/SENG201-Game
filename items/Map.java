@@ -1,5 +1,4 @@
 package items;
-import commandLineElements.*;
 
 public class Map extends Item
 	{

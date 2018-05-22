@@ -12,13 +12,9 @@ import characters.Hero;
 import characters.SuperVillain;
 import characters.Team;
 import characters.Villain;
-import commandLineElements.Building;
-import commandLineElements.DiceRollsGame;
-import commandLineElements.Game;
-import commandLineElements.GuessNumberGame;
-import commandLineElements.PaperScissorsRockGame;
-import commandLineElements.Shop;
+import items.HealingItem;
 import items.Map;
+import items.Powerup;
 import items.PowerupDamage;
 import items.PowerupDodge;
 import items.PowerupLuck;
@@ -31,7 +27,7 @@ public class RunGamePanel extends JPanel
 		private ArrayList<Villain> villains = new ArrayList<Villain>();
 		private SuperVillain superVillain; //Needs to be added to UML
 		private ArrayList<CityPanel> cities = new ArrayList<CityPanel>();
-		private ArrayList<JPanel> buildings;
+		private ArrayList<BuildingPanel> buildings;
 		private Team team;
 		private int currentCity = 1;
 		private int numCities;
@@ -91,21 +87,27 @@ public class RunGamePanel extends JPanel
 		}
 		
 		private void generateCities(int numCities) {
+			HealingItem[] healingPotions = {new HealingItem("Potion of Minor Healing", "Heals 25% of a Hero's total health", 25, 1),
+					new HealingItem("Potion of Medium Healing", "Heals 50% of a Hero's total health", 50, 2),
+					new HealingItem("Potion of Major Healing", "Restores the Hero's health to Full", 100, 4)};
+			Powerup[] powerups = {new PowerupLuck(), new PowerupDamage(), new PowerupDodge()};
 			Map[] maps = new Map[numCities];
 			for (int i = 1; i <= numCities; i++) {maps[i-1] = new Map(i);}
 			for (int i = 1; i < numCities; i++) { //I think this should be i = 0, (numCities - 1)
-				buildings = new ArrayList<JPanel>(Arrays.asList(new ShopPanel(maps, team), new VillainsLairPanel(team, villains.get(i-1), this), new PowerupDenPanel(team), new HospitalPanel(team)));
-				cities.add(new CityPanel(buildings, villains.get(i-1), team, "City " + i));
+				buildings = new ArrayList<BuildingPanel>(Arrays.asList(new ShopPanel(maps, team, powerups, healingPotions), new VillainsLairPanel(team, villains.get(i-1), this), new PowerupDenPanel(team), new HospitalPanel(team)));
+				cities.add(new CityPanel(buildings, villains.get(i-1), team, "City " + i, maps[i-1]));
 			}
-			buildings = new ArrayList<JPanel>(Arrays.asList(new ShopPanel(maps, team), new VillainsLairPanel(team, superVillain, this), new PowerupDenPanel(team), new HospitalPanel(team)));
-			cities.add(new CityPanel(buildings, superVillain, team, "Final City"));
+			buildings = new ArrayList<BuildingPanel>(Arrays.asList(new ShopPanel(maps, team, powerups, healingPotions), new VillainsLairPanel(team, superVillain, this), new PowerupDenPanel(team), new HospitalPanel(team)));
+			cities.add(new CityPanel(buildings, superVillain, team, "Final City", maps[maps.length - 1]));
 		}
 		
 		public void nextCity(Villain defeatedVillain) {
 			currentCity++;
 			if (currentCity <= numCities) {
 				Double dblReward = defeatedVillain.getReward() * team.getLootMod();
-				JOptionPane.showMessageDialog(this, "Congratulations! You defeated " + defeatedVillain.getName() + defeatedVillain.getTitle(), "Defeated villain!", JOptionPane.INFORMATION_MESSAGE);
+				int reward = dblReward.intValue();
+				team.adjustGold(reward);
+				JOptionPane.showMessageDialog(this, "Congratulations! You defeated " + defeatedVillain.getName() + defeatedVillain.getTitle() + " and recieved " + reward + " gold!", "Defeated villain!", JOptionPane.INFORMATION_MESSAGE);
 				for (Hero hero : team.getHeroList()) {
 					hero.setPowerup(new PowerupDamage(), false);
 					hero.setPowerup(new PowerupDodge(), false);
@@ -124,6 +126,7 @@ public class RunGamePanel extends JPanel
 			int playAgain = JOptionPane.showConfirmDialog(this, "Would you like to play again?", "Play again?", JOptionPane.YES_NO_OPTION);
 			if (playAgain == JOptionPane.YES_OPTION) {
 				parent.setVisible(false);;
+				@SuppressWarnings("unused")
 				MainWindow newGame = new MainWindow();
 			} else {System.exit(0);}
 			

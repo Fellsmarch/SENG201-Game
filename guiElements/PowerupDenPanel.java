@@ -1,5 +1,4 @@
 package guiElements;
-import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -25,7 +24,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
 
 @SuppressWarnings("serial")
-public class PowerupDenPanel extends JPanel
+public class PowerupDenPanel extends BuildingPanel
 	{
 		private JComboBox<Powerup> comboPowerupSelector = new JComboBox<Powerup>();
 		private Team team;
@@ -125,10 +124,9 @@ public class PowerupDenPanel extends JPanel
 			
 			comboPowerupEmpty.addItem("No powerups!");
 			
-			updatePowerupList();
-			updateHeroDisplays();
-			
+			updateDisplays();
 			}
+		@Override
 		public String toString() {return "Powerup Den";}
 		public void updatePowerupList() {
 			Powerup[] powerups = team.getPowerupList().toArray(new Powerup[team.getPowerupList().size()]);
@@ -138,10 +136,10 @@ public class PowerupDenPanel extends JPanel
 			powerupModel = new DefaultComboBoxModel<Powerup>(powerups);
 			comboPowerupSelector.setModel(powerupModel);
 			if (powerups.length < 1) {
-//				String[] empty = {"No powerups!"};
 				remove(comboPowerupSelector);
 				add(comboPowerupEmpty, "cell 1 2,growx");
 				btnUsePowerup.setEnabled(false);
+				repaint();
 			} else {
 				btnUsePowerup.setEnabled(true);
 				remove(comboPowerupEmpty);
@@ -149,7 +147,6 @@ public class PowerupDenPanel extends JPanel
 			}
 		}
 		
-		//I need to call this every time the user goes to this buildings
 		private void updateHeroDisplays() {
 			Hero selectedHero = team.getHeroList().get(comboHeroSelector.getSelectedIndex());
 			paneHeroStats.setText(selectedHero.toString());
@@ -161,5 +158,14 @@ public class PowerupDenPanel extends JPanel
 			toAdd += "Ninja Tabi: " + activePowerupsStr[1] + "\n";
 			toAdd += "Kage's Lucky Pick: " + activePowerupsStr[2] + "\n";
 			panePowerupsActive.setText(toAdd);
+		}
+		
+		@Override
+		public void updateDisplays() {
+			String[] heroList = team.getHeroNames();
+			DefaultComboBoxModel<String> heroListModel = new DefaultComboBoxModel<String>(heroList);
+			comboHeroSelector.setModel(heroListModel);
+			updatePowerupList();
+			updateHeroDisplays();
 		}
 	}

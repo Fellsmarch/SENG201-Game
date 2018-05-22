@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
-import commandLineElements.Game;
-import guiElements.GamePanel;
 import guiElements.GameType;
 
 public class Villain
@@ -14,9 +12,7 @@ public class Villain
 		private String name;
 		private String title;
 		private ArrayList<GameType> gameList = new ArrayList<GameType>(Arrays.asList(GameType.values()));					//Could change this to array, it would make it easier to create it in the game environment
-															//private ArrayList<String> gameList; used for testing without a list of games
 		private GameType favouriteGame;
-															//private String favouriteGame;
 		private double favouriteGameChance; //Could be int
 		private String tauntPhrase;
 		protected int damage;
@@ -38,17 +34,14 @@ public class Villain
 																						//System.out.println(favouriteGameChance);
 			
 			//Randomising stats --> these will need to be changed when actual values are known
-			damage = randomiser.nextInt(25) + 30; //Numbers are placeholders at the moment
+			damage = randomiser.nextInt(15) + 30; //Numbers are placeholders at the moment
 			health = randomiser.nextInt(50) + 100; //Numbers are placeholders at the moment
 			killReward = randomiser.nextInt(200) + 50; //Numbers are placeholders at the moment
-			
-			
 		}
 		
 		public GameType chooseGame() {
 			Random randomiser = new Random();
 			int toTest = randomiser.nextInt(100) + 1;
-																						//System.out.println(toTest);
 			if(toTest <= favouriteGameChance) {
 				return favouriteGame;
 			}else {
@@ -57,7 +50,6 @@ public class Villain
 				gameList.add(favouriteGame);
 				return gameList.get(gameIndex);
 			}
-			
 		}
 		
 		public String getName() {return name;}
@@ -72,13 +64,4 @@ public class Villain
 		public double getFavGameChance() {return favouriteGameChance;}
 		public GameType getFavGame() {return favouriteGame;}
 	
-		
-//		public static void main(String[] args) { //For testing only
-//			ArrayList<String> games = new ArrayList<String>();
-//			games.add("PSR"); games.add("Dice game"); games.add("Guess number");
-//			Villain testVillain = new Villain("Hannah", "I am the second-best member of the team!... ;)", games);
-//			System.out.println("Favourite game: " + testVillain.favouriteGame);
-//			System.out.println(testVillain.chooseGame());
-//			
-//		}
 	}

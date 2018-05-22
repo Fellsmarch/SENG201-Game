@@ -1,5 +1,6 @@
 package guiElements;
 import java.awt.CardLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -12,15 +13,6 @@ import javax.swing.JToggleButton;
 
 import characters.Hero;
 import characters.Team;
-import characters.Villain;
-import commandLineElements.DiceRollsGame;
-import commandLineElements.Game;
-import commandLineElements.GuessNumberGame;
-import commandLineElements.PaperScissorsRockGame;
-import items.Item;
-import items.Map;
-import items.PowerupDodge;
-import items.PowerupLuck;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -28,7 +20,6 @@ import javax.swing.JButton;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.awt.Font;
 import javax.swing.JSeparator;
 import javax.swing.ButtonGroup;
@@ -57,7 +48,6 @@ public class MainWindow
 		private JToggleButton tglBtnNumCities4;
 		private JLabel lblNewLabel;
 		private JSeparator separator;
-		private JLabel labelTeamName;
 		private JButton btnContinue;
 		private TeamCreationPanel createHeroTeam;
 		boolean teamPanel = false;
@@ -74,6 +64,7 @@ public class MainWindow
 							{
 								try
 									{
+										@SuppressWarnings("unused")
 										MainWindow window = new MainWindow();
 //										window.frame.setVisible(true);
 									} catch (Exception e)
@@ -98,7 +89,7 @@ public class MainWindow
 		private void initialize()
 			{
 				frame = new JFrame();
-				frame.setBounds(100, 100, 500, 375);
+				frame.setBounds(100, 100, 600, 475);
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame.setTitle("Heroes & Villains");
 				frame.getContentPane().add(container);
@@ -111,7 +102,7 @@ public class MainWindow
 				
 				container.add(mainWindowDisplay, "Main Window");
 				cardLayout.show(container, "Main Window");
-				mainWindowDisplay.setLayout(new MigLayout("", "[grow][grow,fill][grow]", "[50px:n][10px:n][][10px:n][][10px:n][][grow][][grow]"));
+				mainWindowDisplay.setLayout(new MigLayout("", "[grow][grow,fill][grow]", "[50px:n][10px:n][][10px:n][][10px:n][][grow]"));
 				
 				lblNewLabel = new JLabel("Heroes & Villains");
 				lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 25));
@@ -133,7 +124,7 @@ public class MainWindow
 							JOptionPane.showMessageDialog(frame, "Team name must be no more than 10 characters!", "Team name too long!", JOptionPane.ERROR_MESSAGE);
 						}
 							
-						labelTeamName.setText(fieldTeamName.getText());
+//						labelTeamName.setText(fieldTeamName.getText());
 					}
 					@Override
 					public void keyPressed(KeyEvent e) {
@@ -218,20 +209,19 @@ public class MainWindow
 				numCitiesGroup.add(tglBtnNumCities3); numCitiesGroup.add(tglBtnNumCities4);
 				numCitiesGroup.add(tglBtnNumCities5); numCitiesGroup.add(tglBtnNumCities6);
 				
-				labelTeamName = new JLabel("");
-				mainWindowDisplay.add(labelTeamName, "cell 0 7");
-				
 				btnContinue = new JButton("");
 				btnContinue.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if(!teamPanel) {
 							if (fieldTeamName.getText().length() < 2) {
-								JOptionPane.showMessageDialog(frame, "Team name must be more than 2 characters!", "Team name too long!", JOptionPane.ERROR_MESSAGE);
+								JOptionPane.showMessageDialog(frame, "Team name must be more than 2 characters!", "Team name too short!", JOptionPane.ERROR_MESSAGE);
 								fieldTeamName.requestFocus();
 							} else {
 								createHeroTeam = new TeamCreationPanel(numHeroes);
 								container.add(createHeroTeam, "Create Hero Team");
-								createHeroTeam.add(btnContinue, "cell 0 " + (3 + ((numHeroes - 1) * 2)) + ",alignx right,growy");
+								btnContinue.setText("Continue");
+								btnContinue.setPreferredSize(new Dimension(40, 100));
+								createHeroTeam.add(btnContinue, "cell 0 " + (3 + ((numHeroes - 1) * 2)) + ",alignx right,growx");
 								teamPanel = true;
 								cardLayout.show(container, "Create Hero Team");
 								teamName = fieldTeamName.getText();
@@ -253,7 +243,7 @@ public class MainWindow
 				});
 				btnContinue.setSelectedIcon(new ImageIcon("/home/cosc/student/hgc25/Downloads/Continue clicked test.jpg"));
 				btnContinue.setIcon(new ImageIcon("/home/cosc/student/hgc25/Downloads/Continue test.jpg"));
-				mainWindowDisplay.add(btnContinue, "cell 0 8 3 1,width 50:150:150,alignx center,height 25:50:100");
+				mainWindowDisplay.add(btnContinue, "cell 0 7 3 1,width 50:150:150,alignx center,height 25:50:100");
 				
 
 				

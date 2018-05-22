@@ -1,5 +1,4 @@
 package guiElements;
-import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JButton;
 
@@ -7,18 +6,11 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
 import javax.swing.UIManager;
 
-import characters.Hero;
 import characters.Team;
-import characters.HeroTypes.DiscountShopper;
-import characters.HeroTypes.RandomHero;
 import items.*;
 
 import javax.swing.JLabel;
@@ -30,41 +22,24 @@ import javax.swing.JSeparator;
 import java.awt.Color;
 
 @SuppressWarnings("serial")
-public class ShopPanel extends JPanel
+public class ShopPanel extends BuildingPanel
 	{
 		
-		private HealingItem[] healingPotions = {new HealingItem("Potion of Minor Healing", "Heals 25% of a Hero's total health", 25, 1),
-				new HealingItem("Potion of Medium Healing", "Heals 50% of a Hero's total health", 50, 2),
-				new HealingItem("Potion of Major Healing", "Restores the Hero's health to Full", 100, 4)};
-		private Powerup[] powerups = {new PowerupLuck(), new PowerupDamage(), new PowerupDodge()};
-		private Map[] maps; //need to change Map to implement item
-		private Item[][] items = {powerups, healingPotions, maps};
+		private Item[][] items = new Item[3][];
 		private DefaultComboBoxModel<Item> itemsModel;
 		private JComboBox<Item> comboItems;
 		private Team team;
-		private double shopMod = 1;
+		private double shopMod;
 		private JTextPane paneInventory;
-		private JLabel lblMoney;
-		
 
 		/**
 		 * Create the panel.
 		 */
-		public ShopPanel(Map[] maps, Team team)
+		public ShopPanel(Map[] maps, Team team, Powerup[] powerups, HealingItem[] healingPotions)
 			{
-				this.maps = maps; //Need to change Map to implement Item
-				items[2] = maps;
+				items[0] = powerups; items[1] = healingPotions; items[2] = maps;
 				this.team = team;
-				boolean containsShopper = false;
-				//Really need to put shop mod in the team class and deal with death in team
-				for (Hero hero : team.getHeroList()) {
-					if (hero instanceof RandomHero && !containsShopper) {shopMod = hero.getShopPrice();}
-					if (hero instanceof DiscountShopper) {
-						shopMod = hero.getShopPrice();
-						containsShopper = true;
-					}
-				}
-
+				shopMod = team.getShopMod();
 				setLayout(new MigLayout("", "[215px:n][grow]", "[][][][][][grow][]"));
 				
 				JLabel lblShop = new JLabel("Shop");
@@ -96,10 +71,6 @@ public class ShopPanel extends JPanel
 				});
 				add(comboItemType, "cell 0 2,growx");
 				
-				lblMoney = new JLabel("Gold: " + team.getMoney());
-				add(lblMoney, "cell 0 6");
-			
-				
 				itemsModel = new DefaultComboBoxModel<Item>(powerups);
 				comboItems = new JComboBox<Item>(itemsModel);
 				comboItems.addActionListener(new ActionListener() {
@@ -125,24 +96,19 @@ public class ShopPanel extends JPanel
 						int origItemPrice = selectedItem.getPrice();
 						int itemPrice = (int) (origItemPrice * shopMod);
 						
-						if (itemPrice > team.getMoney()) {
+						if (itemPrice > team.getGold()) {
 							JOptionPane.showMessageDialog(null, "You do not have enough gold to buy this item!", "Insufficient Gold", JOptionPane.WARNING_MESSAGE);
 						} else {
 							team.adjustGold(-itemPrice);
-							lblMoney.setText( "Gold: " + team.getMoney());
 							team.addItem(selectedItem);
-//							paneInventory.setText(getTeamInventory());
-							updateTeamInventory();
-							
+							updateDisplays();
 						}
 					}
 				});
 				add(btnBuyItme, "cell 0 4,growx,aligny top");
-			
 
 				textPane.setText(((Item) comboItems.getSelectedItem()).getDescription() + getPrice((Item) comboItems.getSelectedItem()));
-//				textPane.setText(((Item) comboItems.getSelectedItem()).getDescription() + "\nPrice: " + Integer.toString(((Item) comboItems.getSelectedItem()).getPrice()));
-				updateTeamInventory();
+				updateDisplays();
 			}
 		
 		public String getPrice(Item selectedItem) {
@@ -156,20 +122,20 @@ public class ShopPanel extends JPanel
 			
 		}
 		
-		public void updateTeamInventory() {
-			lblMoney.setText("Gold: " + team.getMoney());
-			String toReturn = "<html>Inventory: <br />";
-			ArrayList<Item> inventory = team.getItemInventory();
-			if (inventory.size() < 1) {paneInventory.setText(toReturn + "&ensp - &ensp Empty");}			
-			else {
-				Set<Item> inventorySet = new HashSet<Item>(inventory);
-				for (Item item : inventorySet) {
-					int freq = Collections.frequency(inventory, item);
-					toReturn += "&ensp - &ensp " + item + " (x" + freq + ")<br />";
-				}
-//				p1221aneInventory.setText(toReturn);
-				paneInventory.setText(toReturn);
-			}
+		public void updateDisplays() {
+			paneInventory.setText(team.getInventory());
+//			lblMoney.setText("Gold: " + team.getGold());
+//			String toReturn = "<html>Inventory: <br />";
+//			ArrayList<Item> inventory = team.getItemInventory();
+//			if (inventory.size() < 1) {paneInventory.setText(toReturn + "&ensp - &ensp Empty");}			
+//			else {
+//				Set<Item> inventorySet = new HashSet<Item>(inventory);
+//				for (Item item : inventorySet) {
+//					int freq = Collections.frequency(inventory, item);
+//					toReturn += "&ensp - &ensp " + item + " (x" + freq + ")<br />";
+//				}
+//				paneInventory.setText(toReturn);
+//			}
 		}
 		public String toString() {return "Shop";}
 		

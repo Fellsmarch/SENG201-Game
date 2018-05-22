@@ -3,7 +3,6 @@ import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 import java.util.ArrayList;
 
@@ -20,7 +19,6 @@ import characters.HeroType;
 import javax.swing.JSeparator;
 import java.awt.Color;
 import javax.swing.SwingConstants;
-import javax.swing.JButton;
 
 @SuppressWarnings("serial")
 public class TeamCreationPanel extends JPanel
@@ -38,11 +36,11 @@ public class TeamCreationPanel extends JPanel
 		 */
 		public TeamCreationPanel(int numHeroes)
 			{
-				String rows = "[][][][grow]";
+				String rows = "[center][center][center][grow,center]";
 				if (numHeroes > 1) {rows = "[][]" + rows;}
 				if (numHeroes > 2) {rows = "[][]" + rows;}
 				position = (numHeroes - 1) * 2;
-				setLayout(new MigLayout("", "[][][]", rows));
+				setLayout(new MigLayout("", "[grow][][grow]", rows));
 				
 				add(lblFirstHero, "cell 0 0 3 1");
 				
@@ -63,18 +61,11 @@ public class TeamCreationPanel extends JPanel
 					add(lblThirdHero, "cell 0 4 3 1");
 					}
 	
-	//			add(new CreateHeroPanel(), "cell 0 1 3 1,growx");
-	//			add(new CreateHeroPanel(), "cell 0 3 3 1,growx");
-	//			add(new CreateHeroPanel(), "cell 0 5 3 1,growx");
-				
-				JComboBox<HeroType> comboBox = new JComboBox<HeroType>();
-				comboBox.addActionListener(new ActionListener() {
+				JComboBox<HeroType> comboHeroSelector = new JComboBox<HeroType>();
+				comboHeroSelector.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						Hero hero = ((HeroType) comboBox.getSelectedItem()).createHero(comboBox.getSelectedItem().toString());
+						Hero hero = ((HeroType) comboHeroSelector.getSelectedItem()).createHero(comboHeroSelector.getSelectedItem().toString());
 						paneDisplayHeroStats.setText(hero.toString(false));
-//						if (hero instanceof RandomHero) 
-//							 {textPane.setText(((RandomHero) hero).toString(false));}
-//						else {textPane.setText(hero.toString());}
 					}
 				});
 				
@@ -85,13 +76,13 @@ public class TeamCreationPanel extends JPanel
 				
 				JLabel lblViewStats = new JLabel("View stats for hero type:");
 				add(lblViewStats, "flowy,cell 0 " + (3 + position) + ",alignx center,aligny top");
-				comboBox.setModel(new DefaultComboBoxModel<HeroType>(HeroType.values()));
-				add(comboBox, "cell 0 " + (3 + position) + ",aligny top");
+				comboHeroSelector.setModel(new DefaultComboBoxModel<HeroType>(HeroType.values()));
+				add(comboHeroSelector, "cell 0 " + (3 + position) + ",growx,aligny top");
 				
 				paneDisplayHeroStats = new JTextPane();
 				paneDisplayHeroStats.setBackground(UIManager.getColor("this.background"));
 				paneDisplayHeroStats.setContentType("text/html");
-				paneDisplayHeroStats.setText(((HeroType) comboBox.getSelectedItem()).createHero(comboBox.getSelectedItem().toString()).toString(false));
+				paneDisplayHeroStats.setText(((HeroType) comboHeroSelector.getSelectedItem()).createHero(comboHeroSelector.getSelectedItem().toString()).toString(false));
 				paneDisplayHeroStats.setEditable(false);
 				add(paneDisplayHeroStats, "cell 2 " + (3 + position) + ",aligny top");
 				
@@ -100,30 +91,6 @@ public class TeamCreationPanel extends JPanel
 				separator.setForeground(Color.BLACK);
 				separator.setBackground(Color.BLACK);
 				add(separator, "cell 1 " + (3 + position) + ",alignx right,growy");
-				
-//				JButton btnContinue = new JButton("Continue");
-//				btnContinue.addActionListener(new ActionListener() {
-//					public void actionPerformed(ActionEvent e) {
-//						System.out.println("Button Pressed");
-//						boolean allInputGood = true;
-//						for (CreateHeroPanel panel : createHeroPanels) {
-//							System.out.println("In loop");
-//							if (panel.heroCreated()) {
-//								System.out.println("Hero Created");
-//								heroes.add(panel.getHero());
-//							} else {
-//								JOptionPane.showMessageDialog(null, "Cannot continue until all heroes are submitted!", "Heroes not submitted", JOptionPane.ERROR_MESSAGE);
-//								heroes = new ArrayList<Hero>();
-//								allInputGood = false;
-//								break;
-//							}
-//						}
-//						if (allInputGood) {
-//							String s = "Continue";
-//						}
-//					}
-//				});
-//				add(btnContinue, "cell 0 " + (3 + position) + ",growx,height 50:70:70");
 			}
 		
 			public boolean readyToContinue() {

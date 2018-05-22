@@ -13,7 +13,7 @@ public class DiscountShopper extends Hero
 	{
 		public DiscountShopper(String name) {
 			super(name);
-			shopPrice = 0.5;
+			shopMod = 0.5;
 			heroType = "Storedle";
 		}
 		
