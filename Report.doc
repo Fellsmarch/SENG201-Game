@@ -1,0 +1,112 @@
+{\rtf1\ansi\deff3\adeflang1025
+{\fonttbl{\f0\froman\fprq2\fcharset0 Times New Roman;}{\f1\froman\fprq2\fcharset2 Symbol;}{\f2\fswiss\fprq2\fcharset0 Arial;}{\f3\froman\fprq2\fcharset0 Liberation Serif{\*\falt Times New Roman};}{\f4\fswiss\fprq2\fcharset0 Liberation Sans{\*\falt Arial};}{\f5\froman\fprq2\fcharset0 Times New Roman;}{\f6\froman\fprq2\fcharset0 Liberation Sans{\*\falt Arial};}{\f7\froman\fprq2\fcharset0 Courier New;}{\f8\fnil\fprq2\fcharset0 Courier New;}{\f9\fnil\fprq2\fcharset0 Lohit Devanagari;}{\f10\fnil\fprq2\fcharset0 Liberation Serif{\*\falt Times New Roman};}}
+{\colortbl;\red0\green0\blue0;\red0\green0\blue255;\red0\green255\blue255;\red0\green255\blue0;\red255\green0\blue255;\red255\green0\blue0;\red255\green255\blue0;\red255\green255\blue255;\red0\green0\blue128;\red0\green128\blue128;\red0\green128\blue0;\red128\green0\blue128;\red128\green0\blue0;\red128\green128\blue0;\red128\green128\blue128;\red192\green192\blue192;}
+{\stylesheet{\s0\snext0\ql\widctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129 Normal;}
+{\s1\sbasedon18\snext1\ql\widctlpar\hyphpar0\sb440\sa60\keepn\ltrpar\cf1\b\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\loch\f4\fs34\lang5129 Heading 1;}
+{\s2\sbasedon18\snext2\ql\widctlpar\hyphpar0\sb440\sa60\keepn\ltrpar\cf1\b\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\loch\f4\fs28\lang5129 Heading 2;}
+{\s3\sbasedon18\snext3\ql\widctlpar\hyphpar0\sb440\sa60\keepn\ltrpar\cf1\b\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\loch\f4\fs24\lang5129 Heading 3;}
+{\s4\sbasedon18\snext4\ql\widctlpar\hyphpar0\sb440\sa60\keepn\ltrpar\cf1\b\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\loch\f4\fs24\lang5129 Heading 4;}
+{\*\cs15\snext15\super\fs20 Endnote Anchor;}
+{\*\cs16\snext16\super\fs20 Footnote Anchor;}
+{\*\cs17\snext17 Endnote Characters;}
+{\s18\sbasedon0\snext19\ql\widctlpar\hyphpar0\sb240\sa120\keepn\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\loch\f6\fs28\lang5129 Heading;}
+{\s19\sbasedon0\snext19\sl288\slmult1\ql\widctlpar\hyphpar0\sb0\sa140\ltrpar\cf1\kerning1\dbch\af8\langfe1081\dbch\af10\afs24\loch\f5\fs24\lang5129 Text Body;}
+{\s20\sbasedon19\snext20\sl288\slmult1\ql\widctlpar\hyphpar0\sb0\sa140\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\loch\f5\fs24\lang5129 List;}
+{\s21\sbasedon0\snext21\ql\widctlpar\hyphpar0\sb120\sa120\ltrpar\cf1\i\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\loch\f5\fs24\lang5129 Caption;}
+{\s22\sbasedon0\snext22\ql\widctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\loch\f5\fs24\lang5129 Index;}
+{\s23\snext23\ql\widctlpar\hyphpar0\li720\ri0\lin720\rin0\fi-431\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129 Arrowhead List;}
+{\s24\sbasedon0\snext24\ql\widctlpar\hyphpar0\li1440\ri1440\lin1440\rin1440\fi0\sb0\sa120\ltrpar\cf1\kerning1\dbch\af8\langfe1081\dbch\af10\afs24\loch\f5\fs24\lang5129 Block Text;}
+{\s25\snext25\ql\widctlpar\hyphpar0\li720\ri0\lin720\rin0\fi-431\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129 Box List;}
+{\s26\snext26\ql\widctlpar\hyphpar0\li720\ri0\lin720\rin0\fi-431\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129 Bullet List;}
+{\s27\snext27\ql\nowidctlpar\tx1584\hyphpar0\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f3\fs24\lang5129 Chapter Heading;}
+{\s28\sbasedon22\snext28\ql\widctlpar\hyphpar0\li720\ri0\lin720\rin0\fi-431\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\loch\f5\fs24\lang5129 Contents 1;}
+{\s29\sbasedon22\snext29\ql\widctlpar\hyphpar0\li1440\ri0\lin1440\rin0\fi-431\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\loch\f5\fs24\lang5129 Contents 2;}
+{\s30\sbasedon22\snext30\ql\widctlpar\hyphpar0\li2160\ri0\lin2160\rin0\fi-431\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\loch\f5\fs24\lang5129 Contents 3;}
+{\s31\sbasedon22\snext31\ql\widctlpar\hyphpar0\li2880\ri0\lin2880\rin0\fi-431\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\loch\f5\fs24\lang5129 Contents 4;}
+{\s32\snext32\qc\nowidctlpar\hyphpar0\sb240\sa120\ltrpar\cf1\b\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f6\fs32\lang5129 Contents Header;}
+{\s33\snext33\ql\widctlpar\hyphpar0\li720\ri0\lin720\rin0\fi-431\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129 Dashed List;}
+{\s34\snext34\ql\widctlpar\hyphpar0\li720\ri0\lin720\rin0\fi-431\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129 Diamond List;}
+{\s35\sbasedon0\snext35\ql\widctlpar\hyphpar0\li288\ri0\lin288\rin0\fi-288\ltrpar\cf1\kerning1\dbch\af8\langfe1081\dbch\af10\afs24\loch\f5\fs24\lang5129 Endnote;}
+{\s36\snext36\ql\nowidctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f3\fs24\lang5129 Endnote Symbol;}
+{\s37\sbasedon0\snext37\ql\widctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af8\langfe1081\dbch\af10\afs24\loch\f5\fs20\lang5129 Footnote;}
+{\s38\snext38\ql\widctlpar\hyphpar0\li720\ri0\lin720\rin0\fi-431\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129 Hand List;}
+{\s39\snext39\ql\widctlpar\hyphpar0\li720\ri0\lin720\rin0\fi-431\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129 Heart List;}
+{\s40\snext40\ql\widctlpar\hyphpar0\li720\ri0\lin720\rin0\fi-431\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129 Implies List;}
+{\s41\snext41\ql\nowidctlpar\hyphpar0\li720\ri0\lin720\rin0\fi-431\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f3\fs24\lang5129 Lower Case List;}
+{\s42\snext42\ql\nowidctlpar\hyphpar0\li720\ri0\lin720\rin0\fi-431\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f3\fs24\lang5129 Lower Roman List;}
+{\s43\snext43\ql\nowidctlpar\tx431\hyphpar0\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f3\fs24\lang5129 Numbered Heading 1;}
+{\s44\snext44\ql\nowidctlpar\tx431\hyphpar0\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f3\fs24\lang5129 Numbered Heading 2;}
+{\s45\snext45\ql\nowidctlpar\tx431\hyphpar0\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f3\fs24\lang5129 Numbered Heading 3;}
+{\s46\snext46\ql\widctlpar\hyphpar0\li720\ri0\lin720\rin0\fi-431\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129 Numbered List;}
+{\s47\sbasedon0\snext47\ql\widctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af8\langfe1081\dbch\af10\afs24\loch\f7\fs24\lang5129 Plain Text;}
+{\s48\sbasedon43\snext48\ql\nowidctlpar\tx1584\hyphpar0\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\loch\f3\fs24\lang5129 Section Heading;}
+{\s49\snext49\ql\widctlpar\hyphpar0\li720\ri0\lin720\rin0\fi-431\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129 Square List;}
+{\s50\snext50\ql\widctlpar\hyphpar0\li720\ri0\lin720\rin0\fi-431\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129 Star List;}
+{\s51\snext51\ql\widctlpar\hyphpar0\li720\ri0\lin720\rin0\fi-431\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129 Tick List;}
+{\s52\snext52\ql\widctlpar\hyphpar0\li720\ri0\lin720\rin0\fi-431\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129 Triangle List;}
+{\s53\sbasedon46\snext53\ql\widctlpar\hyphpar0\li720\ri0\lin720\rin0\fi-431\ltrpar\cf1\kerning1\dbch\af8\langfe1081\dbch\af10\afs24\loch\f5\fs24\lang5129 Upper Case List;}
+{\s54\sbasedon46\snext54\ql\widctlpar\hyphpar0\li720\ri0\lin720\rin0\fi-431\ltrpar\cf1\kerning1\dbch\af8\langfe1081\dbch\af10\afs24\loch\f5\fs24\lang5129 Upper Roman List;}
+}{\*\generator LibreOffice/5.1.6.2$Linux_X86_64 LibreOffice_project/10m0$Build-2}{\info{\author Hannah Bridget Regan}{\creatim\yr0\mo0\dy0\hr0\min0}{\revtim\yr2018\mo5\dy22\hr15\min47}{\printim\yr0\mo0\dy0\hr0\min0}}\deftab720\deftab720\deftab720\deftab720\deftab720\deftab720\deftab720\deftab720\deftab720\deftab720\deftab720\deftab720\deftab720\deftab720\deftab720\deftab720\deftab720\deftab720
+\hyphauto0\viewscale100
+{\*\pgdsctbl
+{\pgdsc0\pgdscuse451\pgwsxn11906\pghsxn16838\marglsxn1440\margrsxn1440\margtsxn1440\margbsxn1440\pgdscnxt0 Default Style;}
+{\pgdsc1\pgdscuse451\pgndec\pgwsxn11906\pghsxn16838\marglsxn1134\margrsxn1134\margtsxn1134\margbsxn1134\pgdscnxt1 Endnote;}}
+\formshade{\*\pgdscno0}\paperh16838\paperw11906\margl1440\margr1440\margt1440\margb1440\sectd\sbknone\sectunlocked1\pgndec\pgwsxn11906\pghsxn16838\marglsxn1440\margrsxn1440\margtsxn1440\margbsxn1440\ftnbj\ftnstart1\ftnrstcont\ftnnar\aenddoc\aftnrstcont\aftnstart1\aftnnar
+{\*\ftnsep}\pgndec\pard\plain \s0\ql\widctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129\ql\widctlpar\hyphpar0\ltrpar{\rtlch \ltrch\loch
+Harrison Cook}
+\par \pard\plain \s0\ql\widctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129\ql\widctlpar\hyphpar0\ltrpar{\rtlch \ltrch\loch
+Hannah Regan 19924083}
+\par \pard\plain \s0\ql\widctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129\ql\widctlpar\hyphpar0\ltrpar\rtlch \ltrch\loch
+
+\par \pard\plain \s0\ql\widctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129\ql\widctlpar\hyphpar0\ltrpar{\b\ab\rtlch \ltrch\loch
+TO DO:}
+\par \pard\plain \s0\ql\widctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129\ql\widctlpar\hyphpar0\ltrpar{\rtlch \ltrch\loch
+- Structure of your application and any design choices you had to make. Communication between classes, patterns, the choice of collection types and how inheritance was used. Reference UML class diagram.}
+\par \pard\plain \s0\ql\widctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129\ql\widctlpar\hyphpar0\ltrpar{\rtlch \ltrch\loch
+- Explanation of unit test coverage, its meaning and why you managed to get a high/low coverage.}
+\par \pard\plain \s0\ql\widctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129\ql\widctlpar\hyphpar0\ltrpar\i0\ai0\rtlch \ltrch\loch
+
+\par \pard\plain \s0\ql\widctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129\ql\widctlpar\hyphpar0\ltrpar{\rtlch \ltrch\loch
+- A statement of agreed contributions (in %) from both partners, including a brief paragraph per partner that describes key contributions.}
+\par \pard\plain \s0\ql\widctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129\ql\widctlpar\hyphpar0\ltrpar{\rtlch \ltrch\loch
+- Your thoughts and feedback on the assignment.}
+\par \pard\plain \s0\ql\widctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129\ql\widctlpar\hyphpar0\ltrpar\rtlch \ltrch\loch
+
+\par \pard\plain \s0\ql\widctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129\ql\widctlpar\hyphpar0\ltrpar{\b\ab\rtlch \ltrch\loch
+Page 1:}
+\par \pard\plain \s0\ql\widctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129\ql\widctlpar\hyphpar0\ltrpar{\b0\ab0\rtlch \ltrch\loch
+This version of the game \u8220\'93Heroes and Villains\u8221\'94, created by Harrison Cook and Hannah Regan, uses a plethora of }
+\par \pard\plain \s0\ql\widctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129\ql\widctlpar\hyphpar0\ltrpar\rtlch \ltrch\loch
+
+\par \pard\plain \s0\ql\widctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129\ql\widctlpar\hyphpar0\ltrpar\rtlch \ltrch\loch
+
+\par \pard\plain \s0\ql\widctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129\ql\widctlpar\hyphpar0\ltrpar{\b\rtlch \ltrch\loch
+Page 2:}
+\par \pard\plain \s0\ql\widctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129\ql\widctlpar\hyphpar0\ltrpar{\rtlch \ltrch\loch
+In retrospect, elements that went particularly well throughout the development of the \u8216\'91Heroes versus Villains\u8217\'92 game consisted of planning, communication, and use of GitHub. In regards to planning, a UML Class Diagram was among one of the first preparation tools established in our development. At first, it consisted of a rough sketch of ideas on pieces of paper that we broke up into fundamental classes (heroes, villains, team, cities etc) and from there, defined key variables and methods that we knew would be necessary to that class. After an extremely basic idea of how we want the game to turn out was determined - we then, with the assistance of the online software application Draw.io, were able to create a more informative and substantial UML Diagram (see attached) which we would base our program off of. Throughout the design process, we would make a conscious effort to update the UML Class Diagram with any additions that we had made to the actual game. The diagram was a useful backbone for getting an idea and feel for the overall mechanism of the game, in an easy and visual manner. In addition to this, GitHub was used as the primary tool to share content that we had worked on individually. A \u8216\'91master\u8217\'92 branch was created, with the fundamental classes and code established within the branch, and then separate branches were created for us to work on aspects of the game development that we wanted to keep separate from the master branch. This was done so that we could edit and create freely, without the risk of permanently messing up the code. Frequent commits to each branch were made, so that each of us were mostly aware to what the other is making progress on, what code still needs work, and to identify any potential errors that may arise with communication between the classes. Towards the end of the completion of the code for the command line, the branches were compared and then when confident, were merged into the master branch for the GUI code. Communication was able to be incredibly easy through the use of the UML and GitHub.}
+\par \pard\plain \s0\ql\widctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129\ql\widctlpar\hyphpar0\ltrpar\rtlch \ltrch\loch
+
+\par \pard\plain \s0\ql\widctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129\ql\widctlpar\hyphpar0\ltrpar{\rtlch \ltrch\loch
+However, there were aspects that did not go so well and some that have definite room for improvement. One aspect is that we spent that majority of the time working on the code for the command line, which meant that there were elements of code that would work perfectly when regarding a certain output for the console but would have to be altered and essentially rewritten when implementing it for the GUI approach. An example of this is the \u8216\'91Shop\u8217\'92 class, which was having the Power Ups and Healing Items etc, stored within the class and hard-coded as magic numbers. Alongside this, a lot of the output and text was within the Shop class, and not within the output class. This met all specifications and worked without error when running it within a command line environment, however a lot of rethinking and editing had to be done when we were coding for the GUI }{\rtlch \ltrch\loch
+which also affected our UML Class Diagram and Java Documentation. Toward the end of the assignment, when we were transitioning to the focus and development of the GUI, the UML Class Diagram was progressively becoming redundant and less of a reliable reference when creating the project. Eventually, the need to implement it into the development of the game ceased, and so it was only proved to be a useful source when creating the command line aspect of the game and less of one for the GUI. In regards to the Java Documentation, a lot of the code initially written for an output in the console also became redundant \u8211\'96 and so a lot of time was essentially spent on documenting code that was irrelevant for the finished game. }
+\par \pard\plain \s0\ql\widctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129\ql\widctlpar\hyphpar0\ltrpar{\rtlch \ltrch\loch
+Time management also proved to be an issue in the long haul, with both members of the team having a variety of commitments and busy schedules, it was hard to find time to work on the project simulateneously for extended periods of time. }
+\par \pard\plain \s0\ql\widctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129\ql\widctlpar\hyphpar0\ltrpar\rtlch \ltrch\loch
+
+\par \pard\plain \s0\ql\widctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129\ql\widctlpar\hyphpar0\ltrpar{\rtlch \ltrch\loch
+Improvements that could be made for the next project can be largely derived from downfalls on this project. One improvement could be, that in the early stages of the planning (code writing and UML Class Diagram), that objects and classes should be separated out as much as possible by the means of inheritance, interfaces and just simply creating new classes for objects that we would otherwise hardcode into other classes. Using this approach, and with a clearer understanding of object-orientated programming, it would potentially mean that the code for the command line would be easily transferrable to the code for the GUI as most of the interactions between classes would be minimal and broken up. Alongside this, an improvement in time management by means of simply communicating more, or allocating set times in the week where both schedules are free, would have helped with the general productivity of the assignment\u8217\'92s progress. }
+\par \pard\plain \s0\ql\widctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129\ql\widctlpar\hyphpar0\ltrpar\rtlch \ltrch\loch
+
+\par \pard\plain \s0\ql\widctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129\ql\widctlpar\hyphpar0\ltrpar{\rtlch \ltrch\loch
+In terms of contributions,.......}
+\par \pard\plain \s0\ql\widctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129\ql\widctlpar\hyphpar0\ltrpar\rtlch \ltrch\loch
+
+\par \pard\plain \s0\ql\widctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129\ql\widctlpar\hyphpar0\ltrpar{\rtlch \ltrch\loch
+Overall, both of us genuinely enjoyed working on this assigment. It was appreciated that we were given a lot of time to work on it, as it turned out to have a large workload that was potentially underestimated in the initial stages. The lectures did not seem to prove to be much use in this hands-on assignment, except potentially the lectures that briefly covered GUIs, as a lot of the actual bulk of the assignment was self-learning and figuring out things amongst your group - which is expected for software development at this level (as it leads to the most productive way of learning). It would have been helpful to provide more useful information, or even a lecture or a handout, to all the fundamental basics of GitHub/GitLab that would prove itself useful in the assignment.  }
+\par \pard\plain \s0\ql\widctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129\ql\widctlpar\hyphpar0\ltrpar\rtlch \ltrch\loch
+
+\par \pard\plain \s0\ql\widctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129\ql\widctlpar\hyphpar0\ltrpar\rtlch \ltrch\loch
+
+\par \pard\plain \s0\ql\widctlpar\hyphpar0\ltrpar\cf1\kerning1\dbch\af9\langfe1081\dbch\af10\afs24\alang1081\loch\f5\fs24\lang5129\ql\widctlpar\hyphpar0\ltrpar\rtlch \ltrch\loch
+
+\par }
