@@ -5,47 +5,27 @@ public class Map extends Item
 	{
 		private int cityNum;
 		
+		/** Constructor -- Map. Creates a map.
+		 * @param name The name of the map.
+		 * @param description What city the map reads for.
+		 * @param price How much the map costs to purchase
+		 */
 		public Map(int cityNum) {
 			super("City Map #" + cityNum, "The map for city #" + cityNum, 50);
 			this.cityNum = cityNum;
 		}
 
+		/** 
+		 * Creates a new instance of the item.
+		 * @return Map
+		 */
 		@Override
 		public Item copy() {return this;}
+		
+		/** Gets the number of the city
+		 * @return 
+		 */
 		public int getCity() {return cityNum;}
 	}
 
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-//		private String[] directionList = new String[4];
-//		
-//		public Map(City city) {
-//			Building[] directions = city.getDirections();
-//			int index = 0;
-//			for(Building building : directions) {
-//				if(building instanceof Shop) {
-//					directionList[index] = "Shop";
-//				}
-//				else if(building instanceof Hospital) {
-//					directionList[index] = "Hospital";
-//				}
-//				else if(building instanceof PowerupDen) {
-//					directionList[index] = "Powerup Den";
-//				}
-//				else {
-//					directionList[index] = "Villain's Lair";
-//				}
-//				index++;
-//			}
-//		}
-//		
-//		public String[] UseMap() {return directionList;}
-//	}
