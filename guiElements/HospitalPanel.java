@@ -38,7 +38,6 @@ public class HospitalPanel extends JPanel
 		private JComboBox<String> comboHeroSelector, comboHealingEmpty = new JComboBox<String>();
 		private JTextPane paneHeroStats, panePotionInfo;
 		private Team team;
-		private boolean currentlyHealing = false;
 		private JComboBox<HealingItem> comboPotionSelector = new JComboBox<HealingItem>();
 		private Hero heroToHeal, selectedHero;
 		private JButton btnBeginHeal;
@@ -124,7 +123,6 @@ public class HospitalPanel extends JPanel
 									timer.stop();
 									healProgressBar.setString("Heal Complete!");
 									update();
-									currentlyHealing = false;
 								}
 							}
 						}
@@ -139,7 +137,6 @@ public class HospitalPanel extends JPanel
 								JOptionPane.showMessageDialog(null, "You cannot use a potion on " + selectedHero.getName() + " since they are already at full health!", "Hero at full health already", JOptionPane.WARNING_MESSAGE);
 							} else {
 								HealingItem potion = (HealingItem) comboPotionSelector.getSelectedItem();
-								currentlyHealing = true;
 								btnBeginHeal.setEnabled(false);
 								team.removeItem(potion);
 								

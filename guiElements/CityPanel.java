@@ -11,8 +11,6 @@ import javax.swing.JPanel;
 import characters.Hero;
 import characters.Team;
 import characters.Villain;
-import commandLineElements.Building;
-import commandLineElements.VillainsLair;
 import items.Item;
 
 import javax.swing.DefaultComboBoxModel;
@@ -24,6 +22,10 @@ import net.miginfocom.swing.MigLayout;
 import java.awt.BorderLayout;
 import javax.swing.JComboBox;
 import javax.swing.JTextPane;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JSeparator;
+import java.awt.Color;
 
 @SuppressWarnings("serial")
 public class CityPanel extends JPanel
@@ -39,20 +41,21 @@ public class CityPanel extends JPanel
 		private Team team;
 		private JComboBox<String> comboHeroSelector;
 		private JTextPane paneTeamInventory;
+		private JLabel labelCity;
+		private JSeparator separator;
 		
 		/**
 		 * Create the panel.
 		 */
-		public CityPanel(ArrayList<JPanel> buildings, Villain villain, Team team) //ArrayList so I cna remove objects when randomizing directions
+		public CityPanel(ArrayList<JPanel> buildings, Villain villain, Team team, String cityTitle) //ArrayList so I cna remove objects when randomizing directions
 			{
 				this.team = team;
-//				((VillainsLairPanel) buildings.get(1)).setParent(parent);
 				add(container);
 				JPanel homeBase = new JPanel();
 				container.add(homeBase, "Home Base");
 				
 				cardLayout.show(container, "Home Base");
-				homeBase.setLayout(new MigLayout("", "[grow][grow][grow][grow]", "[][][][][][grow]"));
+				homeBase.setLayout(new MigLayout("", "[grow][grow][grow]", "[][][][][][][][grow]"));
 				
 				
 				CardLayout buildingCards = new CardLayout();
@@ -69,7 +72,7 @@ public class CityPanel extends JPanel
 						cardLayout.show(container, "Home Base");
 						Random rand = new Random();
 						if (rand.nextInt(8) == 0) { //Do random event
-							if (rand.nextDouble() < team.getEventChance()) { //Give team a gift
+							if (rand.nextDouble() < team.getEventChance()) { //Give team a gift --> need to change team
 								int itemType = rand.nextInt(3);
 								Item[] chosenType =  ((ShopPanel) buildings.get(0)).getItems()[itemType];
 								Item chosenItem = chosenType[rand.nextInt(chosenType.length)];
@@ -109,7 +112,16 @@ public class CityPanel extends JPanel
 						}
 					}
 				});
-				homeBase.add(btnNorth, "cell 1 0,growx");
+				
+				labelCity = new JLabel(cityTitle);
+				labelCity.setFont(new Font("Dialog", Font.BOLD, 25));
+				homeBase.add(labelCity, "cell 0 0 3 1,alignx center");
+				
+				separator = new JSeparator();
+				separator.setForeground(Color.BLACK);
+				separator.setBackground(Color.BLACK);
+				homeBase.add(separator, "cell 0 1 3 1,growx");
+				homeBase.add(btnNorth, "cell 1 2,growx");
 				
 				btnEast = new JButton("East");
 				btnEast.addActionListener(new ActionListener() {
@@ -130,7 +142,7 @@ public class CityPanel extends JPanel
 						}
 					}
 				});
-				homeBase.add(btnEast, "cell 2 1,growx");
+				homeBase.add(btnEast, "cell 2 3,growx");
 				
 				btnSouth = new JButton("South");
 				btnSouth.addActionListener(new ActionListener() {
@@ -151,7 +163,7 @@ public class CityPanel extends JPanel
 						}				
 					}
 				});
-				homeBase.add(btnSouth, "cell 1 2,growx");
+				homeBase.add(btnSouth, "cell 1 4,growx");
 				
 				btnWest = new JButton("West");
 				btnWest.addActionListener(new ActionListener() {
@@ -172,7 +184,7 @@ public class CityPanel extends JPanel
 						}
 					}
 				});
-				homeBase.add(btnWest, "cell 0 1,alignx right");
+				homeBase.add(btnWest, "cell 0 3,alignx right");
 				
 				DefaultComboBoxModel<String> heroListModel = new DefaultComboBoxModel<String>(team.getHeroNames());
 				comboHeroSelector = new JComboBox<String>(heroListModel);
@@ -181,7 +193,7 @@ public class CityPanel extends JPanel
 						updateHeroDisplays();
 					}
 				});
-				homeBase.add(comboHeroSelector, "cell 0 4 2 1,growx");
+				homeBase.add(comboHeroSelector, "cell 0 6 2 1,growx");
 				
 				btnUseMap = new JButton("Use map");
 				btnUseMap.addActionListener(new ActionListener() {
@@ -189,14 +201,14 @@ public class CityPanel extends JPanel
 						useMap();
 					}
 				});
-				homeBase.add(btnUseMap, "cell 2 4");
+				homeBase.add(btnUseMap, "cell 2 6");
 				
 				paneHeroStats = new JTextPane();
 				paneHeroStats.setContentType("text/html");
-				homeBase.add(paneHeroStats, "cell 0 5 2 1,grow");
+				homeBase.add(paneHeroStats, "cell 0 7 2 1,grow");
 				
 				paneTeamInventory = new JTextPane();
-				homeBase.add(paneTeamInventory, "cell 2 5 2 1,grow");
+				homeBase.add(paneTeamInventory, "cell 2 7,grow");
 				
 				this.villain = villain;
 				Random rand = new Random();

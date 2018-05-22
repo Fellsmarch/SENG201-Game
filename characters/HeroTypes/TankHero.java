@@ -15,8 +15,8 @@ public class TankHero extends Hero
 			super(name, 200); 
 			//adjustHealth(100); //Which is better practice using setters on private variables or directly setting protected ones
 			recoveryRate = 1;
-			attackMod = 0.65;
-			defenseMod = 1.3;
+			attackMod = 0.7;
+			defenseMod = 0.7;
 			heroType = "Armourdillo";
 		}
 		

@@ -24,6 +24,7 @@ public class Team
 		private int money = 100;																//The amount of money the team has/starts with
 		private String name;																	//The teams name (chosen by the user -- 2-10 chars)
 		private double goodEventChance = 0.5;													//The chance of getting a good event when an event triggers
+		private double lootMod = 1.0;
 		
 		public Team(String name, ArrayList<Hero> startingHeroes, int numCities) {			//User chooses their heroes before we make the team
 			this.name = name;
@@ -49,9 +50,7 @@ public class Team
 		public void adjustGold(int value) {money += value;}							//Adds or removes money -- Change is not a good word for add or remove
 		public void changeEventChance(double newChance) {goodEventChance += newChance;}	//Adds or removes chances of getting a good event
 		public void addHero(Hero hero) {heroes.add(hero);} //Do we actually need this if the heroes are selected before the team is made
-		public void removeHero(Hero hero) { //Could be boolean and return true if removal successful
-			heroes.remove(hero);
-		}
+
 		
 		public void addItem(Item item) {
 			itemInventory.add(item);
@@ -71,6 +70,16 @@ public class Team
 			String[] toReturn = new String[heroes.size()];
 			for (int i = 0; i < heroes.size(); i++) {toReturn[i] = heroes.get(i).getName();}
 			return toReturn;
+		}
+		
+		public boolean killHero(Hero hero) { //Returns true if there are still heroes in the team
+			if (hero.death()) {
+				heroes.remove(hero);
+				if (heroes.size() < 1) {
+					return false;
+				}
+			}
+			return true;
 		}
 		
 		public String toString() {

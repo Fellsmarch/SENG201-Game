@@ -77,6 +77,7 @@ public class PSRPanel extends GamePanel{
 	@Override
 	public Result playGame() {
 		PSRChoice villainChoice = getRandom();
+		if (heroChoice == null) {return Result.DRAW;}
 		if (villainChoice.losesTo == heroChoice.name()) {return Result.WIN;}
 		else if (villainChoice.name() == heroChoice.losesTo) {
 			if (moreLucky) {
@@ -84,7 +85,7 @@ public class PSRPanel extends GamePanel{
 				return playGame();
 			} else {return Result.LOSS;}
 			
-			}
+		}
 		else {return Result.DRAW;}
 	}
 	

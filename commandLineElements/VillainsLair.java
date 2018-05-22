@@ -16,10 +16,10 @@ public class VillainsLair implements Building
 				String[] options = {"Fight Battle", "Flee"};
 				int userChoice = output.printOptions(options);
 				if (userChoice == 1) {
-					Battle battle = new Battle(team, villain);
-					if (battle.startBattle()) {
+//					Battle battle = new Battle(team, villain);
+//					if (battle.startBattle()) {
 						return true;
-					} else {System.exit(0); return false;}
+//					} else {System.exit(0); return false;}
 				}else {return false;}
 			}
 		

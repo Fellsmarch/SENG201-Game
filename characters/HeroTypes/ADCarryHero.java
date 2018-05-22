@@ -13,9 +13,10 @@ public class ADCarryHero extends Hero
 	{
 		public ADCarryHero(String name) {
 			super(name, 80);
-			attackMod = 1.7;
+			recoveryRate = 10;
+			attackMod = 1.8;
 			//health = 80;
-			defenseMod = 0.7;
+			defenseMod = 1.5; //Lower is better
 			heroType = "Night Hunter";
 		}
 		

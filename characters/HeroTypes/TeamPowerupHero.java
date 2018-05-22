@@ -13,7 +13,7 @@ public class TeamPowerupHero extends Hero
 	{
 		public TeamPowerupHero(String name) {
 			super(name);
-			teamPowerupChance = 0.2;
+//			teamPowerupChance = 0.2; no longer needed
 			heroType = "Exemplar of Demacia";
 		}
 //		

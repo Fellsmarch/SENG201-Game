@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import characters.Hero;
 import characters.SuperVillain;
 import characters.Team;
 import characters.Villain;
@@ -16,6 +19,9 @@ import commandLineElements.GuessNumberGame;
 import commandLineElements.PaperScissorsRockGame;
 import commandLineElements.Shop;
 import items.Map;
+import items.PowerupDamage;
+import items.PowerupDodge;
+import items.PowerupLuck;
 
 @SuppressWarnings("serial")
 public class RunGamePanel extends JPanel
@@ -29,14 +35,16 @@ public class RunGamePanel extends JPanel
 		private Team team;
 		private int currentCity = 1;
 		private int numCities;
+		private JFrame parent;
 
 		/**
 		 * Create the panel.
 		 */
-		public RunGamePanel(Team team, int numCities)
+		public RunGamePanel(Team team, int numCities, JFrame parent)
 			{
 				this.team = team;
 				this.numCities = numCities;
+				this.parent = parent;
 				generateVillains(numCities);
 				generateCities(numCities);
 				
@@ -49,7 +57,7 @@ public class RunGamePanel extends JPanel
 			} 
 		
 		private void generateVillains(int numOfVillains) {
-			ArrayList<Game> gameList = new ArrayList<Game>(Arrays.asList(new PaperScissorsRockGame(), new GuessNumberGame(), new DiceRollsGame()));
+//			ArrayList<Game> gameList = new ArrayList<Game>(Arrays.asList(new PaperScissorsRockGame(), new GuessNumberGame(), new DiceRollsGame()));
 			String[] choGath = {"Cho'Gath", " - The Terror of the Void"}; String[] kassadin = {"Kassadin", " - The Void Walker"}; String[] baron = {"Baron Nashor", ""};
 			String[] kogMaw = {"Kog'Maw", " - The Mouth of the Abyss"}; String[] khaZix = {"Kha'Zix", " - The Voidreaver"}; String[] rekSai = {"Rek'Sai", " - The Void Burrower"};
 			String[] malzahar = {"Malzahar", " - The Prophet of the Void"}; String[] velKoz = {"Vel'Koz", " - The Eye of the Void"};
@@ -68,7 +76,7 @@ public class RunGamePanel extends JPanel
 				String[] nameTitle = namesList.get(nameIndex);
 				String taunt = tauntsList.get(tauntIndex);
 				if (nameTitle[0] == "Baron Nashor") {taunt = "...";}
-				Villain newVillain = new Villain(nameTitle, taunt, gameList);
+				Villain newVillain = new Villain(nameTitle, taunt);
 				villains.add(newVillain);
 				namesList.remove(nameIndex); 
 				if (nameTitle[0] != "Baron Nashor") {tauntsList.remove(tauntIndex);}
@@ -78,7 +86,7 @@ public class RunGamePanel extends JPanel
 			int nameIndex = rand.nextInt(namesList.size());
 			int tauntIndex = rand.nextInt(tauntsList.size());
 			String[] nameTitle = namesList.get(nameIndex); String taunt = tauntsList.get(tauntIndex);
-			SuperVillain superVill = new SuperVillain(nameTitle, taunt, gameList);
+			SuperVillain superVill = new SuperVillain(nameTitle, taunt);
 			superVillain = superVill;
 		}
 		
@@ -87,19 +95,37 @@ public class RunGamePanel extends JPanel
 			for (int i = 1; i <= numCities; i++) {maps[i-1] = new Map(i);}
 			for (int i = 1; i < numCities; i++) { //I think this should be i = 0, (numCities - 1)
 				buildings = new ArrayList<JPanel>(Arrays.asList(new ShopPanel(maps, team), new VillainsLairPanel(team, villains.get(i-1), this), new PowerupDenPanel(team), new HospitalPanel(team)));
-				cities.add(new CityPanel(buildings, villains.get(i-1), team));
+				cities.add(new CityPanel(buildings, villains.get(i-1), team, "City " + i));
 			}
 			buildings = new ArrayList<JPanel>(Arrays.asList(new ShopPanel(maps, team), new VillainsLairPanel(team, superVillain, this), new PowerupDenPanel(team), new HospitalPanel(team)));
-			cities.add(new CityPanel(buildings, superVillain, team));
+			cities.add(new CityPanel(buildings, superVillain, team, "Final City"));
 		}
 		
-		public void nextCity() {
+		public void nextCity(Villain defeatedVillain) {
 			currentCity++;
-//			System.out.println(currentCity);
 			if (currentCity <= numCities) {
+				Double dblReward = defeatedVillain.getReward() * team.getLootMod();
+				JOptionPane.showMessageDialog(this, "Congratulations! You defeated " + defeatedVillain.getName() + defeatedVillain.getTitle(), "Defeated villain!", JOptionPane.INFORMATION_MESSAGE);
+				for (Hero hero : team.getHeroList()) {
+					hero.setPowerup(new PowerupDamage(), false);
+					hero.setPowerup(new PowerupDodge(), false);
+					hero.setPowerup(new PowerupLuck(), false);
+				}
 				cardLayout.show(container, "City " + currentCity);
-				cities.get(currentCity).updateHeroDisplays();
+				cities.get(currentCity - 1).updateHeroDisplays();
 			}
-			else {String s = "Won the game"; System.out.println(s);}
+			else {
+				JOptionPane.showMessageDialog(this, "Congratulations! You defeated the Super Villain" + defeatedVillain.getName() + " and saved all the cities!", "You won the game!", JOptionPane.INFORMATION_MESSAGE);
+				playAgain();
+			}
+		}
+		
+		public void playAgain() {
+			int playAgain = JOptionPane.showConfirmDialog(this, "Would you like to play again?", "Play again?", JOptionPane.YES_NO_OPTION);
+			if (playAgain == JOptionPane.YES_OPTION) {
+				parent.setVisible(false);;
+				MainWindow newGame = new MainWindow();
+			} else {System.exit(0);}
+			
 		}
 	}

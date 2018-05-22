@@ -75,7 +75,7 @@ public class MainWindow
 								try
 									{
 										MainWindow window = new MainWindow();
-										window.frame.setVisible(true);
+//										window.frame.setVisible(true);
 									} catch (Exception e)
 									{
 										e.printStackTrace();
@@ -104,6 +104,7 @@ public class MainWindow
 				frame.getContentPane().add(container);
 				frame.setResizable(true);
 				frame.setFont(new Font("Courier", Font.BOLD, 12));
+				frame.setVisible(true);
 				
 				JPanel mainWindowDisplay = new JPanel();
 
@@ -223,9 +224,6 @@ public class MainWindow
 				btnContinue = new JButton("");
 				btnContinue.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-//						GUITimerCode timer = new GUITimerCode(4);
-//						container.add(timer, "Timer");
-//						cardLayout.show(container, "Timer");
 						if(!teamPanel) {
 							if (fieldTeamName.getText().length() < 2) {
 								JOptionPane.showMessageDialog(frame, "Team name must be more than 2 characters!", "Team name too long!", JOptionPane.ERROR_MESSAGE);
@@ -237,34 +235,16 @@ public class MainWindow
 								teamPanel = true;
 								cardLayout.show(container, "Create Hero Team");
 								teamName = fieldTeamName.getText();
-//								CreateHeroPanel hero = new CreateHeroPanel();
-//								container.add(hero, "Hero");
-//								cardLayout.show(container, "Hero");
 							}
 						}
 						else {
 							if (createHeroTeam.readyToContinue()) {
 								heroes = createHeroTeam.getHeroes();
 								team = new Team(teamName, heroes, numCities);
-								String s = "Start game";
-								
-//								Map[] maps = new Map[numCities];
-//								for (int i = 1; i <= numCities; i++) {maps[i-1] = new Map(i);}
-//								ArrayList<JPanel> buildings = new ArrayList<JPanel>(Arrays.asList(new ShopPanel(maps, team), new VillainsLairPanel(), new PowerupDenPanel(), new HospitalPanel()));							
-//								ArrayList<JPanel> buildings = new ArrayList<JPanel>(Arrays.asList(new ShopPanel(maps, team), new ShopPanel(maps, team),new ShopPanel(maps, team),new ShopPanel(maps, team)));							
-//								Villain villain = new Villain("Jim", "The vill", new ArrayList<Game>(Arrays.asList(new PaperScissorsRockGame(), new GuessNumberGame(), new DiceRollsGame())));
-//								CityPanel city = new CityPanel(buildings, villain);
-//								container.add(city, "City");
-//								cardLayout.show(container, "City");
-								
-								team.addItem(new PowerupDodge()); team.addItem(new PowerupLuck());
-								RunGamePanel game = new RunGamePanel(team, numCities);
+//								team.addItem(new PowerupDodge()); team.addItem(new PowerupLuck());
+								RunGamePanel game = new RunGamePanel(team, numCities, frame);
 								container.add(game, "Game");
 								cardLayout.show(container, "Game");
-								
-//								ShopPanel shop = new ShopPanel(maps, team);
-//								container.add(shop, "Shop");
-//								cardLayout.show(container, "Shop");
 							}
 						}
 					

@@ -25,9 +25,9 @@ public class Hero
 		protected int currentHealth;
 		protected int recoveryRate = 5; 			//The Hero's health recovery rate (in seconds) -- Not what we thought it was, each healing item has a set time it takes to apply
 		protected double attackMod = 1; 			//The Hero's attack modifier (multiplies base damage by this)
-		protected double defenseMod = 1; 			//The Hero's defense modifier (multiplies incoming damage by this)
+		protected double defenseMod = 1; 			//The Hero's defense modifier (multiplies incoming damage by this) lower is better
 		protected double shopPrice = 1; 			//The Hero's shop price modifier (multiplies shop prices by this) 
-		protected double teamPowerupChance = 0; 	//Adds this number to the chance of affecting the whole team instead of just this hero when using a powerup
+//		protected double teamPowerupChance = 0; 	//Adds this number to the chance of affecting the whole team instead of just this hero when using a powerup
 		protected double eventChance = 0; 			//Adds this number to the chance of getting a good event (vs a bad event) when an event is triggered
 		protected double lootMod = 1; 				//Multiplies all loot for the team by this number
 		private boolean powerupDamage = false; 		//Whether or not the Double Damage powerup is active on this hero
@@ -56,7 +56,7 @@ public class Hero
 		public double getAttackMod() {return attackMod;}
 		public double getDefenseMod() {return defenseMod;}
 		public double getShopPrice() {return shopPrice;}
-		public double getPowerupChance() {return teamPowerupChance;}
+//		public double getPowerupChance() {return teamPowerupChance;}
 		public double getEventChance() {return eventChance;}
 		public double getLootMod() {return lootMod;}
 		public boolean[] getPowerups() { //Returns an array of whether the 3 powerups are active (true) or not (false)
@@ -73,10 +73,10 @@ public class Hero
 		//Setters for classes that don't extend Hero
 		public void setName(String newName) {name = newName;}
 		public void adjustHealth(int toAdjust) {currentHealth += toAdjust; if (currentHealth > maxHealth) {currentHealth = maxHealth;}}	//This works for positive or negative health adjust
-		public void setPowerup(Powerup powerup) { 
-			if (powerup instanceof PowerupLuck) {powerupLuck = true;} 					
-			if (powerup instanceof PowerupDamage) {powerupDamage = true;}
-			if (powerup instanceof PowerupDodge) {powerupDodge = true;}
+		public void setPowerup(Powerup powerup, boolean active) { 
+			if (powerup instanceof PowerupLuck) {powerupLuck = active;} 					
+			if (powerup instanceof PowerupDamage) {powerupDamage = active;}
+			if (powerup instanceof PowerupDodge) {powerupDodge = active;}
 		}
 		
 		public boolean death() { 		//Returns true if death operations are complete and hero is dead. This is  

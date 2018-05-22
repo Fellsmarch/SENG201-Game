@@ -63,24 +63,24 @@ public class PowerupDenPanel extends JPanel
 									" applied, if you continue there is a chance " + powerup.getName() +
 									" will be applied to the whole team. Even if it isn't, the powerup will be consumed.\nDo you want to continue?", "Warning", JOptionPane.YES_NO_OPTION);
 							if (cont == JOptionPane.YES_OPTION) {
-								if (rand.nextInt(100) < 15) {
-									for (Hero hero2 : team.getHeroList()) {
-										hero2.setPowerup(powerup);
+								if (rand.nextInt(100) < 20) {
+									for (Hero ally : team.getHeroList()) {
+										ally.setPowerup(powerup, true);
 									}
 								} else {
-									hero.setPowerup(powerup);
+									hero.setPowerup(powerup, true);
 								}
 								team.removeItem(powerup);
 								updatePowerupList();
 								updateHeroDisplays();
 							}
 						} else {
-							if (rand.nextInt(100) < 15) {
-								for (Hero hero2 : team.getHeroList()) {
-									hero2.setPowerup(powerup);
+							if (rand.nextInt(100) < 20) {
+								for (Hero ally : team.getHeroList()) {
+									ally.setPowerup(powerup, true);
 								}
 							} else {
-								hero.setPowerup(powerup);
+								hero.setPowerup(powerup, true);
 							}
 							team.removeItem(powerup);
 							updatePowerupList();
@@ -89,7 +89,7 @@ public class PowerupDenPanel extends JPanel
 						
 					} else {
 						if (!hero.powerupActive(powerup)) {
-							hero.setPowerup(powerup);
+							hero.setPowerup(powerup, true);
 							team.removeItem(powerup);
 							updatePowerupList();
 							updateHeroDisplays();

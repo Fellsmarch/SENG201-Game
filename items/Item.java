@@ -16,7 +16,6 @@
 //}
 
 package items;
-import characters.Hero;
 
 public abstract class Item {
 	

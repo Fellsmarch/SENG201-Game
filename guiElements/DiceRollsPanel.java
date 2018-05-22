@@ -63,8 +63,16 @@ public class DiceRollsPanel extends GamePanel {
 		Integer villainRoll = rand.nextInt(6) + 1;
 		resultDisplayHero.setString(challengerRoll.toString());
 		resultDisplayVillain.setString(villainRoll.toString());
-		if ((challengerRoll < villainRoll) || (moreLucky && challengerRoll <= villainRoll)) {return Result.WIN;}
-		else if (challengerRoll > villainRoll) {return Result.LOSS;}
+		if (challengerRoll > villainRoll) {return Result.WIN;}
+		else if (moreLucky && challengerRoll == villainRoll) {
+			if (villainRoll == 6) {villainRoll = 5;}
+			else if (villainRoll == 1) {challengerRoll = 2;}
+			else {villainRoll--;}
+			resultDisplayHero.setString(challengerRoll.toString());
+			resultDisplayVillain.setString(villainRoll.toString());
+			return Result.WIN;
+		}
+		else if (challengerRoll < villainRoll) {return Result.LOSS;}
 		else {return Result.DRAW;}
 	}
 
