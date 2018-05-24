@@ -17,15 +17,35 @@ import javax.swing.JProgressBar;
 import java.awt.Color;
 import java.awt.Font;
 
+/**
+ * This class creates the class 'PSRPanel', extends GamePanel and creates a panel for the Paper, Scissors, Rock game
+ * 
+ * @author Harrison Cook
+ * @author Hannah Regan
+ * @version 0.1 04/04/2018
+ */
 @SuppressWarnings("serial")
 public class PSRPanel extends GamePanel{
 	
+	/**
+	 * The user's choice (paper, scissors or rock)
+	 */
 	private PSRChoice heroChoice;
+	/**
+	 * The boolean moreLucky (will increase chances of winning the game if true)
+	 */
 	private boolean moreLucky;
+	
+	/**
+	 * JProgressBar that visually displays who won the game
+	 */
 	private JProgressBar resultDisplay;
 	
 	/**
-	 * Create the panel.
+	 * Constructor -- Create the panel.
+	 * @param challenger The hero chosen by the user to verse the villain
+	 * @param villain The villain playing the game
+	 * @param moreLucky Boolean
 	 */
 	public PSRPanel(Hero challenger, Villain villain, boolean moreLucky) {
 		this.moreLucky = moreLucky;
@@ -73,10 +93,14 @@ public class PSRPanel extends GamePanel{
 		
 	}
 	
-	
+	/**
+	 * Plays the game 
+	 * @return the result of the game (who won)
+	 */
 	@Override
 	public Result playGame() {
 		PSRChoice villainChoice = getRandom();
+		if (heroChoice == null) {return Result.DRAW;}
 		if (villainChoice.losesTo == heroChoice.name()) {return Result.WIN;}
 		else if (villainChoice.name() == heroChoice.losesTo) {
 			if (moreLucky) {
@@ -84,10 +108,13 @@ public class PSRPanel extends GamePanel{
 				return playGame();
 			} else {return Result.LOSS;}
 			
-			}
+		}
 		else {return Result.DRAW;}
 	}
 	
+	/**
+	 * Displays the result (who won)
+	 */
 	@Override
 	public void displayResult(Result result) {
 		if (heroChoice == null) {JOptionPane.showMessageDialog(null, "Please select either Paper, Scissors or Rock!", "Make Choice", JOptionPane.WARNING_MESSAGE);}
@@ -105,24 +132,52 @@ public class PSRPanel extends GamePanel{
 		}
 	}
 	
+	/**
+	 * toString() for the Paper, Scissors, Rock game
+	 * @return a String representation of Paper, Scissors, Rock game
+	 */
 	@Override
 	public String toString() {
 		return "Paper, Scissors, Rock";
 	}
 	
+	/**
+	 * Villain's "choice", randomised
+	 */
 	private PSRChoice getRandom() {
 		Random rand = new Random();
 		return PSRChoice.values()[rand.nextInt(PSRChoice.values().length)];
 	}
 	
-	
+	/**
+	 * Enum that displays the options that can be chosen for this game
+	 */
 	enum PSRChoice {
+		
+		/**
+		 * Paper option, loses to scissors 
+		 */
 		PAPER("SCISSORS"),
+		
+		/**
+		 * Scissors option, loses to rock
+		 */
 		SCISSORS("ROCK"),
+		
+		/**
+		 * Rock option, loses to paper
+		 */
 		ROCK("PAPER");
 		
+		/**
+		 * String losesTo, used in enum
+		 */
 		private String losesTo;
 		
+		/**
+		 * Creates a PSRChoice
+		 * @param losesTo
+		 */
 		private PSRChoice(String losesTo) {
 			this.losesTo = losesTo;
 		}
