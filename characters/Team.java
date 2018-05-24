@@ -2,8 +2,9 @@ package characters;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.Comparators;
 import java.util.Set;
+import java.util.Treeset;
 
 import characters.HeroTypes.CEOHero;
 import characters.HeroTypes.DiscountShopper;
@@ -180,21 +181,31 @@ public class Team
 		}
 		
 		/**
+		 * Class creates an item comparator to compare two objects(items), regarding sorting
+		 */
+		private class itemComparator implements Comparator<Item>{
+			public int compare(Item one, Item two) {
+				return (one.toString().compareTo(two.toString()));
+			}
+		}
+		
+		/**
 		 * Gets the inventory of the Team
-		 * @return String displaying that the team's inventory is empty if it is empty, the amount of Gold the team has, the items and the amount of items the team has
+		 * @return String displaying that the team's inventory is empty if it is empty, the amount of Gold the team has, the items and the amount of items the team has. Sorts alphabetically
 		 */
 		public String getInventory() {
 			String toReturn = "<html>Gold: " + gold + "<br />Inventory: <br />";
 			if (itemInventory.size() < 1) {toReturn += "&ensp - &ensp Empty";}			
 			else {
-				Set<Item> inventorySet = new HashSet<Item>(itemInventory);
+				Set<Item> inventorySet = new TreeSet<Item>(new itemComparator());
+				for (Item item : itemInventory) {inventorySet.add(item);}
 				for (Item item : inventorySet) {
 					int freq = Collections.frequency(itemInventory, item);
 					toReturn += "&ensp - &ensp " + item + " (x" + freq + ")<br />";
 				}
 			}
 			return toReturn;
-		}
+}
 
 		/**
 		 * Adjusts the gold that the team owns. Adds or removes gold
