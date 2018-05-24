@@ -28,4 +28,3 @@ public abstract class Powerup extends Item {
 	 */
 	public abstract Powerup copy();
 }
-
