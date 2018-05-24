@@ -1,5 +1,6 @@
 package guiElements;
 import java.awt.CardLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -12,15 +13,6 @@ import javax.swing.JToggleButton;
 
 import characters.Hero;
 import characters.Team;
-import characters.Villain;
-import commandLineElements.DiceRollsGame;
-import commandLineElements.Game;
-import commandLineElements.GuessNumberGame;
-import commandLineElements.PaperScissorsRockGame;
-import items.Item;
-import items.Map;
-import items.PowerupDodge;
-import items.PowerupLuck;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -28,38 +20,116 @@ import javax.swing.JButton;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.awt.Font;
 import javax.swing.JSeparator;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 
+/**
+ * The main class, the window where all the functionality of the game takes place
+ * 
+ * @author Harrison Cook
+ * @author Hannah Regan
+ * @version 0.1 04/04/2018
+ */
 public class MainWindow
 	{
-
+		/**
+		 * JFrame, top level window with border and title bar
+		 */
 		private JFrame frame;
+		
+		/**
+		 * New card layout, specifies horizontal and vertical gaps
+		 */
 		private CardLayout cardLayout = new CardLayout();
+		
+		/** 
+		 * Creates a JPanel with reference to the CardLayout
+		 */
 		private JPanel container = new JPanel(cardLayout);
+		
+		/**
+		 * JLabel asking for the name of the team
+		 */
 		private JLabel lblWhatIsYour;
+		
+		/**
+		 * JLabel asking how many cities the user will play
+		 */
 		private JLabel lblHowManyCities;
+		
+		/** 
+		 * JLabel asking how many heroes the user will want in the Team
+		 */
 		private JLabel lblHowManyHeroes;
+		
+		/**
+		 * JTextField for user to input the Team name
+		 */
 		private JTextField fieldTeamName;
+		
+		/**
+		 * JToggleButton for the number of heroes the user will select from
+		 */
 		private JToggleButton tglBtnNumHeroes1, tglBtnNumHeroes2, tglBtnNumHeroes3;
 		
+		/**
+		 * An array list of heroes in the team
+		 */
 		private ArrayList<Hero> heroes = new ArrayList<Hero>();
+		
+		/**
+		 * The Team
+		 */
 		private Team team;
+		
+		/**
+		 * The name of the Team
+		 */
 		private String teamName;
+		
+		/**
+		 * The number of cities
+		 */
 		private int numCities = 3; 
+		
+		/**
+		 * The number of heroes in the Team
+		 */
 		private int numHeroes = 1;
+		
+		/**
+		 * JToggleButtons for the user to select the number of cities they wish to play
+		 */
 		private JToggleButton tglBtnNumCities3;
 		private JToggleButton tglBtnNumCities5;
 		private JToggleButton tglBtnNumCities6;
 		private JToggleButton tglBtnNumCities4;
+		
+		/**
+		 * Text for the title of the game
+		 */
 		private JLabel lblNewLabel;
+		
+		/**
+		 * To divide space
+		 */
 		private JSeparator separator;
-		private JLabel labelTeamName;
+		
+		/**
+		 * JButton for the user to continue if they choose
+		 */
 		private JButton btnContinue;
+		
+		/**
+		 * TeamCreationPanel 
+		 */
 		private TeamCreationPanel createHeroTeam;
+		
+		/**
+		 * After procedures are complete, the teamPanel is true
+		 */
 		boolean teamPanel = false;
 		
 
@@ -74,8 +144,9 @@ public class MainWindow
 							{
 								try
 									{
+										@SuppressWarnings("unused")
 										MainWindow window = new MainWindow();
-										window.frame.setVisible(true);
+//										window.frame.setVisible(true);
 									} catch (Exception e)
 									{
 										e.printStackTrace();
@@ -98,19 +169,20 @@ public class MainWindow
 		private void initialize()
 			{
 				frame = new JFrame();
-				frame.setBounds(100, 100, 500, 375);
+				frame.setBounds(100, 100, 600, 475);
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame.setTitle("Heroes & Villains");
 				frame.getContentPane().add(container);
 				frame.setResizable(true);
 				frame.setFont(new Font("Courier", Font.BOLD, 12));
+				frame.setVisible(true);
 				
 				JPanel mainWindowDisplay = new JPanel();
 
 				
 				container.add(mainWindowDisplay, "Main Window");
 				cardLayout.show(container, "Main Window");
-				mainWindowDisplay.setLayout(new MigLayout("", "[grow][grow,fill][grow]", "[50px:n][10px:n][][10px:n][][10px:n][][grow][][grow]"));
+				mainWindowDisplay.setLayout(new MigLayout("", "[grow][grow,fill][grow]", "[50px:n][10px:n][][10px:n][][10px:n][][grow]"));
 				
 				lblNewLabel = new JLabel("Heroes & Villains");
 				lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 25));
@@ -132,7 +204,7 @@ public class MainWindow
 							JOptionPane.showMessageDialog(frame, "Team name must be no more than 10 characters!", "Team name too long!", JOptionPane.ERROR_MESSAGE);
 						}
 							
-						labelTeamName.setText(fieldTeamName.getText());
+//						labelTeamName.setText(fieldTeamName.getText());
 					}
 					@Override
 					public void keyPressed(KeyEvent e) {
@@ -217,54 +289,32 @@ public class MainWindow
 				numCitiesGroup.add(tglBtnNumCities3); numCitiesGroup.add(tglBtnNumCities4);
 				numCitiesGroup.add(tglBtnNumCities5); numCitiesGroup.add(tglBtnNumCities6);
 				
-				labelTeamName = new JLabel("");
-				mainWindowDisplay.add(labelTeamName, "cell 0 7");
-				
 				btnContinue = new JButton("");
 				btnContinue.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-//						GUITimerCode timer = new GUITimerCode(4);
-//						container.add(timer, "Timer");
-//						cardLayout.show(container, "Timer");
 						if(!teamPanel) {
 							if (fieldTeamName.getText().length() < 2) {
-								JOptionPane.showMessageDialog(frame, "Team name must be more than 2 characters!", "Team name too long!", JOptionPane.ERROR_MESSAGE);
+								JOptionPane.showMessageDialog(frame, "Team name must be more than 2 characters!", "Team name too short!", JOptionPane.ERROR_MESSAGE);
 								fieldTeamName.requestFocus();
 							} else {
 								createHeroTeam = new TeamCreationPanel(numHeroes);
 								container.add(createHeroTeam, "Create Hero Team");
-								createHeroTeam.add(btnContinue, "cell 0 " + (3 + ((numHeroes - 1) * 2)) + ",alignx right,growy");
+								btnContinue.setText("Continue");
+								btnContinue.setPreferredSize(new Dimension(40, 100));
+								createHeroTeam.add(btnContinue, "cell 0 " + (3 + ((numHeroes - 1) * 2)) + ",alignx right,growx");
 								teamPanel = true;
 								cardLayout.show(container, "Create Hero Team");
 								teamName = fieldTeamName.getText();
-//								CreateHeroPanel hero = new CreateHeroPanel();
-//								container.add(hero, "Hero");
-//								cardLayout.show(container, "Hero");
 							}
 						}
 						else {
 							if (createHeroTeam.readyToContinue()) {
 								heroes = createHeroTeam.getHeroes();
 								team = new Team(teamName, heroes, numCities);
-								String s = "Start game";
-								
-//								Map[] maps = new Map[numCities];
-//								for (int i = 1; i <= numCities; i++) {maps[i-1] = new Map(i);}
-//								ArrayList<JPanel> buildings = new ArrayList<JPanel>(Arrays.asList(new ShopPanel(maps, team), new VillainsLairPanel(), new PowerupDenPanel(), new HospitalPanel()));							
-//								ArrayList<JPanel> buildings = new ArrayList<JPanel>(Arrays.asList(new ShopPanel(maps, team), new ShopPanel(maps, team),new ShopPanel(maps, team),new ShopPanel(maps, team)));							
-//								Villain villain = new Villain("Jim", "The vill", new ArrayList<Game>(Arrays.asList(new PaperScissorsRockGame(), new GuessNumberGame(), new DiceRollsGame())));
-//								CityPanel city = new CityPanel(buildings, villain);
-//								container.add(city, "City");
-//								cardLayout.show(container, "City");
-								
-								team.addItem(new PowerupDodge()); team.addItem(new PowerupLuck());
-								RunGamePanel game = new RunGamePanel(team, numCities);
+//								team.addItem(new PowerupDodge()); team.addItem(new PowerupLuck());
+								RunGamePanel game = new RunGamePanel(team, numCities, frame);
 								container.add(game, "Game");
 								cardLayout.show(container, "Game");
-								
-//								ShopPanel shop = new ShopPanel(maps, team);
-//								container.add(shop, "Shop");
-//								cardLayout.show(container, "Shop");
 							}
 						}
 					
@@ -273,11 +323,11 @@ public class MainWindow
 				});
 				btnContinue.setSelectedIcon(new ImageIcon("/home/cosc/student/hgc25/Downloads/Continue clicked test.jpg"));
 				btnContinue.setIcon(new ImageIcon("/home/cosc/student/hgc25/Downloads/Continue test.jpg"));
-				mainWindowDisplay.add(btnContinue, "cell 0 8 3 1,width 50:150:150,alignx center,height 25:50:100");
+				mainWindowDisplay.add(btnContinue, "cell 0 7 3 1,width 50:150:150,alignx center,height 25:50:100");
 				
 
 				
 
 			}
 
-	}
+}
