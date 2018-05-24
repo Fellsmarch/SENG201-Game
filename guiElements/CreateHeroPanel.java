@@ -15,20 +15,59 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
+
+/**
+ * This class creates the class 'CreateHeroPanel', extends JPanel and creates a panel for Hero Selection, Hero naming etc
+ * 
+ * @author Harrison Cook
+ * @author Hannah Regan
+ * @version 0.1 04/04/2018
+ */
 @SuppressWarnings("serial")
 public class CreateHeroPanel extends JPanel
 	{
+		/**
+		 * Label that displays text for the name
+		 */
 		private JLabel lblHeroName;
+		
+		/**
+		 * User to enter input for the name 
+		 */
 		private JTextField fieldHeroName;
+		
+		/**
+		 * JComboBox array displaying Hero Types
+		 */
 		private JComboBox<HeroType> comboHeroType;
+		
+		/**
+		 * Label that displays text for the type
+		 */
 		private JLabel lblHeroType;
+		
+		/**
+		 * Button for confirming selection
+		 */
 		private JToggleButton tglbtnEnter;
+		
+		/**
+		 * Hero names stored in an Array List that has already been chosen by the user
+		 */
 		private static ArrayList<String> heroNamesSeen = new ArrayList<String>();
+		
+		/**
+		 * Hero 
+		 */
 		private Hero hero;
+		
+		/**
+		 * Boolean, if the hero is created or not
+		 */
 		private boolean heroCreated = false;
 
 		/**
-		 * Create the panel.
+		 * Constructor -- Creates the hero panel
 		 */
 		public CreateHeroPanel()
 			{
@@ -88,12 +127,26 @@ public class CreateHeroPanel extends JPanel
 				
 			}
 		
+		/**
+		 * Gets the hero
+		 * @return
+		 */
 		public Hero getHero() {
 			return hero;
 		}
 		
+		/**
+		 * Creates the hero
+		 * @return the hero created
+		 */
 		public boolean heroCreated() {
 			return heroCreated;
 		}
+		
+		/**
+		 * Resets the heroNamesSeen array List by creating a new one
+		 */
+		public static void resetHeroNames() {heroNamesSeen = new ArrayList<String>();}
+
 
 	}
