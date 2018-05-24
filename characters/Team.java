@@ -9,8 +9,9 @@ package characters;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.Comparator;
 import java.util.Set;
+import java.util.TreeSet;
 
 import characters.HeroTypes.CEOHero;
 import characters.HeroTypes.DiscountShopper;
@@ -70,11 +71,19 @@ public class Team
 			for (int i = 0; i < heroes.size(); i++) {toReturn[i] = heroes.get(i).getName();}
 			return toReturn;
 		}
+		
+		private class itemComparator implements Comparator<Item>{
+			public int compare(Item one, Item two) {
+				return (one.toString().compareTo(two.toString()));
+			}
+		}
+		
 		public String getInventory() {
 			String toReturn = "<html>Gold: " + gold + "<br />Inventory: <br />";
 			if (itemInventory.size() < 1) {toReturn += "&ensp - &ensp Empty";}			
 			else {
-				Set<Item> inventorySet = new HashSet<Item>(itemInventory);
+				Set<Item> inventorySet = new TreeSet<Item>(new itemComparator());
+				for (Item item : itemInventory) {inventorySet.add(item);}
 				for (Item item : inventorySet) {
 					int freq = Collections.frequency(itemInventory, item);
 					toReturn += "&ensp - &ensp " + item + " (x" + freq + ")<br />";
