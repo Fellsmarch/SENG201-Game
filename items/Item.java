@@ -12,8 +12,19 @@ import characters.Hero;
 
 public abstract class Item {
 	
+	/**
+	 * The item's name
+	 */
 	private String name;
+	
+	/**
+	 * The item's description
+	 */
 	private String description;
+	
+	/**
+	 * How much the item costs to purchase
+	 */
 	private int price;
 	
 	/** Creates an item.
