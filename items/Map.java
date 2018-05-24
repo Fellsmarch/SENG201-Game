@@ -1,8 +1,12 @@
+
 package items;
 import commandLineElements.*;
 
 public class Map extends Item
 	{
+		/**
+		 * The number of the relevant city
+		 */
 		private int cityNum;
 		
 		/** Constructor -- Map. Creates a map.
@@ -28,4 +32,4 @@ public class Map extends Item
 		public int getCity() {return cityNum;}
 	}
 
-		
+
