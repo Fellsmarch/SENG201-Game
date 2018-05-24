@@ -11,29 +11,28 @@ import characters.Hero;
 
 public class TankHero extends Hero
 	{
+	
+	/**
+	 * Constructor -- Creates a TankHero Hero
+	 * @param name The name of the Hero
+	 */
 		public TankHero(String name) {
 			super(name, 200); 
-			//adjustHealth(100); //Which is better practice using setters on private variables or directly setting protected ones
 			recoveryRate = 1;
-			attackMod = 0.65;
-			defenseMod = 1.3;
+			attackMod = 0.7;
+			defenseMod = 0.7;
 			heroType = "Armourdillo";
 		}
 		
+		
+		/**
+		 * Gets all the Hero's attributes to display as a printed String
+		 * @return A string that represents all of the Hero's stats/attributes, alongside a description of the Hero's type
+		 */
 		@Override
 		public String toString(boolean userHero) {
 			return super.toString() + " - A high defence, low offence hero";
 		}
 		
-//		public static void main(String[] args) {
-//			TankHero tank = new TankHero();
-//			//tank.name = "Tank";
-//			System.out.println(tank.getHealth());
-//			System.out.println(tank.getRecovery());
-//			System.out.println(tank.getName());
-//			
-//			Hero hero = new Hero();
-//			System.out.println(hero.name);
-//			System.out.println(hero.getName());
-//		}
+
 	}
