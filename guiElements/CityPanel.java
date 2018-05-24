@@ -29,7 +29,7 @@ import javax.swing.JSeparator;
 import java.awt.Color;
 
 /**
- * This class creates the class 'CityPanel', extends JPanel and creates a panel containing all of the 4 Buildings in it
+ * This class creates the class 'CityPanel', extends JPanel and creates a panel containing all of the 4 Buildings in it (Power Up Den, Hospital, Villains Lair, Shop). Displays Home Base.
  * @author Harrison Cook
  * @author Hannah Regan
  * @version 0.1 04/04/2018
@@ -58,14 +58,19 @@ public class CityPanel extends JPanel
 		private Villain villain;
 		
 		/**
-		 * The directions of each BuildingPanel for the CityPanel
+		 * The direction of a Building for the CityPanel
 		 */
 		private BuildingPanel north, east, south, west;
 		
 		/**
-		 * Creating buttons for the CityPanel, directions and map
+		 * Creates button for the CityPanel directions
 		 */
-		private JButton btnNorth, btnEast, btnSouth, btnWest, btnUseMap;
+		private JButton btnNorth, btnEast, btnSouth, btnWest;
+		
+		/**
+		 * Creates button to use the map
+		 */
+		private JButton btnUseMap;
 		
 		/**
 		 * A team for the City
@@ -78,9 +83,14 @@ public class CityPanel extends JPanel
 		private JComboBox<String> comboHeroSelector;
 		
 		/**
-		 * JTextPane, pane for displaying Team and Hero attributes (Team inventory and Hero stats)
+		 * JTextPane, pane for displaying Team's inventory
 		 */
-		private JTextPane paneTeamInventory, paneHeroStats;
+		private JTextPane paneTeamInventory
+		
+		/**
+		 * JTextPane, pane for displaying Hero's stats
+		 */
+		private JTextPane paneHeroStats;
 		
 		/**
 		 * Label for the city eg City 1
@@ -93,7 +103,12 @@ public class CityPanel extends JPanel
 		private JSeparator separator;
 		
 		/**
-		 * Create the panel
+		 * Constructor -- Create the Panel
+		 * @param buildings An array list storing BuildingPanel objects
+		 * @param villain A villain for the City
+		 * @param team A team for the City
+		 * @param cityTitle The title of the City
+		 * @param map The map of the city
 		 */
 		public CityPanel(ArrayList<BuildingPanel> buildings, Villain villain, Team team, String cityTitle, Map map) //ArrayList so I cna remove objects when randomizing directions
 			{
