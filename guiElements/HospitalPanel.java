@@ -46,7 +46,7 @@ public class HospitalPanel extends BuildingPanel
 		public HospitalPanel(Team team)
 			{
 				this.team = team;
-				setLayout(new MigLayout("", "[grow][grow]", "[][][][][grow][grow]"));
+				setLayout(new MigLayout("", "[275px:n:275px][275px:n:275px]", "[][][][][grow][grow]"));
 				
 				JLabel lblHospital = new JLabel("Hospital");
 				lblHospital.setFont(new Font("Dialog", Font.BOLD, 25));

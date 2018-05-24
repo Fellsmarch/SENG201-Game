@@ -129,7 +129,7 @@ public class RunGamePanel extends JPanel
 				Duration between = Duration.between(startTime, endTime);
 				LocalTime timeElapsed = LocalTime.MIDNIGHT.plus(between);
 				String time = DateTimeFormatter.ofPattern("mm:ss").format(timeElapsed);
-				JOptionPane.showMessageDialog(this, "Congratulations! You defeated the Super Villain" + defeatedVillain.getName() + " and saved all the cities in " + time + "!", "You won the game!", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(this, "Congratulations! " + team.getName() + " defeated the Super Villain" + defeatedVillain.getName() + " and saved all the cities in " + time + "!", "You won the game!", JOptionPane.INFORMATION_MESSAGE);
 				playAgain();
 			}
 		}

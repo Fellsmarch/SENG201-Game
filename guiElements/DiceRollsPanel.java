@@ -29,7 +29,7 @@ public class DiceRollsPanel extends GamePanel {
 		UIManager.put("ProgressBar.selectionForeground", Color.BLACK);
 		UIManager.put("ProgressBar.selectionBackground", Color.BLACK);
 		
-		JLabel lblHeroResult = new JLabel(challenger.getName() + "'s roll:");
+		JLabel lblHeroResult = new JLabel("Your roll:");
 		lblHeroResult.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		add(lblHeroResult, "cell 0 0,aligny bottom");
 		

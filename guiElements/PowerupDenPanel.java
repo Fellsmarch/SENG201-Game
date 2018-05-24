@@ -29,10 +29,10 @@ public class PowerupDenPanel extends BuildingPanel
 		private JComboBox<Powerup> comboPowerupSelector = new JComboBox<Powerup>();
 		private Team team;
 		private DefaultComboBoxModel<Powerup> powerupModel;
-		private JTextPane paneHeroStats;
-		private JTextPane panePowerupsActive;
+		private JTextPane paneHeroStats, panePowerupsActive;
 		private JButton btnUsePowerup;
 		private JComboBox<String> comboHeroSelector, comboPowerupEmpty = new JComboBox<String>();
+		private JTextPane panePowerupDescription;
 
 		/**
 		 * Create the panel.
@@ -40,7 +40,7 @@ public class PowerupDenPanel extends BuildingPanel
 		public PowerupDenPanel(Team team)
 			{
 				this.team = team;
-			setLayout(new MigLayout("", "[235px:n][235px:n]", "[][][][][grow]"));
+			setLayout(new MigLayout("", "[275px:n:275px][275px:n:275px]", "[][][][][grow]"));
 			
 			JLabel lblPowerupDen = new JLabel("Powerup Den");
 			lblPowerupDen.setFont(new Font("Dialog", Font.BOLD, 25));
@@ -110,6 +110,14 @@ public class PowerupDenPanel extends BuildingPanel
 			});
 			add(comboHeroSelector, "cell 0 2,growx");
 			add(btnUsePowerup, "cell 0 3 2 1,growx");
+			comboPowerupSelector.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if (comboPowerupSelector.getItemCount() > 0) {
+						Powerup powerup = (Powerup) comboPowerupSelector.getSelectedItem();
+						panePowerupDescription.setText(powerup.getName() + " - " + powerup.getDescription());
+					} else {panePowerupDescription.setText("");}
+				}
+			});
 			
 			add(comboPowerupSelector, "cell 1 2,growx");
 			
@@ -117,6 +125,10 @@ public class PowerupDenPanel extends BuildingPanel
 			paneHeroStats.setEditable(false);
 			paneHeroStats.setContentType("text/html");
 			add(paneHeroStats, "cell 0 4,grow");
+			
+			panePowerupDescription = new JTextPane();
+			panePowerupDescription.setEditable(false);
+			add(panePowerupDescription, "flowy,cell 1 4,grow");
 			
 			panePowerupsActive = new JTextPane();
 			panePowerupsActive.setEditable(false);
@@ -126,8 +138,10 @@ public class PowerupDenPanel extends BuildingPanel
 			
 			updateDisplays();
 			}
+		
 		@Override
 		public String toString() {return "Powerup Den";}
+		
 		public void updatePowerupList() {
 			Powerup[] powerups = team.getPowerupList().toArray(new Powerup[team.getPowerupList().size()]);
 			Set<Powerup> powerupSet = new HashSet<Powerup>(Arrays.asList(powerups));
@@ -140,10 +154,13 @@ public class PowerupDenPanel extends BuildingPanel
 				add(comboPowerupEmpty, "cell 1 2,growx");
 				btnUsePowerup.setEnabled(false);
 				repaint();
+				panePowerupDescription.setText("");
 			} else {
 				btnUsePowerup.setEnabled(true);
 				remove(comboPowerupEmpty);
 				add(comboPowerupSelector, "cell 1 2,growx");
+				Powerup powerup = (Powerup) comboPowerupSelector.getSelectedItem();
+				panePowerupDescription.setText(powerup.getName() + " - " + powerup.getDescription());
 			}
 		}
 		
@@ -158,6 +175,7 @@ public class PowerupDenPanel extends BuildingPanel
 			toAdd += "Ninja Tabi: " + activePowerupsStr[1] + "\n";
 			toAdd += "Kage's Lucky Pick: " + activePowerupsStr[2] + "\n";
 			panePowerupsActive.setText(toAdd);
+//			panePowerupDescription.setText(comboPowerupSelector.getSelectedItem().toString());
 		}
 		
 		@Override

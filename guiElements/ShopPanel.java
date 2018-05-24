@@ -40,7 +40,7 @@ public class ShopPanel extends BuildingPanel
 				items[0] = powerups; items[1] = healingPotions; items[2] = maps;
 				this.team = team;
 				shopMod = team.getShopMod();
-				setLayout(new MigLayout("", "[215px:n][grow]", "[][][][][][grow][]"));
+				setLayout(new MigLayout("", "[210px:n][340px:n:340px]", "[][][][][][grow][]"));
 				
 				JLabel lblShop = new JLabel("Shop");
 				lblShop.setHorizontalAlignment(SwingConstants.CENTER);

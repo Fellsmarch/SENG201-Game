@@ -54,7 +54,7 @@ public class CityPanel extends JPanel
 				container.add(homeBase, "Home Base");
 				
 				cardLayout.show(container, "Home Base");
-				homeBase.setLayout(new MigLayout("", "[150px:n][150px:n][150px:n]", "[][][grow][grow][grow][][][grow]"));
+				homeBase.setLayout(new MigLayout("", "[183px:n:183px][183px:n:183px][183px:n:183px]", "[][][grow][grow][grow][][][grow]"));
 				
 				
 				CardLayout buildingCards = new CardLayout();
@@ -102,6 +102,7 @@ public class CityPanel extends JPanel
 								buildingCards.show(buildingContainer, "North");
 								cardLayout.show(container, "Go Back Screen");
 								goBackScreen.remove(btnReturnToHome);
+								((VillainsLairPanel) north).taunt();
 //								btnReturnToHome.setEnabled(false);
 							}
 						} else {
@@ -134,6 +135,7 @@ public class CityPanel extends JPanel
 								buildingCards.show(buildingContainer, "East");
 								cardLayout.show(container, "Go Back Screen");
 								goBackScreen.remove(btnReturnToHome);
+								((VillainsLairPanel) east).taunt();
 //								btnReturnToHome.setEnabled(false);
 							}
 						} else {
@@ -154,6 +156,7 @@ public class CityPanel extends JPanel
 								buildingCards.show(buildingContainer, "South");
 								cardLayout.show(container, "Go Back Screen");
 								goBackScreen.remove(btnReturnToHome);
+								((VillainsLairPanel) south).taunt();
 //								btnReturnToHome.setEnabled(false);
 							}
 						} else {
@@ -174,6 +177,7 @@ public class CityPanel extends JPanel
 								buildingCards.show(buildingContainer, "West");
 								cardLayout.show(container, "Go Back Screen");
 								goBackScreen.remove(btnReturnToHome);
+								((VillainsLairPanel) west).taunt();
 //								btnReturnToHome.setEnabled(false);
 							}
 						} else {
@@ -214,12 +218,12 @@ public class CityPanel extends JPanel
 				paneHeroStats = new JTextPane();
 				paneHeroStats.setEditable(false);
 				paneHeroStats.setContentType("text/html");
-				homeBase.add(paneHeroStats, "cell 0 7 2 1,grow");
+				homeBase.add(paneHeroStats, "cell 0 7 3 1,width 50:250:250,growy");
 				
 				paneTeamInventory = new JTextPane();
 				paneTeamInventory.setEditable(false);
 				paneTeamInventory.setContentType("text/html");
-				homeBase.add(paneTeamInventory, "cell 2 7,grow");
+				homeBase.add(paneTeamInventory, "cell 0 7 3 1,grow");
 				
 				this.villain = villain;
 				Random rand = new Random();

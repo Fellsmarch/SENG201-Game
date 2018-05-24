@@ -45,7 +45,7 @@ public class VillainsLairPanel extends BuildingPanel
 			UIManager.put("ProgressBar.selectionBackground", Color.BLACK);
 			
 //			System.out.println(villain.getFavGame() + " - " + villain.getFavGameChance());
-			setLayout(new MigLayout("", "[grow,center]", "[][][][][px:n][10px:n][grow,center]"));
+			setLayout(new MigLayout("", "[470:n,grow,center]", "[][][][][px:n][10px:n][grow,center]"));
 			
 			JLabel lblTeamName = new JLabel(team.getName());
 			lblTeamName.setFont(new Font("Tahoma", Font.PLAIN, 25));
@@ -219,7 +219,7 @@ public class VillainsLairPanel extends BuildingPanel
 			}
 		
 		public void taunt() {
-			JOptionPane.showMessageDialog(this, villain.getName() + villain.getTitle() + ": \"" + villain.getTaunt() + "\"", "", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(this, villain.getName() + villain.getTitle() + ":\n\"" + villain.getTaunt() + "\"", "", JOptionPane.WARNING_MESSAGE);
 		}
 		public String toString() {return "Villains Lair";}
 		
