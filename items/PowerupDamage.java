@@ -25,4 +25,3 @@ public class PowerupDamage extends Powerup {
 	@Override
 	public PowerupDamage copy() {return new PowerupDamage();}
 }
-
