@@ -12,18 +12,22 @@ import characters.Hero;
 
 public class CEOHero extends Hero
 	{
-		//private String name = "CEO";	//I don't know if this or using the constructor is a better method, also should we be 
-										//using this.setName("CEO") instead so	that name can be private in the Hero super class															
-		
+																	
+		/** 
+		 * Constructor -- Creates a CEOHero
+		 * @param name The name of the hero
+		 */
 		public CEOHero(String name) {
 			super(name);
 			heroType = "Madman of Zaun";
 		}
 		
+		/**
+		 * Gets all the Hero's attributes to display as a printed String
+		 * @return A string that represents all of the Hero's stats/attributes, alongside a description of the Hero's type
+		 */
 		@Override
 		public String toString(boolean userHero) {
-//			String old = super.toString();
-//			return old + name + " increases the team's starting money by " + 400 + "\n"; //Temporary number
 			return super.toString() + " - This hero increases the team's starting gold by 400";
 		}
 	}
