@@ -11,17 +11,21 @@ import characters.Hero;
 
 public class TeamPowerupHero extends Hero
 	{
+	
+	/**
+	 * Constructor -- Creates a TeamPowerupHero Hero
+	 * @param name The name of the Hero
+	 */
 		public TeamPowerupHero(String name) {
 			super(name);
-			teamPowerupChance = 0.2;
 			heroType = "Exemplar of Demacia";
 		}
-//		
-//		public String toString() {
-//			String old = super.toString();
-//			return old + "When you use a powerup on " + name + " it has a chance to apply the powerup to the whole team\n";
-//		}
 		
+		
+		/**
+		 * Gets all the Hero's attributes to display as a printed String
+		 * @return A string that represents all of the Hero's stats/attributes, alongside a description of the Hero's type
+		 */
 		@Override
 		public String toString(boolean userHero) {
 			return super.toString() + " - When you use a powerup on this hero it has a chance to apply the powerup to everyone in the team";
