@@ -16,6 +16,13 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.util.Random;
 
+/**
+ * This class creates the class 'DiceRollsPanel', extends GamePanel and creates a panel for the Dice Rolls game
+ * 
+ * @author Harrison Cook
+ * @author Hannah Regan
+ * @version 0.1 04/04/2018
+ */
 public class DiceRollsPanel extends GamePanel {
 
 	/**
