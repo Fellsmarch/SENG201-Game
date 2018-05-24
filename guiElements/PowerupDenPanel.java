@@ -1,5 +1,4 @@
 package guiElements;
-import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -24,19 +23,59 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
 
+/**
+ * This creates a subclass PowerupDenPanel, extends from BuildingPanel and holds all the Power Up Den operations
+ *
+ * @author Harrison Cook
+ * @author Hannah Regan
+ * @version 0.1 04/04/2018
+ */
 @SuppressWarnings("serial")
-public class PowerupDenPanel extends JPanel
-	{
+public class PowerupDenPanel extends BuildingPanel
+	{	
+		/**
+		 * JComboBox that holds the powerups
+		 */
 		private JComboBox<Powerup> comboPowerupSelector = new JComboBox<Powerup>();
+		
+		/**
+		 * The team visiting the power up den
+		 */
 		private Team team;
+		
+		/**
+		 * ComboBoxModel that defines what it contained in the ComboBox
+		 */
 		private DefaultComboBoxModel<Powerup> powerupModel;
+		
+		/**
+		 * JTextPane to display the hero's stats/characteristics
+		 */
 		private JTextPane paneHeroStats;
+		
+		/**
+		 * JTextPane display for the active powerups on the heroes
+		 */
 		private JTextPane panePowerupsActive;
+		
+		/**
+		 * Button to use the powerup
+		 */
 		private JButton btnUsePowerup;
-		private JComboBox<String> comboHeroSelector, comboPowerupEmpty = new JComboBox<String>();
+		
+		/**
+		 * JComboBox for the user to select the hero for the power up application
+		 */
+		private JComboBox<String> comboHeroSelector;
+		
+		/**
+		 * JComboBox for when there is no powerups left in the team's inventory
+		 */
+		private JComboBox<String> comboPowerupEmpty = new JComboBox<String>();
 
 		/**
-		 * Create the panel.
+		 * Constructor -- Create the panel.
+		 * @param team, the Team
 		 */
 		public PowerupDenPanel(Team team)
 			{
@@ -63,24 +102,24 @@ public class PowerupDenPanel extends JPanel
 									" applied, if you continue there is a chance " + powerup.getName() +
 									" will be applied to the whole team. Even if it isn't, the powerup will be consumed.\nDo you want to continue?", "Warning", JOptionPane.YES_NO_OPTION);
 							if (cont == JOptionPane.YES_OPTION) {
-								if (rand.nextInt(100) < 15) {
-									for (Hero hero2 : team.getHeroList()) {
-										hero2.setPowerup(powerup);
+								if (rand.nextInt(100) < 20) {
+									for (Hero ally : team.getHeroList()) {
+										ally.setPowerup(powerup, true);
 									}
 								} else {
-									hero.setPowerup(powerup);
+									hero.setPowerup(powerup, true);
 								}
 								team.removeItem(powerup);
 								updatePowerupList();
 								updateHeroDisplays();
 							}
 						} else {
-							if (rand.nextInt(100) < 15) {
-								for (Hero hero2 : team.getHeroList()) {
-									hero2.setPowerup(powerup);
+							if (rand.nextInt(100) < 20) {
+								for (Hero ally : team.getHeroList()) {
+									ally.setPowerup(powerup, true);
 								}
 							} else {
-								hero.setPowerup(powerup);
+								hero.setPowerup(powerup, true);
 							}
 							team.removeItem(powerup);
 							updatePowerupList();
@@ -89,7 +128,7 @@ public class PowerupDenPanel extends JPanel
 						
 					} else {
 						if (!hero.powerupActive(powerup)) {
-							hero.setPowerup(powerup);
+							hero.setPowerup(powerup, true);
 							team.removeItem(powerup);
 							updatePowerupList();
 							updateHeroDisplays();
@@ -125,11 +164,19 @@ public class PowerupDenPanel extends JPanel
 			
 			comboPowerupEmpty.addItem("No powerups!");
 			
-			updatePowerupList();
-			updateHeroDisplays();
-			
+			updateDisplays();
 			}
+		
+		/**
+		 * The string representation of the Powerup Den
+		 * @return
+		 */
+		@Override
 		public String toString() {return "Powerup Den";}
+		
+		/**
+		 * Updates the powerup list of the Team
+		 */
 		public void updatePowerupList() {
 			Powerup[] powerups = team.getPowerupList().toArray(new Powerup[team.getPowerupList().size()]);
 			Set<Powerup> powerupSet = new HashSet<Powerup>(Arrays.asList(powerups));
@@ -138,10 +185,10 @@ public class PowerupDenPanel extends JPanel
 			powerupModel = new DefaultComboBoxModel<Powerup>(powerups);
 			comboPowerupSelector.setModel(powerupModel);
 			if (powerups.length < 1) {
-//				String[] empty = {"No powerups!"};
 				remove(comboPowerupSelector);
 				add(comboPowerupEmpty, "cell 1 2,growx");
 				btnUsePowerup.setEnabled(false);
+				repaint();
 			} else {
 				btnUsePowerup.setEnabled(true);
 				remove(comboPowerupEmpty);
@@ -149,7 +196,9 @@ public class PowerupDenPanel extends JPanel
 			}
 		}
 		
-		//I need to call this every time the user goes to this buildings
+		/**
+		 * Updates the hero's active powerups
+		 */
 		private void updateHeroDisplays() {
 			Hero selectedHero = team.getHeroList().get(comboHeroSelector.getSelectedIndex());
 			paneHeroStats.setText(selectedHero.toString());
@@ -161,5 +210,16 @@ public class PowerupDenPanel extends JPanel
 			toAdd += "Ninja Tabi: " + activePowerupsStr[1] + "\n";
 			toAdd += "Kage's Lucky Pick: " + activePowerupsStr[2] + "\n";
 			panePowerupsActive.setText(toAdd);
+		}
+		/**
+		 * Updates the display, shows the heros, calls to updatePowerupList() and updateHeroDisplays()
+		 */
+		@Override
+		public void updateDisplays() {
+			String[] heroList = team.getHeroNames();
+			DefaultComboBoxModel<String> heroListModel = new DefaultComboBoxModel<String>(heroList);
+			comboHeroSelector.setModel(heroListModel);
+			updatePowerupList();
+			updateHeroDisplays();
 		}
 	}
