@@ -10,7 +10,10 @@ package items;
 
 public class HealingItem extends Item {
 	
-	private int healingAmount; //Number of 25% heals to do
+	/**
+	 * The number of 25% heals to do
+	 */
+	private int healingAmount;
 	
 	/** 
 	 * Constructor -- HealingItem. Creates a healing item.
@@ -35,4 +38,3 @@ public class HealingItem extends Item {
 	public int getHealingAmount() {return this.healingAmount;}
 	
 }
-
