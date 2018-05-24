@@ -95,5 +95,7 @@ public class CreateHeroPanel extends JPanel
 		public boolean heroCreated() {
 			return heroCreated;
 		}
+		
+		public static void resetHeroNames() {heroNamesSeen = new ArrayList<String>();}
 
 	}

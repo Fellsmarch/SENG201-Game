@@ -1,5 +1,9 @@
 package guiElements;
 import java.awt.CardLayout;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -32,6 +36,8 @@ public class RunGamePanel extends JPanel
 		private int currentCity = 1;
 		private int numCities;
 		private JFrame parent;
+//		private long startTime;
+		private Instant startTime;
 
 		/**
 		 * Create the panel.
@@ -49,7 +55,9 @@ public class RunGamePanel extends JPanel
 				}
 				add(container);
 				
+				
 				cardLayout.show(container, "City " + currentCity);
+				startTime = Instant.now();
 			} 
 		
 		private void generateVillains(int numOfVillains) {
@@ -117,7 +125,11 @@ public class RunGamePanel extends JPanel
 				cities.get(currentCity - 1).updateHeroDisplays();
 			}
 			else {
-				JOptionPane.showMessageDialog(this, "Congratulations! You defeated the Super Villain" + defeatedVillain.getName() + " and saved all the cities!", "You won the game!", JOptionPane.INFORMATION_MESSAGE);
+				Instant endTime = Instant.now();
+				Duration between = Duration.between(startTime, endTime);
+				LocalTime timeElapsed = LocalTime.MIDNIGHT.plus(between);
+				String time = DateTimeFormatter.ofPattern("mm:ss").format(timeElapsed);
+				JOptionPane.showMessageDialog(this, "Congratulations! You defeated the Super Villain" + defeatedVillain.getName() + " and saved all the cities in " + time + "!", "You won the game!", JOptionPane.INFORMATION_MESSAGE);
 				playAgain();
 			}
 		}

@@ -44,6 +44,7 @@ public class TeamCreationPanel extends JPanel
 				
 				add(lblFirstHero, "cell 0 0 3 1");
 				
+				CreateHeroPanel.resetHeroNames();
 				createHeroPanels = new CreateHeroPanel[numHeroes];
 				int panelPos = 1;
 				for (int i = 0; i < numHeroes; i++) {
