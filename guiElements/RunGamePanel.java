@@ -36,7 +36,6 @@ public class RunGamePanel extends JPanel
 		private int currentCity = 1;
 		private int numCities;
 		private JFrame parent;
-//		private long startTime;
 		private Instant startTime;
 
 		/**

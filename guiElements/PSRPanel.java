@@ -117,7 +117,7 @@ public class PSRPanel extends GamePanel{
 	}
 	
 	
-	enum PSRChoice {
+	private enum PSRChoice {
 		PAPER("SCISSORS"),
 		SCISSORS("ROCK"),
 		ROCK("PAPER");

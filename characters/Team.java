@@ -110,25 +110,28 @@ public class Team
 		public boolean killHero(Hero heroToKill) { //Returns true if there are still heroes in the team
 			if (heroToKill.death()) {
 				heroes.remove(heroToKill);
-				goodEventChance -= heroToKill.getEventChance();
-				if (heroToKill instanceof DiscountShopper) {containsShopper = false;}
-				if (heroToKill.getLootMod() == lootMod || heroToKill.getShopMod() == shopMod) { 		//If this hero effected either lootMod or shopMod
-					for (Hero hero : heroes) {
-						if (hero.getLootMod() < lootMod) {lootMod = hero.getLootMod();}
-						if (!containsShopper && hero instanceof RandomHero) {							//Prioritizes discount shoppers over random hero and random hero over normal heroes (even if the price is higher)
-							if (shopMod != 1) {															//Checking to see if there is another random hero changing the price
-								if (hero.getShopMod() < shopMod) {shopMod = hero.getShopMod();}			//Prioritizes the lower price of the two random heroes
-								else {shopMod = hero.getShopMod();}
+				if (heroes.size() < 1) {return false;}
+				else {
+					goodEventChance -= heroToKill.getEventChance();
+					if (heroToKill instanceof DiscountShopper) {containsShopper = false;}
+					if (heroToKill.getLootMod() == lootMod || heroToKill.getShopMod() == shopMod) { 		//If this hero effected either lootMod or shopMod
+						lootMod = heroes.get(0).getLootMod(); shopMod = heroes.get(0).getShopMod();
+						for (Hero hero : heroes) {
+							if (hero.getLootMod() < lootMod) {lootMod = hero.getLootMod();}
+							if (!containsShopper && hero instanceof RandomHero) {							//Prioritizes discount shoppers over random hero and random hero over normal heroes (even if the price is higher)
+								if (shopMod != 1) {															//Checking to see if there is another random hero changing the price
+									if (hero.getShopMod() < shopMod) {shopMod = hero.getShopMod();}			//Prioritizes the lower price of the two random heroes
+									else {shopMod = hero.getShopMod();}
+								}
 							}
-						}
-						if (hero instanceof DiscountShopper) {
-							shopMod = hero.getShopMod();
-							containsShopper = true;
+							if (hero instanceof DiscountShopper) {
+								shopMod = hero.getShopMod();
+								containsShopper = true;
+							}
 						}
 					}
 				}
-				if (heroes.size() < 1) {return false;}
-			}
+			} 
 			return true;
 		}
 	

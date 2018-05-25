@@ -39,6 +39,7 @@ public class HospitalPanel extends BuildingPanel
 		private JButton btnBeginHeal;
 		private Double healProgress = 0.0;
 		private boolean currentlyHealing;
+
 		
 		/**
 		 * Create the panel.

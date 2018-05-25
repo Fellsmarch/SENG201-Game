@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.awt.Font;
 import javax.swing.JSeparator;
 import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
 
 public class MainWindow
 	{
@@ -102,7 +101,7 @@ public class MainWindow
 				
 				container.add(mainWindowDisplay, "Main Window");
 				cardLayout.show(container, "Main Window");
-				mainWindowDisplay.setLayout(new MigLayout("", "[grow][grow,fill][grow]", "[50px:n][10px:n][][10px:n][][10px:n][][grow]"));
+				mainWindowDisplay.setLayout(new MigLayout("", "[grow][grow,fill][grow]", "[50px:n][10px:n][][10px:n][][10px:n][][10px:n][grow]"));
 				
 				lblNewLabel = new JLabel("Heroes & Villains");
 				lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 25));
@@ -209,7 +208,8 @@ public class MainWindow
 				numCitiesGroup.add(tglBtnNumCities3); numCitiesGroup.add(tglBtnNumCities4);
 				numCitiesGroup.add(tglBtnNumCities5); numCitiesGroup.add(tglBtnNumCities6);
 				
-				btnContinue = new JButton("");
+				btnContinue = new JButton("Continue");
+				btnContinue.setFont(new Font("Dialog", Font.BOLD, 45));
 				btnContinue.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if(!teamPanel) {
@@ -241,9 +241,8 @@ public class MainWindow
 						
 					}
 				});
-				btnContinue.setSelectedIcon(new ImageIcon("/home/cosc/student/hgc25/Downloads/Continue clicked test.jpg"));
-				btnContinue.setIcon(new ImageIcon("/home/cosc/student/hgc25/Downloads/Continue test.jpg"));
-				mainWindowDisplay.add(btnContinue, "cell 0 7 3 1,width 50:150:150,alignx center,height 25:50:100");
+//				mainWindowDisplay.add(btnContinue, "cell 0 8 3 1,width 50:150:150,height 25:50:100,grow");
+				mainWindowDisplay.add(btnContinue, "cell 0 8 3 1,grow");
 				
 
 				

@@ -29,62 +29,9 @@ public abstract class Item {
 		this.price = price;
 	}
 	
-//	public boolean useItem();
-//	public boolean useItem(Hero hero);
-    public abstract Item copy(); //I don't think we actually need this
     public String getName() {return name;}
     public String getDescription() {return description;}
     public int getPrice() {return price;}
     public String toString() {return name;}
     
 }
-
-//package items;
-//import characters.Hero;
-//
-//public abstract class Item {
-//	
-//	String name;
-//	String description;
-//	int price;
-//	
-//	public Item(String name, String description, int price) {
-//		this.name = name;
-//		this.description = description;
-//		this.price = price;
-//	}
-//	
-//	public abstract boolean useItem();
-//	public abstract boolean useItem(Hero hero);
-//
-//    public abstract Item create();
-//
-//    public String getName() {
-//        return this.name;
-//    }
-//
-//    public void setName(String name) {
-//        this.name = name;
-//    }
-//
-//    public String getDescription() {
-//        return this.description;
-//    }
-//
-//    public void setDescription(String description) {
-//        this.description = description;
-//    }
-//
-//    public int getPrice() {
-//        return this.price;
-//    }
-//
-//    public void setPrice(int price) {
-//        this.price = price;
-//	
-//    }
-//    
-//    public String toString() {
-//    	return name;
-//    }
-//}

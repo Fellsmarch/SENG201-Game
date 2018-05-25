@@ -3,13 +3,30 @@
 //Need to change team so that it holds variables like shopPrice and handles death
 //Need to finish implementing villainsLairPanel -> implement damage to hero/villains, death to hero/villains/team, rewards and continuing to next city
 //Need to add winning the game
+//Fix base camp GUI
+//Try to fix gui rescaling in Shop
+//Add in powerup description in PowerupDen
+//challenging hero's name on dice rolls
 
 Make it so the inventory is sorted (treeMap)
 
 Need to make it look not trash
-	-Normalise fonts
+	- Normalise fonts
+	- Possibly make it so you can't change heroes in a battle after a draw --> 
+	- Make code layout uniform
+	- Remove copy() from item
+	- Change powerup type from using instanceof to 
 
 
 Known bugs:
-Ninja tabi is listed twice in inventory --> probably due to me manually adding it
-On new city team powerupHero will trigger warning popup even if powerup is no longer active --> havent removed powerups from team when going to new city
+On ARAM hero 110% displays as 110.0000000001%
+
+
+
+Team
+RunGamePanel
+TeamCreationPanel
+CreateHeroPanel
+CityPanel
+VillainsLairPanel
+PowerupDenPanel

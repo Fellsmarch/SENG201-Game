@@ -221,6 +221,7 @@ public class VillainsLairPanel extends BuildingPanel
 		public void taunt() {
 			JOptionPane.showMessageDialog(this, villain.getName() + villain.getTitle() + ":\n\"" + villain.getTaunt() + "\"", "", JOptionPane.WARNING_MESSAGE);
 		}
+		
 		public String toString() {return "Villains Lair";}
 		
 		public void updateHeroDisplay() {

@@ -9,8 +9,6 @@ public class Map extends Item
 			this.cityNum = cityNum;
 		}
 
-		@Override
-		public Item copy() {return this;}
 		public int getCity() {return cityNum;}
 	}
 

@@ -59,9 +59,4 @@ public class Villain
 		public int getHealth() {return health;}
 		public int getReward() {return killReward;}
 		public void removeHealth(int healthLost) {health -= healthLost;}
-		
-		//For testing, remove
-		public double getFavGameChance() {return favouriteGameChance;}
-		public GameType getFavGame() {return favouriteGame;}
-	
 	}

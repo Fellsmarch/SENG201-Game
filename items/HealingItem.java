@@ -10,7 +10,6 @@ public class HealingItem extends Item {
 		this.healingAmount = healingAmount;
 	}
 	
-	public HealingItem copy() {return new HealingItem(this.getName(), this.getDescription(), this.getPrice(), healingAmount);}
 	public int getHealingAmount() {return this.healingAmount;}
 	
 }
