@@ -12,12 +12,13 @@ import javax.swing.JPanel;
 public abstract class GamePanel extends JPanel{
 	
 	/**
-	 * Gets the result of the game
+	 * @return the result of the game
 	 */
 	public abstract Result playGame();
 	
 	/**
 	 * Displays the result of the game to the user
+	 * @param result the result to display to the user
 	 */
 	public abstract void displayResult(Result result);
 	

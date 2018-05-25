@@ -243,8 +243,7 @@ public class VillainsLairPanel extends BuildingPanel
 			}
 		
 		/**
-		 * String representation of the villains lair
-		 * @return
+		 * @return the string representation of the villains lair
 		 */
 		public String toString() {return "Villains Lair";}
 		

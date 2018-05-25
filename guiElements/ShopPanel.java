@@ -162,21 +162,8 @@ public class ShopPanel extends BuildingPanel
 		/**
 		 * Updates the display of the team inventory
 		 */
-		public void updateDisplays() {
-			paneInventory.setText(team.getInventory());
-//			lblMoney.setText("Gold: " + team.getGold());
-//			String toReturn = "<html>Inventory: <br />";
-//			ArrayList<Item> inventory = team.getItemInventory();
-//			if (inventory.size() < 1) {paneInventory.setText(toReturn + "&ensp - &ensp Empty");}			
-//			else {
-//				Set<Item> inventorySet = new HashSet<Item>(inventory);
-//				for (Item item : inventorySet) {
-//					int freq = Collections.frequency(inventory, item);
-//					toReturn += "&ensp - &ensp " + item + " (x" + freq + ")<br />";
-//				}
-//				paneInventory.setText(toReturn);
-//			}
-		}
+		public void updateDisplays() {paneInventory.setText(team.getInventory());}
+		
 		/**
 		 * String representation of the Shop
 		 * @return String shop
@@ -184,8 +171,7 @@ public class ShopPanel extends BuildingPanel
 		public String toString() {return "Shop";}
 		
 		/**
-		 * Gets the available items that can be purchased
-		 * @return
+		 * @return the available items that can be purchased
 		 */
 		public Item[][] getItems() {return items;}
 	}

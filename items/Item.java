@@ -35,20 +35,17 @@ public abstract class Item {
 		this.price = price;
 	}
     /** 
-     * Get the name of the item
-     * @return
+     * @return the name of the item
      */
     public String getName() {return name;}
     
     /** 
-     * Get the description of the item
-     * @return
+     * @return the description of the item
      */
     public String getDescription() {return description;}
     
     /** 
-     * Get the price of the item
-     * @return
+     * @return the price of the item
      */
     public int getPrice() {return price;}
     

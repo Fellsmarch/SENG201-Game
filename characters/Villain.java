@@ -96,38 +96,32 @@ public class Villain
 			}
 		}
 		/**
-		 * Gets the Villain's name
-		 * @return
+		 * @return the Villain's name
 		 */
 		public String getName() {return name;}
 		
 		/**
-		 * Gets the Villain's title
-		 * @return
+		 * @return the Villain's title
 		 */
 		public String getTitle() {return title;}
 		
 		/**
-		 * Gets the Villain's taunt phrase
-		 * @return
+		 * @return the Villain's taunt phrase
 		 */
 		public String getTaunt() {return tauntPhrase;}
 		
 		/**
-		 * Gets the damage done by the Villain
-		 * @return
+		 * @return the damage done by the Villain
 		 */
 		public int getDamage() {return damage;}
 		
 		/**
-		 * Gets the Villain's health
-		 * @return
+		 * @return the Villain's health
 		 */
 		public int getHealth() {return health;}
 		
 		/**
-		 * Gets the amount of money received by the team if the Villain is defeated
-		 * @return
+		 * @return the amount of money received by the team if the Villain is defeated
 		 */
 		public int getReward() {return killReward;}
 		

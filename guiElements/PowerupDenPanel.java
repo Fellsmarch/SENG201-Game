@@ -183,8 +183,7 @@ public class PowerupDenPanel extends BuildingPanel
 			}
 		
 		/**
-		 * The string representation of the Powerup Den
-		 * @return
+		 * @return the string representation of the Powerup Den
 		 */
 		@Override
 		public String toString() {return "Powerup Den";}

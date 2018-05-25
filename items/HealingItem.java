@@ -26,8 +26,8 @@ public class HealingItem extends Item {
 		this.healingAmount = healingAmount;
 	}
 	
-	/** Get the healing amount of the item
-	 * @return
+	/**
+	 * @return the healing amount of the item
 	 */
 	public int getHealingAmount() {return this.healingAmount;}
 	

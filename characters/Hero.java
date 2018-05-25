@@ -79,6 +79,7 @@ public class Hero
 
 		/**
 		 * Constructor
+		 * @param name the hero's name
 		 */
 		public Hero(String name) {
 			this.name = name;
@@ -87,6 +88,8 @@ public class Hero
 		
 		/**
 		 * Constructor 
+		 * @param name The hero's name
+		 * @param maxHealth The hero's maximum health
 		 */
 		public Hero(String name, int maxHealth) {
 			this.name = name;
@@ -95,53 +98,53 @@ public class Hero
 		}
 		
 		
-		/** Get the name of the Hero
-	     * @return
+		/** 
+	     * @return the name of the Hero
 	     */
 		public String getName() {return name;}
 		
-		/** Get the current health of the Hero
-	     * @return
+		/**
+	     * @return the current health of the Hero
 	     */
 		public int getCurrentHealth() {return currentHealth;}
 		
-		/** Get the maximum health of the Hero
-	     * @return
+		/**
+	     * @return the maximum health of the Hero
 	     */
 		public int getMaxHealth() {return maxHealth;}
 		
-		/** Get the recovery rate of the Hero
-	     * @return
+		/**
+	     * @return the recovery rate of the Hero
 	     */
 		public int getRecovery() {return recoveryRate;}
 		
-		/** Get the attack modifier of the Hero
-	     * @return
+		/**
+	     * @return the attack modifier of the Hero
 	     */
 		public double getAttackMod() {return attackMod;}
 		
-		/** Get the defense modifier of the Hero
-	     * @return
+		/** 
+	     * @return  the defense modifier of the Hero
 	     */
 		public double getDefenseMod() {return defenseMod;}
 		
-		/** Get the shop price modifier of the Hero
-	     * @return
+		/** 
+	     * @return the shop price modifier of the Hero
 	     */
 		public double getShopMod() {return shopMod;}
 		
-		/** Get the good event chance modifier of the Hero
-	     * @return
+		/**
+	     * @return the good event chance modifier of the Hero
 	     */
 		public double getEventChance() {return eventChance;}
 		
-		/** Get the loot modifier of the Hero
-	     * @return
+		/**
+	     * @return the loot modifier of the Hero
 	     */
 		public double getLootMod() {return lootMod;}
 		
-		/** Gets an array of whether the 3 powerups are active (true) or not (false)
-	     * @return
+		/** 
+	     * @return an array of whether the 3 powerups are active (true) or not (false)
 	     */
 		public boolean[] getPowerups() { 
 			boolean[] powerups = {powerupDamage, powerupDodge, powerupLuck};
@@ -149,8 +152,8 @@ public class Hero
 		}
 		
 		/**
-		 * Returns whether the given powerup is active on this Hero
-		 * @return 
+		 * @param powerup The powerup to check
+		 * @return whether the given powerup is active on this Hero
 		 */
 		public boolean powerupActive(Powerup powerup) {
 			if (powerup instanceof PowerupLuck) {return powerupLuck;} 					
@@ -159,17 +162,15 @@ public class Hero
 		}
 		
 		/**
-		 * Sets the Hero's name
-		 */
-		public void setName(String newName) {name = newName;}
-		
-		/**
 		 * Adds or removes health accordingly
+		 * @param toAdjust The amount to adjust the health by
 		 */
 		public void adjustHealth(int toAdjust) {currentHealth += toAdjust; if (currentHealth > maxHealth) {currentHealth = maxHealth;}}	//This works for positive or negative health adjust
 		
 		/**
 		 * Sets a given powerup
+		 * @param powerup The powerup to set
+		 * @param active The boolean to set the powerup to
 		 */
 		public void setPowerup(Powerup powerup, boolean active) { 
 			if (powerup instanceof PowerupLuck) {powerupLuck = active;} 					
@@ -179,8 +180,9 @@ public class Hero
 		
 		/**
 		 * Returns true if death operations are complete and the hero is dead. 
+		 * @return true if the hero has died
 		 */
-		public boolean death() {return true;}		//Returns true if death operations are complete and hero is dead. This is  
+		public boolean death() {return true;}
 		
 		
 		/**
@@ -196,6 +198,7 @@ public class Hero
 		
 		/**
 		 * Uses the toString() method above, but adds on the Hero's description
+		 * @param userHero whether or not this is a hero for the user
 		 * @return A string that represents all of the "Vanilla" Hero's attributes
 		 */
 		public String toString(boolean userHero) {

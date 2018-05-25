@@ -105,66 +105,57 @@ public class Team
 		}
 		
 		/**
-		 * Gets the name of the Team
-		 * @return
+		 * @return the name of the Team
 		 */
 		public String getName() {return name;}
 		
 		/**
-		 * Gets the good event chance for the Team
-		 * @return
+		 * @return the good event chance for the Team
 		 */
 		public double getEventChance() {return goodEventChance;}
 		
 		/**
-		 * Gets the shop modifier of the Team
-		 * @return
+		 * @return the shop modifier of the Team
 		 */
 		public double getShopMod() {return shopMod;}
 		
 		/**
-		 * Gets the loot modifier of the Team
-		 * @return
+		 * @return the loot modifier of the Team
 		 */
 		public double getLootMod() {return lootMod;}
 		
 		/**
-		 * Gets the gold/money of the Team
-		 * @return
+		 * @return the gold/money of the Team
 		 */
 		public int getGold() {return gold;}
 		
 		/**
-		 * Gets the list of Heroes in the Team
-		 * @return
+		 * @return the list of Heroes in the Team
 		 */
 		public ArrayList<Hero> getHeroList(){return heroes;}
 		
 		/**
-		 * Gets the list of items owned by the Team
-		 * @return
+		 * @return the list of items owned by the Team
 		 */
 		public ArrayList<Item> getItemInventory() {return itemInventory;}
 		
 		/**
-		 * Gets the list of power ups owned by the Team
-		 * @return
+		 * @return the list of power ups owned by the Team
 		 */
 		public ArrayList<Powerup> getPowerupList(){return powerupsInventory;}
 		
 		/**
-		 * Gets the list of healing items in the Team
-		 * @return
+		 * @return the list of healing items in the Team
 		 */
 		public ArrayList<HealingItem> getHealingList(){return healingInventory;}
 		
 		/**
-		 * Gets the list of Heroes in the Team
-		 * @return
+		 * @return the list of Heroes in the Team
 		 */
 		
 		/**
 		 * Determines whether the team has a certain city's map
+		 * @param map The map to check
 		 * @return relevant city map
 		 */
 		public boolean hasMap(Map map) {return maps.contains(map);}
@@ -208,11 +199,13 @@ public class Team
 
 		/**
 		 * Adjusts the gold that the team owns. Adds or removes gold
+		 * @param value The amount of gold to add or remove
 		 */
 		public void adjustGold(int value) {gold += value;}							
 		
 		/**
 		 * Adds an item to the Team's array list itemInventory, determines what kind of item it is and adds it to that array list as well
+		 * @param item The item to add to the inventories
 		 */
 		public void addItem(Item item) {
 			itemInventory.add(item);
@@ -223,6 +216,7 @@ public class Team
 		
 		/**
 		 * Removes an item from the array list itemInventory, determines what kind of item it is and removes it from that array list as well
+		 * @param item the item to be removed from the inventories
 		 */
 		public void removeItem(Item item) {
 			itemInventory.remove(item);
@@ -233,31 +227,35 @@ public class Team
 		
 		/**
 		 * Determines how the death/removal of a hero from a team affects the stats of the team, and changes those stats back to what they would be without that hero
+		 * @param heroToKill The hero to kill if their death() method return true
 		 * @return false if there are no heroes left in the Team
 		 * @return true if there are still heroes in the Team
 		 */
 		public boolean killHero(Hero heroToKill) { 
 			if (heroToKill.death()) {
 				heroes.remove(heroToKill);
-				goodEventChance -= heroToKill.getEventChance();
-				if (heroToKill instanceof DiscountShopper) {containsShopper = false;}
-				if (heroToKill.getLootMod() == lootMod || heroToKill.getShopMod() == shopMod) { 		
-					for (Hero hero : heroes) {
-						if (hero.getLootMod() < lootMod) {lootMod = hero.getLootMod();}
-						if (!containsShopper && hero instanceof RandomHero) {							//Prioritizes discount shoppers over random hero and random hero over normal heroes (even if the price is higher)
-							if (shopMod != 1) {															//Checking to see if there is another random hero changing the price
-								if (hero.getShopMod() < shopMod) {shopMod = hero.getShopMod();}			//Prioritizes the lower price of the two random heroes
-								else {shopMod = hero.getShopMod();}
+				if (heroes.size() < 1) {return false;}
+				else {
+					goodEventChance -= heroToKill.getEventChance();
+					if (heroToKill instanceof DiscountShopper) {containsShopper = false;}
+					if (heroToKill.getLootMod() == lootMod || heroToKill.getShopMod() == shopMod) { 		//If this hero effected either lootMod or shopMod
+						lootMod = heroes.get(0).getLootMod(); shopMod = heroes.get(0).getShopMod();
+						for (Hero hero : heroes) {
+							if (hero.getLootMod() < lootMod) {lootMod = hero.getLootMod();}
+							if (!containsShopper && hero instanceof RandomHero) {							//Prioritizes discount shoppers over random hero and random hero over normal heroes (even if the price is higher)
+								if (shopMod != 1) {															//Checking to see if there is another random hero changing the price
+									if (hero.getShopMod() < shopMod) {shopMod = hero.getShopMod();}			//Prioritizes the lower price of the two random heroes
+									else {shopMod = hero.getShopMod();}
+								}
 							}
-						}
-						if (hero instanceof DiscountShopper) {
-							shopMod = hero.getShopMod();
-							containsShopper = true;
+							if (hero instanceof DiscountShopper) {
+								shopMod = hero.getShopMod();
+								containsShopper = true;
+							}
 						}
 					}
 				}
-				if (heroes.size() < 1) {return false;}
-			}
+			} 
 			return true;
 		}
 	

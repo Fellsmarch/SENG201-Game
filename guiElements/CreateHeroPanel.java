@@ -127,8 +127,7 @@ public class CreateHeroPanel extends JPanel
 			}
 		
 		/**
-		 * Gets the hero
-		 * @return
+		 * @return the hero
 		 */
 		public Hero getHero() {
 			return hero;

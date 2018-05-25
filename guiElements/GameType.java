@@ -11,37 +11,53 @@ import characters.*;
 public enum GameType
 	{
 		/**
-		 * Creates a game for Paper, Scissors, Rock
-		 * @param hero The chosen Hero
-		 * @param villain The villain that will be challenged by the hero
-		 * @param moreLucky Whether the challenging hero has the lucky powerup enabled
-		 * @return PSRPanel
+		 * Paper Scissors Rock game
 		 */
-		PSR {public PSRPanel createGame(Hero hero, Villain villain, boolean moreLucky) {return new PSRPanel(hero, villain, moreLucky);}},
+		PSR {
+			/**
+			 * Creates a game for Paper, Scissors, Rock
+			 * @param hero The chosen Hero
+			 * @param villain The villain that will be challenged by the hero
+			 * @param moreLucky Whether the challenging hero has the lucky powerup enabled
+			 * @return PSRPanel
+			 */
+			public PSRPanel createGame(Hero hero, Villain villain, boolean moreLucky) {return new PSRPanel(hero, villain, moreLucky);}
+			},
 		
 		/**
-		 * Creates a game for Dice Rolls
-		 * @param hero The chosen Hero
-		 * @param villain The villain that will be challenged by the hero
-		 * @param moreLucky Whether the challenging hero has the lucky powerup enabled
-		 * @return DiceRollsPanel
+		 * Dice rolls game
 		 */
-		DICEROLL {public DiceRollsPanel createGame(Hero hero, Villain villain, boolean moreLucky) {return new DiceRollsPanel(hero, villain, moreLucky);}},
+		DICEROLL {
+			/**
+			 * Creates a game for Dice Rolls
+			 * @param hero The chosen Hero
+			 * @param villain The villain that will be challenged by the hero
+			 * @param moreLucky Whether the challenging hero has the lucky powerup enabled
+			 * @return DiceRollsPanel
+			 */
+			public DiceRollsPanel createGame(Hero hero, Villain villain, boolean moreLucky) {return new DiceRollsPanel(hero, villain, moreLucky);}
+			},
 		
 		/**
-		 * Creates a game for Guess Number
-		 * @param hero The chosen Hero
-		 * @param villain The villain that will be challenged by the hero
-		 * @param moreLucky Whether the challenging hero has the lucky powerup enabled
-		 * @return GuessNumberPanel
+		 * Guess number game
 		 */
-		GUESSNUM {public GuessNumberPanel createGame(Hero hero, Villain villain, boolean moreLucky) {return new GuessNumberPanel(hero, villain, moreLucky);}};
+		GUESSNUM {
+			/**
+			 * Creates a game for Guess Number
+			 * @param hero The chosen Hero
+			 * @param villain The villain that will be challenged by the hero
+			 * @param moreLucky Whether the challenging hero has the lucky powerup enabled
+			 * @return GuessNumberPanel
+			 */
+			public GuessNumberPanel createGame(Hero hero, Villain villain, boolean moreLucky) {return new GuessNumberPanel(hero, villain, moreLucky);}
+		};
 		
 		/**
 		 * Creates the game
 		 * @param hero The chosen Hero
 		 * @param villain The villain that will be challenged by the hero
 		 * @param moreLucky Whether the challenging hero has the lucky powerup enabled
+		 * @return The new game panel
 		 */
 		abstract public GamePanel createGame(Hero hero, Villain villain, boolean moreLucky);
 

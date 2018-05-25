@@ -149,8 +149,7 @@ public class TeamCreationPanel extends JPanel
 			}
 			
 			/**
-			 * Gets the array list of heroes
-			 * @return
+			 * @return the array list of heroes
 			 */
 			public ArrayList<Hero> getHeroes() {
 				return heroes;

@@ -7,7 +7,16 @@ package guiElements;
  * @author Hannah Regan
  */
 public enum Result {
+	/**
+	 * Game win
+	 */
 	WIN,
+	/**
+	 * Game loss
+	 */
 	DRAW,
+	/**
+	 * Game draw
+	 */
 	LOSS;
 }

@@ -25,8 +25,7 @@ public class Map extends Item
 		}
 
 		/**
-		 * Return what number city this is
-		 * @return
+		 * @return what number city this is
 		 */
 		public int getCity() {return cityNum;}
 	}

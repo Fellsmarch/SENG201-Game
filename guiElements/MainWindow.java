@@ -163,7 +163,7 @@ public class MainWindow
 		private void initialize()
 			{
 				frame = new JFrame();
-				frame.setBounds(100, 100, 600, 475);
+				frame.setBounds(100, 100, 600, 380);
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame.setTitle("Heroes & Villains");
 				frame.getContentPane().add(container);
