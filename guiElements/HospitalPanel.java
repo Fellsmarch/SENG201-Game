@@ -26,23 +26,89 @@ import javax.swing.JComboBox;
 import javax.swing.JProgressBar;
 import javax.swing.JButton;
 
+/**
+ * This creates a subclass HospitalPanel, extends from BuildingPanel and holds all the Hospital operations
+ *
+ * @author Harrison Cook
+ * @author Hannah Regan
+ */
+
 @SuppressWarnings("serial")
 public class HospitalPanel extends BuildingPanel
-	{
+	{	
+		/**
+		 * The countdown timer
+		 */
 		private Timer timer;
-		private int timeLeft, healsLeft, timeTick;
-		private JComboBox<String> comboHeroSelector;
-		private JTextPane paneHeroStats, panePotionInfo;
-		private Team team;
-		private JComboBox<HealingItem> comboPotionSelector = new JComboBox<HealingItem>();
-		private Hero heroToHeal, selectedHero;
-		private JButton btnBeginHeal;
-		private Double healProgress = 0.0;
-		private boolean currentlyHealing;
-
 		
 		/**
-		 * Create the panel.
+		 * The time left before the timer finishes
+		 */
+		private int timeLeft;
+		
+		/**
+		 * The amount of healing left to do
+		 */
+		private int healsLeft;
+		
+		/**
+		 * The timer increments
+		 */
+		private int timeTick;
+		
+		/**
+		 * JComboBox array displaying Heroes as Strings, to select Hero to view
+		 */
+		private JComboBox<String> comboHeroSelector;
+		
+		/**
+		 * A pane listing the hero stats
+		 */
+		private JTextPane paneHeroStats;
+		
+		/**
+		 * A pane listing the potion descriptions
+		 */
+		private JTextPane panePotionInfo;
+		
+		/**
+		 * The Team 
+		 */
+		private Team team;
+		
+		/**
+		 * JComboBox that stores Healing Items for the user to select
+		 */
+		private JComboBox<HealingItem> comboPotionSelector = new JComboBox<HealingItem>();
+		
+		/**
+		 * The hero to use a healing item, chosen by user
+		 */
+		private Hero heroToHeal;
+		
+		/**
+		 * The hero that can be selected by the user eg to view stats
+		 */
+		private Hero selectedHero;
+		
+		/**
+		 * JButton to begin healing
+		 */
+		private JButton btnBeginHeal;
+		
+		/**
+		 * Double that shows the progress of the healing
+		 */
+		private Double healProgress = 0.0;
+		
+		/**
+		 * Boolean that determines whether the hero is in the middle of consuming a healing item
+		 */
+		private boolean currentlyHealing;
+		
+		/**
+		 * Constructor -- Create the panel.
+		 * @param team, The current team "at the hospital"
 		 */
 		public HospitalPanel(Team team)
 			{
@@ -152,19 +218,12 @@ public class HospitalPanel extends BuildingPanel
 						}
 					});
 					add(btnBeginHeal, "cell 0 3 2 1,growx");
-					
-					//For testing
-//					JButton btnDamage = new JButton("damage");
-//					btnDamage.addActionListener(new ActionListener() {
-//						public void actionPerformed(ActionEvent e) {
-//							team.getHeroList().get(0).adjustHealth(-13);
-//							updateHeroDisplays();
-//						}
-//					});
-//					add(btnDamage, "cell 1 4");
 					updateDisplays();
 			}
 		
+		/**
+		 * The descriptions of healing items that the team currently owns
+		 */
 		private void updatePotionInfo() {
 			if (team.getHealingList().size() > 0) {
 				HealingItem potion = (HealingItem) comboPotionSelector.getSelectedItem();
@@ -175,17 +234,26 @@ public class HospitalPanel extends BuildingPanel
 			
 		}
 		
+		/**
+		 * Heals the heroToHeal 
+		 */
 		private void healHero() {
 			Double toHeal = heroToHeal.getMaxHealth() * 0.25;
 			heroToHeal.adjustHealth(toHeal.intValue());
 			updateHeroDisplays();
 		}
 		
+		/**
+		 * Updates the hero stats
+		 */
 		private void updateHeroDisplays() { 
 			selectedHero = (Hero) team.getHeroList().get(comboHeroSelector.getSelectedIndex());
 		    paneHeroStats.setText(selectedHero.toString());
 		}
 		
+		/**
+		 * Updates what healing items the Team owns
+		 */
 		public void updateHealingPotions() {
 			HealingItem[] potions = team.getHealingList().toArray(new HealingItem[team.getHealingList().size()]); //This doesn't display the number of each item they have, it will only ever display 3 items in the combobox
 			Set<HealingItem> potionsSet = new HashSet<HealingItem>(Arrays.asList(potions));
@@ -201,6 +269,9 @@ public class HospitalPanel extends BuildingPanel
 			comboPotionSelector.setModel(potionModel);
 		}
 		
+		/**
+		 * Updates all the other displays
+		 */
 		public void updateDisplays() {
 			String[] heroList = team.getHeroNames();
 			DefaultComboBoxModel<String> heroListModel = new DefaultComboBoxModel<String>(heroList);
@@ -212,4 +283,4 @@ public class HospitalPanel extends BuildingPanel
 		
 		public String toString() {return "Hospital";}
 
-	}
+}

@@ -20,19 +20,54 @@ import javax.swing.JSeparator;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 
+/**
+ * This class creates the class 'TeamCreationPanel', extends JPanel, and contains the operations regarding the creation of the Team
+ * 
+ * @author Harrison Cook
+ * @author Hannah Regan
+ */
 @SuppressWarnings("serial")
 public class TeamCreationPanel extends JPanel
 	{
+	
+	/**
+	 * Array list of heroes to be stored as the team
+	 */
 	private ArrayList<Hero> heroes = new ArrayList<Hero>();
+	
+	/**
+	 * JTextPane that displays the hero's stats
+	 */
 	private JTextPane paneDisplayHeroStats;
+	
+	/**
+	 * JLabel for the second hero, if chosen
+	 */
 	private JLabel lblSecondHero;
+	
+	/**
+	 * JLabel for the third hero, if chosen
+	 */
 	private JLabel lblThirdHero;
+	
+	/**
+	 * JLabel for the first hero
+	 */
 	private JLabel lblFirstHero = new JLabel("Your Hero:");
+	
+	/**
+	 * Array of create hero panels
+	 */
 	private CreateHeroPanel[] createHeroPanels;
+	
+	/**
+	 * Position on the layout
+	 */
 	private int position;
 
 		/**
-		 * Create the panel.
+		 * Constructor -- Create the panel
+		 * @param numHeroes, number of chosen heroes
 		 */
 		public TeamCreationPanel(int numHeroes)
 			{
@@ -94,6 +129,10 @@ public class TeamCreationPanel extends JPanel
 				add(separator, "cell 1 " + (3 + position) + ",alignx right,growy");
 			}
 		
+			/**
+			 * Checks to see whether all the heroes have been submitted
+			 * @return allInputGood if the user has entered valid input and can progress through to the next stage of the game
+			 */
 			public boolean readyToContinue() {
 				boolean allInputGood = true;
 				for (CreateHeroPanel panel : createHeroPanels) {
@@ -109,6 +148,10 @@ public class TeamCreationPanel extends JPanel
 				return allInputGood;
 			}
 			
+			/**
+			 * Gets the array list of heroes
+			 * @return
+			 */
 			public ArrayList<Hero> getHeroes() {
 				return heroes;
 			}

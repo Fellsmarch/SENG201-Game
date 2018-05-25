@@ -3,43 +3,91 @@ package characters;
 import items.*;
 
 /**
- * 
+ * This class creates the class 'Hero', an object that stores all the relevant variables and methods that a player hero would possess
  * 
  * @author Harrison Cook
  * @author Hannah Regan
- * @version 0.1 04/04/2018
  */
 
 
 public class Hero
 	{
-		//These should all have this before them later: 
-		
 		/**
 		 * The Hero's name
 		 */
-		//Change any protected to private if the sub class does not need them to be protected
-		//Should we change protected to private and call super.thing instead in the subclasses
-		protected String name; 						//The Hero's name
-		protected int maxHealth = 100; 				//The Hero's health
+		protected String name; 						
+		
+		/**
+		 * The Hero's maximum health
+		 */
+		protected int maxHealth = 100; 				
+		
+		/**
+		 * The Hero's current health
+		 */
 		protected int currentHealth;
-		protected int recoveryRate = 5; 			//The Hero's health recovery rate (in seconds) -- Not what we thought it was, each healing item has a set time it takes to apply
-		protected double attackMod = 1; 			//The Hero's attack modifier (multiplies base damage by this)
-		protected double defenseMod = 1; 			//The Hero's defense modifier (multiplies incoming damage by this) lower is better
-		protected double shopMod = 1; 				//The Hero's shop price modifier (multiplies shop prices by this) 
-		protected double eventChance = 0; 			//Adds this number to the chance of getting a good event (vs a bad event) when an event is triggered
-		protected double lootMod = 1; 				//Multiplies all loot for the team by this number
-		private boolean powerupDamage = false; 		//Whether or not the Double Damage powerup is active on this hero
-		private boolean powerupDodge = false; 		//Whether or not the Change to Dodge powerup is active on this hero
-		private boolean powerupLuck = false; 		//Whether or not the Luck powerup is active on this hero
+		
+		/**
+		 * The Hero's health recovery rate (in seconds), relevant for the time it takes to consume a healing item
+		 */
+		protected int recoveryRate = 5; 			
+		
+		/**
+		 * The Hero's attack modifier (multiplies base damage by this)
+		 */
+		protected double attackMod = 1; 			
+		
+		/**
+		 * The Hero's defense modifier (multiplies incoming damage by this) lower is better for less damage taken
+		 */
+		protected double defenseMod = 1; 			
+		
+		/**
+		 * The Hero's shop price modifier (multiplies shop prices by this)
+		 */
+		protected double shopMod = 1; 				 
+		
+		/**
+		 * Adds this number to the chance of getting a good event (versus a bad event) when an event is triggered
+		 */
+		protected double eventChance = 0; 	
+		
+		/**
+		 * Multiplies all loot for the team by this number
+		 */
+		protected double lootMod = 1; 				
+		
+		/**
+		 * Whether or not the Double Damage powerup is active on this hero
+		 */
+		private boolean powerupDamage = false; 		
+		
+		/**
+		 * Whether or not the Change to Dodge powerup is active on this hero
+		 */
+		private boolean powerupDodge = false; 		
+		
+		/**
+		 * Whether or not the Luck powerup is active on this hero
+		 */
+		private boolean powerupLuck = false; 		
+		
+		/**
+		 * The Hero's type
+		 */
 		protected String heroType = "Wuju Bladesman";
 
-		
+		/**
+		 * Constructor
+		 */
 		public Hero(String name) {
 			this.name = name;
 			currentHealth = maxHealth;
 		}
 		
+		/**
+		 * Constructor 
+		 */
 		public Hero(String name, int maxHealth) {
 			this.name = name;
 			this.maxHealth = maxHealth;
@@ -47,38 +95,98 @@ public class Hero
 		}
 		
 		
-		//Getters for classes that don't extend Hero
+		/** Get the name of the Hero
+	     * @return
+	     */
 		public String getName() {return name;}
+		
+		/** Get the current health of the Hero
+	     * @return
+	     */
 		public int getCurrentHealth() {return currentHealth;}
+		
+		/** Get the maximum health of the Hero
+	     * @return
+	     */
 		public int getMaxHealth() {return maxHealth;}
+		
+		/** Get the recovery rate of the Hero
+	     * @return
+	     */
 		public int getRecovery() {return recoveryRate;}
+		
+		/** Get the attack modifier of the Hero
+	     * @return
+	     */
 		public double getAttackMod() {return attackMod;}
+		
+		/** Get the defense modifier of the Hero
+	     * @return
+	     */
 		public double getDefenseMod() {return defenseMod;}
+		
+		/** Get the shop price modifier of the Hero
+	     * @return
+	     */
 		public double getShopMod() {return shopMod;}
+		
+		/** Get the good event chance modifier of the Hero
+	     * @return
+	     */
 		public double getEventChance() {return eventChance;}
+		
+		/** Get the loot modifier of the Hero
+	     * @return
+	     */
 		public double getLootMod() {return lootMod;}
-		public boolean[] getPowerups() { //Returns an array of whether the 3 powerups are active (true) or not (false)
+		
+		/** Gets an array of whether the 3 powerups are active (true) or not (false)
+	     * @return
+	     */
+		public boolean[] getPowerups() { 
 			boolean[] powerups = {powerupDamage, powerupDodge, powerupLuck};
 			return powerups;
 		}
+		
+		/**
+		 * Returns whether the given powerup is active on this Hero
+		 * @return 
+		 */
 		public boolean powerupActive(Powerup powerup) {
 			if (powerup instanceof PowerupLuck) {return powerupLuck;} 					
 			else if (powerup instanceof PowerupDamage) {return powerupDamage;}
 			else {return powerupDodge;}
 		}
 		
-		//Setters for classes that don't extend Hero
+		/**
+		 * Sets the Hero's name
+		 */
 		public void setName(String newName) {name = newName;}
+		
+		/**
+		 * Adds or removes health accordingly
+		 */
 		public void adjustHealth(int toAdjust) {currentHealth += toAdjust; if (currentHealth > maxHealth) {currentHealth = maxHealth;}}	//This works for positive or negative health adjust
+		
+		/**
+		 * Sets a given powerup
+		 */
 		public void setPowerup(Powerup powerup, boolean active) { 
 			if (powerup instanceof PowerupLuck) {powerupLuck = active;} 					
 			if (powerup instanceof PowerupDamage) {powerupDamage = active;}
 			if (powerup instanceof PowerupDodge) {powerupDodge = active;}
 		}
 		
+		/**
+		 * Returns true if death operations are complete and the hero is dead. 
+		 */
 		public boolean death() {return true;}		//Returns true if death operations are complete and hero is dead. This is  
 		
-		//GUI Version
+		
+		/**
+		 * Gets all the Hero's attributes to display as a String
+		 * @return A string that represents all of the Hero's stats/attributes
+		 */
 		public String toString() {
 			String toReturn = "<html><b>" + name + "</b>" + ":<br />Health:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;" + currentHealth + "/" + maxHealth + "<br />Recovery Rate:&emsp;&emsp;" + recoveryRate
 					+ " sec<br />Attack Strength:&emsp;&nbsp;" + attackMod * 100 + "%<br />Defense Modifier: &ensp;" + defenseMod * 100
@@ -86,6 +194,10 @@ public class Hero
 			return toReturn;
 		}
 		
+		/**
+		 * Uses the toString() method above, but adds on the Hero's description
+		 * @return A string that represents all of the "Vanilla" Hero's attributes
+		 */
 		public String toString(boolean userHero) {
 			String toReturn = toString() + " - The default vanilla hero";
 			return toReturn;

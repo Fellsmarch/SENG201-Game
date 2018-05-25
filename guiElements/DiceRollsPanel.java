@@ -14,13 +14,35 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.util.Random;
 
+/**
+ * This class creates the class 'DiceRollsPanel', extends GamePanel and creates a panel for the Dice Rolls game
+ * 
+ * @author Harrison Cook
+ * @author Hannah Regan
+ */
 @SuppressWarnings("serial")
 public class DiceRollsPanel extends GamePanel {
 
-	private JProgressBar resultDisplayHero, resultDisplayVillain;
-	private boolean moreLucky;
 	/**
-	 * Create the panel.
+	 * JProgressBar for results of Hero, visually displays
+	 */
+	private JProgressBar resultDisplayHero;
+	
+	/**
+	 * JProgressBar for results of Villain, visually displays
+	 */
+	private JProgressBar resultDisplayVillain;
+	
+	/**
+	 * Whether the challenging hero has the lucky powerup enabled
+	 */
+	private boolean moreLucky;
+	
+	/**
+	 * Constructor -- Create the panel
+	 * @param challenger, Hero that is chosen by user
+	 * @param villain, Villain that will be versing the user
+	 * @param moreLucky, boolean true or false
 	 */
 	public DiceRollsPanel(Hero challenger, Villain villain, boolean moreLucky) {
 		this.moreLucky = moreLucky;
@@ -29,7 +51,7 @@ public class DiceRollsPanel extends GamePanel {
 		UIManager.put("ProgressBar.selectionForeground", Color.BLACK);
 		UIManager.put("ProgressBar.selectionBackground", Color.BLACK);
 		
-		JLabel lblHeroResult = new JLabel("Your roll:");
+		JLabel lblHeroResult = new JLabel(challenger.getName() + "'s roll:");
 		lblHeroResult.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		add(lblHeroResult, "cell 0 0,aligny bottom");
 		
@@ -54,7 +76,11 @@ public class DiceRollsPanel extends GamePanel {
 		add(resultDisplayVillain, "cell 2 1,grow");
 
 	}
-
+	
+	/**
+	 * Plays the "Dice Rolls" game, randomisers the rolls for both the hero and villain and displays them
+	 * @return the result (who won)
+	 */
 	@Override
 	public Result playGame() {
 		Random rand = new Random();
@@ -74,7 +100,10 @@ public class DiceRollsPanel extends GamePanel {
 		else if (challengerRoll < villainRoll) {return Result.LOSS;}
 		else {return Result.DRAW;}
 	}
-
+	
+	/**
+	 * Displays the result (who won), alongside changing colours for the GUI based on the winner
+	 */
 	@Override
 	public void displayResult(Result result) {
 		if (result == Result.WIN) {
@@ -89,7 +118,11 @@ public class DiceRollsPanel extends GamePanel {
 		}
 		
 	}
-
+	
+	/**
+	 * A toString for this game
+	 * @return The name of the Dice rolls game as a string representation
+	 */
 	@Override
 	public String toString() {return "Dice rolls game";}
 

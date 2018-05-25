@@ -28,23 +28,86 @@ import java.awt.Font;
 import javax.swing.JSeparator;
 import java.awt.Color;
 
+/**
+ * This class creates the class 'CityPanel', extends JPanel and creates a panel containing all of the 4 Buildings in it (Power Up Den, Hospital, Villains Lair, Shop). Displays Home Base.
+ * @author Harrison Cook
+ * @author Hannah Regan
+ */
 @SuppressWarnings("serial")
 public class CityPanel extends JPanel
 	{
+		/**
+		 * Creates a new CardLayout (manages components in JPanel that share the same display space)
+		 */
 		private CardLayout cardLayout = new CardLayout();
+		
+		/** 
+		 * Creates a JPanel with reference to the CardLayout
+		 */
 		private JPanel container = new JPanel(cardLayout);
+		
+		/**
+		 * Creates a list of directions out of an array of BuildingPanel objects
+		 */
 		private BuildingPanel[] directionList = new BuildingPanel[4];
+		
+		/**
+		 * A villian for the City
+		 */
 		private Villain villain;
+		
+		/**
+		 * The direction of a Building for the CityPanel
+		 */
 		private BuildingPanel north, east, south, west;
-		private JButton btnNorth, btnEast, btnSouth, btnWest, btnUseMap;
+		
+		/**
+		 * Creates button for the CityPanel directions
+		 */
+		private JButton btnNorth, btnEast, btnSouth, btnWest;
+		
+		/**
+		 * Creates button to use the map
+		 */
+		private JButton btnUseMap;
+		
+		/**
+		 * A team for the City
+		 */
 		private Team team;
+		
+		/**
+		 * JComboBox array displaying Heroes as Strings, to select Hero to view
+		 */
 		private JComboBox<String> comboHeroSelector;
-		private JTextPane paneTeamInventory, paneHeroStats;
+		
+		/**
+		 * JTextPane, pane for displaying Team's inventory
+		 */
+		private JTextPane paneTeamInventory;
+		
+		/**
+		 * JTextPane, pane for displaying Hero's stats
+		 */
+		private JTextPane paneHeroStats;
+		
+		/**
+		 * Label for the city eg City 1
+		 */
 		private JLabel labelCity;
+		
+		/**
+		 * To divide space
+		 */
 		private JSeparator separator;
 		
 		/**
-		 * Create the panel.
+		 * Constructor -- Create the Panel
+		 * @param buildings An array list storing BuildingPanel objects
+		 * @param villain A villain for the City
+		 * @param team A team for the City
+		 * @param cityTitle The title of the City
+		 * @param map The map of the city
 		 */
 		public CityPanel(ArrayList<BuildingPanel> buildings, Villain villain, Team team, String cityTitle, Map map) //ArrayList so I cna remove objects when randomizing directions
 			{
@@ -102,14 +165,9 @@ public class CityPanel extends JPanel
 								buildingCards.show(buildingContainer, "North");
 								cardLayout.show(container, "Go Back Screen");
 								goBackScreen.remove(btnReturnToHome);
-								((VillainsLairPanel) north).taunt();
-//								btnReturnToHome.setEnabled(false);
 							}
 						} else {
 							north.updateDisplays();
-//							if (north instanceof PowerupDenPanel) {((PowerupDenPanel) north).updatePowerupList();}
-//							else if (north instanceof ShopPanel) {((ShopPanel) north).updateTeamInventory();}
-//							else if (north instanceof HospitalPanel) {((HospitalPanel) north).update();}
 							buildingCards.show(buildingContainer, "North");
 							cardLayout.show(container, "Go Back Screen");
 						}
@@ -135,8 +193,6 @@ public class CityPanel extends JPanel
 								buildingCards.show(buildingContainer, "East");
 								cardLayout.show(container, "Go Back Screen");
 								goBackScreen.remove(btnReturnToHome);
-								((VillainsLairPanel) east).taunt();
-//								btnReturnToHome.setEnabled(false);
 							}
 						} else {
 							east.updateDisplays();
@@ -156,8 +212,6 @@ public class CityPanel extends JPanel
 								buildingCards.show(buildingContainer, "South");
 								cardLayout.show(container, "Go Back Screen");
 								goBackScreen.remove(btnReturnToHome);
-								((VillainsLairPanel) south).taunt();
-//								btnReturnToHome.setEnabled(false);
 							}
 						} else {
 							south.updateDisplays();
@@ -177,8 +231,7 @@ public class CityPanel extends JPanel
 								buildingCards.show(buildingContainer, "West");
 								cardLayout.show(container, "Go Back Screen");
 								goBackScreen.remove(btnReturnToHome);
-								((VillainsLairPanel) west).taunt();
-//								btnReturnToHome.setEnabled(false);
+
 							}
 						} else {
 							west.updateDisplays();
@@ -253,7 +306,9 @@ public class CityPanel extends JPanel
 				
 			}
 		
-		
+		/**
+		 * Updates the combo box for the select Hero (to view attributes), updates the team's inventory display
+		 */
 		public void updateHeroDisplays() {
 			String[] heroList = team.getHeroNames();
 			DefaultComboBoxModel<String> heroListModel = new DefaultComboBoxModel<String>(heroList);
@@ -262,6 +317,9 @@ public class CityPanel extends JPanel
 		    repaint();
 		}
 		
+		/**
+		 * If Villain's Lair is chosen, asks the user whether they want to proceed to fight the villain
+		 */
 		private boolean beginFight() {
 			String[] options = {"Yes", "Go back"};
 			int userChoice = JOptionPane.showOptionDialog(this, "Do you want to begin the fight with " + villain.getName() + villain.getTitle() + "?", "Fight Villain?", 0, JOptionPane.QUESTION_MESSAGE, null, options, null);

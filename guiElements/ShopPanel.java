@@ -21,19 +21,51 @@ import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
 import java.awt.Color;
 
+/**
+ * This creates a subclass ShopPanel, extends from BuildingPanel and holds all the Shop operations
+ *
+ * @author Harrison Cook
+ * @author Hannah Regan
+ */
 @SuppressWarnings("serial")
 public class ShopPanel extends BuildingPanel
 	{
-		
+		/** 
+		 * Array of items available to be purchased by user
+		 */
 		private Item[][] items = new Item[3][];
+		
+		/**
+		 * ComboBoxModel that defines what it contained in the ComboBox
+		 */
 		private DefaultComboBoxModel<Item> itemsModel;
+		
+		/**
+		 * ComboBox that stores the items that can be purchased
+		 */
 		private JComboBox<Item> comboItems;
+		
+		/**
+		 * The team
+		 */
 		private Team team;
+		
+		/**
+		 * The shop modifier, changes the shop prices
+		 */
 		private double shopMod;
+		
+		/**
+		 * JTextPane for the Team inventory
+		 */
 		private JTextPane paneInventory;
 
 		/**
-		 * Create the panel.
+		 * Constructor -- Create the panel
+		 * @param maps, array of Maps that can be purchased
+		 * @param team, The team
+		 * @param powerups, array of powerups that can be purchased
+		 * @param healingPotions, array of healing items that can be purchased
 		 */
 		public ShopPanel(Map[] maps, Team team, Powerup[] powerups, HealingItem[] healingPotions)
 			{
@@ -111,6 +143,11 @@ public class ShopPanel extends BuildingPanel
 				updateDisplays();
 			}
 		
+		/**
+		 * Gets the price of the selected item
+		 * @param selectedItem, item that the user has selected
+		 * @return toReturn, a string representation of the item's price and its original price
+		 */
 		public String getPrice(Item selectedItem) {
 			String toReturn = "\nPrice: ";
 			int origPrice = selectedItem.getPrice();
@@ -122,6 +159,9 @@ public class ShopPanel extends BuildingPanel
 			
 		}
 		
+		/**
+		 * Updates the display of the team inventory
+		 */
 		public void updateDisplays() {
 			paneInventory.setText(team.getInventory());
 //			lblMoney.setText("Gold: " + team.getGold());
@@ -137,7 +177,15 @@ public class ShopPanel extends BuildingPanel
 //				paneInventory.setText(toReturn);
 //			}
 		}
+		/**
+		 * String representation of the Shop
+		 * @return String shop
+		 */
 		public String toString() {return "Shop";}
 		
+		/**
+		 * Gets the available items that can be purchased
+		 * @return
+		 */
 		public Item[][] getItems() {return items;}
 	}

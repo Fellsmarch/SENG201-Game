@@ -23,19 +23,63 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
 
+/**
+ * This creates a subclass PowerupDenPanel, extends from BuildingPanel and holds all the Power Up Den operations
+ *
+ * @author Harrison Cook
+ * @author Hannah Regan
+ */
 @SuppressWarnings("serial")
 public class PowerupDenPanel extends BuildingPanel
-	{
+	{	
+		/**
+		 * JComboBox that holds the powerups
+		 */
 		private JComboBox<Powerup> comboPowerupSelector = new JComboBox<Powerup>();
+		
+		/**
+		 * The team visiting the power up den
+		 */
 		private Team team;
+		
+		/**
+		 * ComboBoxModel that defines what it contained in the ComboBox
+		 */
 		private DefaultComboBoxModel<Powerup> powerupModel;
-		private JTextPane paneHeroStats, panePowerupsActive;
+		
+		/**
+		 * JTextPane to display the hero's stats/characteristics
+		 */
+		private JTextPane paneHeroStats;
+		
+		/**
+		 * JTextPane display for the active powerups on the heroes
+		 */
+		private JTextPane panePowerupsActive;
+		
+		/**
+		 * Button to use the powerup
+		 */
 		private JButton btnUsePowerup;
-		private JComboBox<String> comboHeroSelector, comboPowerupEmpty = new JComboBox<String>();
+		
+		/**
+		 * JComboBox for the user to select the hero for the power up application
+		 */
+		private JComboBox<String> comboHeroSelector;
+		
+		/**
+		 * JComboBox for when there is no powerups left in the team's inventory
+		 */
+		private JComboBox<String> comboPowerupEmpty = new JComboBox<String>();
+		
+		/**
+		 * The pane that shows the selected powerup description
+		 */
 		private JTextPane panePowerupDescription;
 
 		/**
-		 * Create the panel.
+		 * Constructor -- Create the panel.
+		 * @param team, the Team
 		 */
 		public PowerupDenPanel(Team team)
 			{
@@ -99,7 +143,6 @@ public class PowerupDenPanel extends BuildingPanel
 				}
 			});
 			
-			//I will need to update this in case someone dies
 			String[] heroList = team.getHeroNames();
 			DefaultComboBoxModel<String> heroListModel = new DefaultComboBoxModel<String>(heroList);
 			comboHeroSelector = new JComboBox<String>(heroListModel);
@@ -139,9 +182,16 @@ public class PowerupDenPanel extends BuildingPanel
 			updateDisplays();
 			}
 		
+		/**
+		 * The string representation of the Powerup Den
+		 * @return
+		 */
 		@Override
 		public String toString() {return "Powerup Den";}
 		
+		/**
+		 * Updates the powerup list of the Team
+		 */
 		public void updatePowerupList() {
 			Powerup[] powerups = team.getPowerupList().toArray(new Powerup[team.getPowerupList().size()]);
 			Set<Powerup> powerupSet = new HashSet<Powerup>(Arrays.asList(powerups));
@@ -164,6 +214,9 @@ public class PowerupDenPanel extends BuildingPanel
 			}
 		}
 		
+		/**
+		 * Updates the hero's active powerups
+		 */
 		private void updateHeroDisplays() {
 			Hero selectedHero = team.getHeroList().get(comboHeroSelector.getSelectedIndex());
 			paneHeroStats.setText(selectedHero.toString());
@@ -175,9 +228,12 @@ public class PowerupDenPanel extends BuildingPanel
 			toAdd += "Ninja Tabi: " + activePowerupsStr[1] + "\n";
 			toAdd += "Kage's Lucky Pick: " + activePowerupsStr[2] + "\n";
 			panePowerupsActive.setText(toAdd);
-//			panePowerupDescription.setText(comboPowerupSelector.getSelectedItem().toString());
 		}
 		
+		
+		/**
+		 * Updates the display, shows the heros, calls to updatePowerupList() and updateHeroDisplays()
+		 */
 		@Override
 		public void updateDisplays() {
 			String[] heroList = team.getHeroNames();

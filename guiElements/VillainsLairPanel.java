@@ -21,21 +21,60 @@ import java.awt.Color;
 import javax.swing.JComboBox;
 import javax.swing.JProgressBar;
 
+/**
+ * This creates a subclass VillainsLairPanel, extends from BuildingPanel and holds all the VillainsLair operations
+ *
+ * @author Harrison Cook
+ * @author Hannah Regan
+ */
 @SuppressWarnings("serial")
 public class VillainsLairPanel extends BuildingPanel
 	{
-//		private RunGamePanel parent;
+		/**
+		 * The team
+		 */
 		private Team team;
+		
+		/**
+		 * The villain in the lair
+		 */
 		private Villain villain;
+		
+		/**
+		 * The game panel for the game
+		 */
 		private GamePanel game;
+		
+		/** 
+		 * The user to select a hero
+		 */
 		private JComboBox<String> comboHeroSelector;
+		
+		/**
+		 * The selected hero, by the user
+		 */
 		private Hero selectedHero;
+		
+		/**
+		 * Whether the game has ended or is still going
+		 */
 		private boolean gameFinished = false;
+		
+		/**
+		 * JButton for the user to select to start the next game
+		 */
 		private JButton btnBeginNextGame;
+		
+		/**
+		 * JLabel to Display the hero's health
+		 */
 		private JLabel labelDisplayHP;
 		
 		/**
-		 * Create the panel.
+		 * Constructor -- Create the panel.
+		 * @param team, the current team
+		 * @param villain, the villain that the hero will verse
+		 * @param parent, the panel where the game will be run from
 		 */
 		public VillainsLairPanel(Team team, Villain villain, RunGamePanel parent) { 
 			this.team = team;
@@ -44,7 +83,6 @@ public class VillainsLairPanel extends BuildingPanel
 			UIManager.put("ProgressBar.selectionForeground", Color.BLACK);
 			UIManager.put("ProgressBar.selectionBackground", Color.BLACK);
 			
-//			System.out.println(villain.getFavGame() + " - " + villain.getFavGameChance());
 			setLayout(new MigLayout("", "[470:n,grow,center]", "[][][][][px:n][10px:n][grow,center]"));
 			
 			JLabel lblTeamName = new JLabel(team.getName());
@@ -113,16 +151,10 @@ public class VillainsLairPanel extends BuildingPanel
 									damageDisplay.setForeground(Color.LIGHT_GRAY);
 								}
 							}
-							
-							
-							
 							btnBeginNextGame.setEnabled(true);
 							gameFinished = true;
 						}
 						else {btnPlayGame.setEnabled(true);}
-						//If result == Win do damage
-						//If result == Loss take damage
-						
 					}
 					
 				}
@@ -135,8 +167,6 @@ public class VillainsLairPanel extends BuildingPanel
 			comboHeroSelector.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					updateHeroDisplay();
-//					selectedHero = (Hero) team.getHeroList().get(comboHeroSelector.getSelectedIndex());
-//					labelDisplayHP.setText(selectedHero.getCurrentHealth() + "/" + selectedHero.getMaxHealth());
 				}
 			});
 			
@@ -149,16 +179,6 @@ public class VillainsLairPanel extends BuildingPanel
 			JSeparator separator_1 = new JSeparator();
 			separator_1.setForeground(Color.GRAY);
 			add(separator_1, "cell 0 5,growx");
-			
-			
-			
-//			game = new PSRPanel(tempHero, villain, false);
-//			game = new DiceRollsPanel(tempHero, villain, false);
-//			game = new GuessNumberPanel(tempHero, villain, false);
-//			game.add(btnPlayGame, "cell 1 1,grow");
-//			game.add(btnPlayGame, "cell 0 3,grow"); game.add(btnPlayGame, "cell 2 3,grow");
-			
-//			add(game, "cell 0 5,grow");
 			
 			JLabel lblGameName = new JLabel();
 			lblGameName.setFont(new Font("Tahoma", Font.PLAIN, 19));
@@ -187,7 +207,6 @@ public class VillainsLairPanel extends BuildingPanel
 						btnPlayGame.setEnabled(true);
 						btnBeginNextGame.setEnabled(false);
 					} else {
-						//This will never get reached now since I disable the button
 						JOptionPane.showMessageDialog(parent, "You must play the current game before beginning the next one!", "Game not finished", JOptionPane.WARNING_MESSAGE);
 					}
 					
@@ -202,8 +221,6 @@ public class VillainsLairPanel extends BuildingPanel
 			add(btnBeginNextGame, "cell 0 2");
 			
 			updateDisplays();
-//			selectedHero = (Hero) team.getHeroList().get(comboHeroSelector.getSelectedIndex());
-//			labelDisplayHP.setText(selectedHero.getCurrentHealth() + "/" + selectedHero.getMaxHealth());
 			GameType nextGame = villain.chooseGame();
 			game = nextGame.createGame(selectedHero, villain, selectedHero.getPowerups()[2]);
 			if (nextGame == GameType.GUESSNUM) {game.add(btnPlayGame, "cell 3 0 1 2,grow");}
@@ -218,23 +235,34 @@ public class VillainsLairPanel extends BuildingPanel
 			
 			}
 		
+		/**
+		 * Presents the villain's name and taunt, taunts the hero while the game is in progress
+		 */
 		public void taunt() {
-			JOptionPane.showMessageDialog(this, villain.getName() + villain.getTitle() + ":\n\"" + villain.getTaunt() + "\"", "", JOptionPane.WARNING_MESSAGE);
-		}
+			JOptionPane.showMessageDialog(this, villain.getName() + villain.getTitle() + ":\n\"" + villain.getTaunt() + "\"", "", JOptionPane.WARNING_MESSAGE);	
+			}
 		
+		/**
+		 * String representation of the villains lair
+		 * @return
+		 */
 		public String toString() {return "Villains Lair";}
 		
+		/**
+		 * Updates the hero's display, stats, health
+		 */
 		public void updateHeroDisplay() {
 			selectedHero = (Hero) team.getHeroList().get(comboHeroSelector.getSelectedIndex());
 			labelDisplayHP.setText(selectedHero.getCurrentHealth() + "/" + selectedHero.getMaxHealth());
 		}
 		
+		/**
+		 * Updates the display, list of heroes, calls to updateHeroDisplay()
+		 */
 		public void updateDisplays() {
 			String[] heroList = team.getHeroNames();
 			DefaultComboBoxModel<String> heroListModel = new DefaultComboBoxModel<String>(heroList);
 			comboHeroSelector.setModel(heroListModel);
 			updateHeroDisplay();
-			
 		}
-//		public void setParent(RunGamePanel parent) {this.parent = parent;}
 	}

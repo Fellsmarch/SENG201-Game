@@ -24,31 +24,107 @@ import java.awt.Font;
 import javax.swing.JSeparator;
 import javax.swing.ButtonGroup;
 
+/**
+ * The main class, the window where all the functionality of the game takes place
+ * 
+ * @author Harrison Cook
+ * @author Hannah Regan
+ */
 public class MainWindow
 	{
-
+		/**
+		 * JFrame, top level window with border and title bar
+		 */
 		private JFrame frame;
+		
+		/**
+		 * New card layout, specifies horizontal and vertical gaps
+		 */
 		private CardLayout cardLayout = new CardLayout();
+		
+		/** 
+		 * Creates a JPanel with reference to the CardLayout
+		 */
 		private JPanel container = new JPanel(cardLayout);
+		
+		/**
+		 * JLabel asking for the name of the team
+		 */
 		private JLabel lblWhatIsYour;
+		
+		/**
+		 * JLabel asking how many cities the user will play
+		 */
 		private JLabel lblHowManyCities;
+		
+		/** 
+		 * JLabel asking how many heroes the user will want in the Team
+		 */
 		private JLabel lblHowManyHeroes;
+		
+		/**
+		 * JTextField for user to input the Team name
+		 */
 		private JTextField fieldTeamName;
+		
+		/**
+		 * JToggleButton for the number of heroes the user will select from
+		 */
 		private JToggleButton tglBtnNumHeroes1, tglBtnNumHeroes2, tglBtnNumHeroes3;
 		
+		/**
+		 * An array list of heroes in the team
+		 */
 		private ArrayList<Hero> heroes = new ArrayList<Hero>();
+		
+		/**
+		 * The Team
+		 */
 		private Team team;
+		
+		/**
+		 * The name of the Team
+		 */
 		private String teamName;
+		
+		/**
+		 * The number of cities
+		 */
 		private int numCities = 3; 
+		
+		/**
+		 * The number of heroes in the Team
+		 */
 		private int numHeroes = 1;
-		private JToggleButton tglBtnNumCities3;
-		private JToggleButton tglBtnNumCities5;
-		private JToggleButton tglBtnNumCities6;
-		private JToggleButton tglBtnNumCities4;
+		
+		/**
+		 * JToggleButtons for the user to select the number of cities they wish to play
+		 */
+		private JToggleButton tglBtnNumCities3, tglBtnNumCities4, tglBtnNumCities5, tglBtnNumCities6;
+		
+		/**
+		 * Text for the title of the game
+		 */
 		private JLabel lblNewLabel;
+		
+		/**
+		 * To divide space
+		 */
 		private JSeparator separator;
+		
+		/**
+		 * JButton for the user to continue if they choose
+		 */
 		private JButton btnContinue;
+		
+		/**
+		 * The panel that creates the user's team of Heroes
+		 */
 		private TeamCreationPanel createHeroTeam;
+		
+		/**
+		 * After procedures are complete, the teamPanel is true
+		 */
 		boolean teamPanel = false;
 		
 
@@ -65,7 +141,6 @@ public class MainWindow
 									{
 										@SuppressWarnings("unused")
 										MainWindow window = new MainWindow();
-//										window.frame.setVisible(true);
 									} catch (Exception e)
 									{
 										e.printStackTrace();
@@ -123,7 +198,6 @@ public class MainWindow
 							JOptionPane.showMessageDialog(frame, "Team name must be no more than 10 characters!", "Team name too long!", JOptionPane.ERROR_MESSAGE);
 						}
 							
-//						labelTeamName.setText(fieldTeamName.getText());
 					}
 					@Override
 					public void keyPressed(KeyEvent e) {
@@ -200,7 +274,6 @@ public class MainWindow
 				mainWindowDisplay.add(tglBtnNumHeroes3, "cell 2 6,growx");
 				
 				
-				//These button groups replaces the commented out lines in the actionPerformed
 				ButtonGroup numHeroesGroup = new ButtonGroup();
 				numHeroesGroup.add(tglBtnNumHeroes1); numHeroesGroup.add(tglBtnNumHeroes2); numHeroesGroup.add(tglBtnNumHeroes3);
 				
@@ -231,7 +304,6 @@ public class MainWindow
 							if (createHeroTeam.readyToContinue()) {
 								heroes = createHeroTeam.getHeroes();
 								team = new Team(teamName, heroes, numCities);
-//								team.addItem(new PowerupDodge()); team.addItem(new PowerupLuck());
 								RunGamePanel game = new RunGamePanel(team, numCities, frame);
 								container.add(game, "Game");
 								cardLayout.show(container, "Game");
@@ -241,12 +313,6 @@ public class MainWindow
 						
 					}
 				});
-//				mainWindowDisplay.add(btnContinue, "cell 0 8 3 1,width 50:150:150,height 25:50:100,grow");
 				mainWindowDisplay.add(btnContinue, "cell 0 8 3 1,grow");
-				
-
-				
-
 			}
-
-	}
+}

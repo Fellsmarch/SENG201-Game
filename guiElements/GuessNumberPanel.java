@@ -14,18 +14,55 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.JToggleButton;
 import javax.swing.UIManager;
 
+/**
+ * This class creates the class 'GuessNumberPanel', extends GamePanel and creates a panel for the Guess Number game
+ * 
+ * @author Harrison Cook
+ * @author Hannah Regan
+ */
 @SuppressWarnings("serial")
 public class GuessNumberPanel extends GamePanel {
 	
+	/**
+	 * Boolean morelucky;
+	 */
 	private boolean moreLucky;
+	
+	/**
+	 * Villain that will verse the chosen Hero
+	 */
 	private Villain villain;
+	
+	/**
+	 * JProgressBar for results of who won the game
+	 */
 	private JProgressBar resultDisplay;
+	
+	/**
+	 * Number of guesses that the user has had
+	 */
 	private int guessNum = 0;
+	
+	/**
+	 * Array of buttons that can be selected and unselected
+	 */
 	private JToggleButton[] numberButtons;
-	private int villainsNumber, userGuess;
+	
+	/**
+	 * Number that the villain "chooses"
+	 */
+	private int villainsNumber;
+	
+	/**
+	 * User's number choice
+	 */
+	private int userGuess;
 
 	/**
-	 * Create the panel.
+	 * Constructor -- Create the panel
+	 * @param challenger, Hero that is chosen by user to play the game
+	 * @param villain, villain that will challenge the Hero
+	 * @param moreLucky, boolean 
 	 */
 	public GuessNumberPanel(Hero challenger, Villain villain, boolean moreLucky) {
 		this.moreLucky = moreLucky;
@@ -59,12 +96,14 @@ public class GuessNumberPanel extends GamePanel {
 		
 		ButtonGroup numChoice = new ButtonGroup();
 		for (JToggleButton button : buttons) {numChoice.add(button);}
-//		numChoice.add(tgl1); numChoice.add(tgl2); numChoice.add(tgl3); numChoice.add(tgl4); numChoice.add(tgl5); 
-//		numChoice.add(tgl6); numChoice.add(tgl7); numChoice.add(tgl8); numChoice.add(tgl9);
-	
+
 		
 	}
 
+	/**
+	 * Plays the game 
+	 * @return the result of the game (who won)
+	 */
 	@Override
 	public Result playGame() {
 		for (JToggleButton button : numberButtons) {
@@ -88,7 +127,9 @@ public class GuessNumberPanel extends GamePanel {
 			} else {return Result.LOSS;}
 		}
 	}
-
+	/**
+	 * Displays the result (who won)
+	 */
 	@Override
 	public void displayResult(Result result) {
 		if (userGuess == 0) {
@@ -104,7 +145,11 @@ public class GuessNumberPanel extends GamePanel {
 			}
 		}
 	}
-
+	
+	/**
+	 * toString() for the Guess Number game
+	 * @return a String representation of the Guess Number game
+	 */
 	@Override
 	public String toString() {return "Guess " + villain.getName() + "'s Number";}
 }
